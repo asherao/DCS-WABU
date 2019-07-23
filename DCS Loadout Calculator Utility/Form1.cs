@@ -23,6 +23,7 @@ using System.Runtime.InteropServices;
 //and how to get data fast and accurately
 //-do another aircraft :) (likely the SU33 next because it uses all 12 store slots)
 //make the arrays and weapon data more coding friendly
+//and do some more stuff
 */
 
 namespace DCS_Loadout_Calculator_Utility
