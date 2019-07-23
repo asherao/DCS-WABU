@@ -22,7 +22,6 @@ using System.Runtime.InteropServices;
 //-after completely finishing the F18, document how to add another aircraft. To include ecel and notepad
 //and how to get data fast and accurately
 //-do another aircraft :) (likely the SU33 next because it uses all 12 store slots)
-//make the arrays and weapon data more coding friendly
 */
 
 namespace DCS_Loadout_Calculator_Utility
@@ -178,7 +177,7 @@ namespace DCS_Loadout_Calculator_Utility
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            
+
         }
 
         private void SelectAirctaftListBox_SelectedIndexChanged(object sender, EventArgs e)
