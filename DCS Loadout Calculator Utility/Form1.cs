@@ -14,17 +14,15 @@ using System.Reflection;
 using System.Runtime.InteropServices;
 
 /*TODO
- * -Make the "chose your dcs save game folder" button work.
+ * 
  * -make it so that if a preset loadout is not already in the saved games location, then make one
-//-Finish putting in context menu for the F18, if you want to.
--make loadout naming same name detection
-//-document, document, document
-//-after completely finishing the F18, document how to add another aircraft. To include ecel and notepad
-//and how to get data fast and accurately
-//-do another aircraft :) (likely the SU33 next because it uses all 12 store slots)
-//make the arrays and weapon data more coding friendly
-//and do some more stuff
-//and more stuff
+ * -Finish putting in context menu for the F18, if you want to.
+
+ * -document, document, document
+ * -after completely finishing the F18, document how to add another aircraft. To include ecel and notepad
+ * and how to get data fast and accurately
+ * -do another aircraft :) (likely the SU33 next because it uses all 12 store slots)
+ * -make the arrays and weapon data more coding friendly
 */
 
 namespace DCS_Loadout_Calculator_Utility
@@ -5262,8 +5260,663 @@ namespace DCS_Loadout_Calculator_Utility
         {
 
         }
+
+        private void ToolStripMenuItem28_Click(object sender, EventArgs e)
+        {
+            station4ComboBox.Text = "AIM-120B";
+        }
+
+        private void ToolStripMenuItem34_Click(object sender, EventArgs e)
+        {
+            station4ComboBox.Text = "AIM-120C";
+        }
+
+        private void ToolStripMenuItem35_Click(object sender, EventArgs e)
+        {
+            station4ComboBox.Text = "AIM-7M";
+        }
+
+        private void ToolStripMenuItem36_Click(object sender, EventArgs e)
+        {
+            station4ComboBox.Text = "AIM-7F";
+        }
+
+        private void ToolStripMenuItem37_Click(object sender, EventArgs e)
+        {
+            station4ComboBox.Text = "AIM-7MH";
+        }
+
+        private void CBU99X2ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            station5ComboBox.Text = "CBU-99 x2";
+        }
+
+        private void Mk20RockeyeX2ToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            station5ComboBox.Text = "Mk-20 Rockeye x2";
+        }
+
+        private void Mk82X2ToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            station5ComboBox.Text = "Mk-82 x2";
+        }
+
+        private void Mk82SnakeEyeX2ToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            station5ComboBox.Text = "Mk-82 SnakeEye x2";
+        }
+
+        private void Mk82YX2ToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            station5ComboBox.Text = "Mk-82Y x2";
+        }
+
+        private void CBU99ToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            station5ComboBox.Text = "CBU-99";
+        }
+
+        private void Mk20ToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            station5ComboBox.Text = "Mk-20";
+        }
+
+        private void Mk82ToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            station5ComboBox.Text = "Mk-82";
+        }
+
+        private void Mk82SnakeEyeToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            station5ComboBox.Text = "Mk-82 SnakeEye";
+        }
+
+        private void Mk82YToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            station5ComboBox.Text = "Mk-82Y";
+        }
+
+        private void Mk83ToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            station5ComboBox.Text = "Mk-83";
+        }
+
+        private void Mk84ToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            station5ComboBox.Text = "Mk-84";
+        }
+
+        private void ToolStripMenuItem108_Click(object sender, EventArgs e)
+        {
+            station5ComboBox.Text = "FPU-8A Fuel Tank 330 gallons";
+        }
+
+        private void ToolStripMenuItem27_Click(object sender, EventArgs e)
+        {
+            station6ComboBox.Text = "AIM-120B";
+        }
+
+        private void ToolStripMenuItem77_Click(object sender, EventArgs e)
+        {
+            station6ComboBox.Text = "AIM-120C";
+        }
+
+        private void ToolStripMenuItem79_Click(object sender, EventArgs e)
+        {
+            station6ComboBox.Text = "AIM-7M";
+        }
+
+        private void ToolStripMenuItem80_Click(object sender, EventArgs e)
+        {
+            station6ComboBox.Text = "AIM-7F";
+        }
+
+        private void ToolStripMenuItem81_Click(object sender, EventArgs e)
+        {
+            station6ComboBox.Text = "AIM-7MH";
+        }
+
+        private void ToolStripMenuItem84_Click(object sender, EventArgs e)
+        {
+            station7ComboBox.Text = "AIM-120B x2";
+        }
+
+        private void ToolStripMenuItem85_Click(object sender, EventArgs e)
+        {
+            station7ComboBox.Text = "AIM-120C x2";
+        }
+
+        private void ToolStripMenuItem86_Click(object sender, EventArgs e)
+        {
+            station7ComboBox.Text = "AIM-120B";
+        }
+
+        private void ToolStripMenuItem87_Click(object sender, EventArgs e)
+        {
+            station7ComboBox.Text = "AIM-120C";
+        }
+
+        private void ToolStripMenuItem88_Click(object sender, EventArgs e)
+        {
+            station7ComboBox.Text = "AIM-7M";
+        }
+
+        private void ToolStripMenuItem89_Click(object sender, EventArgs e)
+        {
+            station7ComboBox.Text = "AIM-7F";
+        }
+
+        private void ToolStripMenuItem90_Click(object sender, EventArgs e)
+        {
+            station7ComboBox.Text = "AIM-7MH";
+        }
+
+        private void ToolStripMenuItem92_Click(object sender, EventArgs e)
+        {
+            station7ComboBox.Text = "CBU-99 x2";
+        }
+
+        private void ToolStripMenuItem93_Click(object sender, EventArgs e)
+        {
+            station7ComboBox.Text = "GBU-12 x2";
+        }
+
+        private void ToolStripMenuItem94_Click(object sender, EventArgs e)
+        {
+            station7ComboBox.Text = "Mk-20 Rockeye x2";
+        }
+
+        private void ToolStripMenuItem95_Click(object sender, EventArgs e)
+        {
+            station7ComboBox.Text = "Mk-82 x2";
+        }
+
+        private void ToolStripMenuItem96_Click(object sender, EventArgs e)
+        {
+            station7ComboBox.Text = "Mk-82 SnakeEye x2";
+        }
+
+        private void ToolStripMenuItem97_Click(object sender, EventArgs e)
+        {
+            station7ComboBox.Text = "Mk-82Y x2";
+        }
+
+        private void ToolStripMenuItem98_Click(object sender, EventArgs e)
+        {
+            station7ComboBox.Text = "Mk-83 x2";
+        }
+
+        private void ToolStripMenuItem99_Click(object sender, EventArgs e)
+        {
+            station7ComboBox.Text = "BDU-33 x6";
+        }
+
+        private void ToolStripMenuItem100_Click(object sender, EventArgs e)
+        {
+            station7ComboBox.Text = "GBU-38 x2";
+        }
+
+        private void ToolStripMenuItem101_Click(object sender, EventArgs e)
+        {
+            station7ComboBox.Text = "CBU-99";
+        }
+
+        private void ToolStripMenuItem102_Click(object sender, EventArgs e)
+        {
+            station7ComboBox.Text = "GBU-10";
+        }
+
+        private void ToolStripMenuItem103_Click(object sender, EventArgs e)
+        {
+            station7ComboBox.Text = "GBU-12";
+        }
+
+        private void ToolStripMenuItem104_Click(object sender, EventArgs e)
+        {
+            station7ComboBox.Text = "GBU-16";
+        }
+
+        private void ToolStripMenuItem105_Click(object sender, EventArgs e)
+        {
+            station7ComboBox.Text = "GBU-31";
+        }
+
+        private void ToolStripMenuItem106_Click(object sender, EventArgs e)
+        {
+            station7ComboBox.Text = "GBU-31(V)3/B";
+        }
+
+        private void ToolStripMenuItem109_Click(object sender, EventArgs e)
+        {
+            station7ComboBox.Text = "GBU-38";
+        }
+
+        private void ToolStripMenuItem110_Click(object sender, EventArgs e)
+        {
+            station7ComboBox.Text = "Mk-20";
+        }
+
+        private void ToolStripMenuItem111_Click(object sender, EventArgs e)
+        {
+            station7ComboBox.Text = "Mk-82";
+        }
+
+        private void ToolStripMenuItem112_Click(object sender, EventArgs e)
+        {
+            station7ComboBox.Text = "Mk-82 SnakeEye";
+        }
+
+        private void ToolStripMenuItem113_Click(object sender, EventArgs e)
+        {
+            station7ComboBox.Text = "Mk-82Y";
+        }
+
+        private void ToolStripMenuItem114_Click(object sender, EventArgs e)
+        {
+            station7ComboBox.Text = "Mk-83";
+        }
+
+        private void ToolStripMenuItem115_Click(object sender, EventArgs e)
+        {
+            station7ComboBox.Text = "Mk-84";
+        }
+
+        private void ToolStripMenuItem117_Click(object sender, EventArgs e)
+        {
+            station7ComboBox.Text = "FPU-8A Fuel Tank 330 gallons";
+        }
+
+        private void ToolStripMenuItem120_Click(object sender, EventArgs e)
+        {
+            station7ComboBox.Text = "AGM-154A";
+        }
+
+        private void ToolStripMenuItem121_Click(object sender, EventArgs e)
+        {
+            station7ComboBox.Text = "AGM-154C";
+        }
+
+        private void ToolStripMenuItem122_Click(object sender, EventArgs e)
+        {
+            station7ComboBox.Text = "AGM-88";
+        }
+
+        private void ToolStripMenuItem123_Click(object sender, EventArgs e)
+        {
+            station7ComboBox.Text = "AGM-154A x2";
+        }
+
+        private void ToolStripMenuItem124_Click(object sender, EventArgs e)
+        {
+            station7ComboBox.Text = "AGM-154C x2";
+        }
+
+        private void ToolStripMenuItem125_Click(object sender, EventArgs e)
+        {
+            station7ComboBox.Text = "AGM-65E";
+        }
+
+        private void ToolStripMenuItem127_Click(object sender, EventArgs e)
+        {
+            station7ComboBox.Text = "AGM-65F";
+        }
+
+        private void ToolStripMenuItem129_Click(object sender, EventArgs e)
+        {
+            station7ComboBox.Text = "4 ZUNI MK 71 x2";
+        }
+
+        private void ToolStripMenuItem133_Click(object sender, EventArgs e)
+        {
+            station7ComboBox.Text = "4 ZUNI MK 71";
+        }
+
+        private void ToolStripMenuItem130_Click(object sender, EventArgs e)
+        {
+            station7ComboBox.Text = "19 2.75' rockets M151 HE x2";
+        }
+
+        private void ToolStripMenuItem134_Click(object sender, EventArgs e)
+        {
+            station7ComboBox.Text = "19 2.75' rockets M151 HE";
+        }
+
+        private void ToolStripMenuItem131_Click(object sender, EventArgs e)
+        {
+            station7ComboBox.Text = "7 2.75' rockets MK151 (HE) x2";
+        }
+
+        private void ToolStripMenuItem135_Click(object sender, EventArgs e)
+        {
+            station7ComboBox.Text = "7 2.75' rockets MK151 (HE)";
+        }
+
+        private void ToolStripMenuItem132_Click(object sender, EventArgs e)
+        {
+            station7ComboBox.Text = "7 2.75' rockets M5 (HE) x2";
+        }
+
+        private void ToolStripMenuItem78_Click(object sender, EventArgs e)
+        {
+            station3ComboBox.Text = "Empty";
+        }
+
+        private void ToolStripMenuItem119_Click(object sender, EventArgs e)
+        {
+            station4ComboBox.Text = "Empty";
+        }
+
+        private void ToolStripMenuItem126_Click(object sender, EventArgs e)
+        {
+            station5ComboBox.Text = "Empty";
+        }
+
+        private void ToolStripMenuItem82_Click(object sender, EventArgs e)
+        {
+            station6ComboBox.Text = "Empty";
+        }
+
+        private void ToolStripMenuItem136_Click(object sender, EventArgs e)
+        {
+            station7ComboBox.Text = "Empty";
+        }
+
+        private void ToolStripMenuItem193_Click(object sender, EventArgs e)
+        {
+            station8ComboBox.Text = "Empty";
+        }
+
+        private void ToolStripMenuItem201_Click(object sender, EventArgs e)
+        {
+            station9ComboBox.Text = "Empty";
+        }
+
+        private void ToolStripMenuItem195_Click(object sender, EventArgs e)
+        {
+            station9ComboBox.Text = "AIM-9L";
+        }
+
+        private void ToolStripMenuItem196_Click(object sender, EventArgs e)
+        {
+            station9ComboBox.Text = "AIM-9M";
+        }
+
+        private void ToolStripMenuItem197_Click(object sender, EventArgs e)
+        {
+            station9ComboBox.Text = "AIM-9X";
+        }
+
+        private void ToolStripMenuItem198_Click(object sender, EventArgs e)
+        {
+            station9ComboBox.Text = "CAP-9M";
+        }
+
+        private void ToolStripMenuItem200_Click(object sender, EventArgs e)
+        {
+            station9ComboBox.Text = "AN/ASQ-T50 TCTS Pod";
+        }
+
+        private void ToolStripMenuItem138_Click(object sender, EventArgs e)
+        {
+            station8ComboBox.Text = "AIM-120B x2";
+        }
+
+        private void ToolStripMenuItem139_Click(object sender, EventArgs e)
+        {
+            station8ComboBox.Text = "AIM-120C x2";
+        }
+
+        private void ToolStripMenuItem140_Click(object sender, EventArgs e)
+        {
+            station8ComboBox.Text = "AIM-9L x2";
+        }
+
+        private void ToolStripMenuItem141_Click(object sender, EventArgs e)
+        {
+            station8ComboBox.Text = "AIM-9M x2";
+        }
+
+        private void ToolStripMenuItem142_Click(object sender, EventArgs e)
+        {
+            station8ComboBox.Text = "AIM-9X x2";
+        }
+
+        private void ToolStripMenuItem143_Click(object sender, EventArgs e)
+        {
+            station8ComboBox.Text = "CAP-9M x2";
+        }
+
+        private void ToolStripMenuItem144_Click(object sender, EventArgs e)
+        {
+            station8ComboBox.Text = "AIM-120B x2";
+        }
+
+        private void ToolStripMenuItem145_Click(object sender, EventArgs e)
+        {
+            station8ComboBox.Text = "AIM-120C x2";
+        }
+
+        private void ToolStripMenuItem146_Click(object sender, EventArgs e)
+        {
+            station8ComboBox.Text = "AIM-7M";
+        }
+
+        private void ToolStripMenuItem147_Click(object sender, EventArgs e)
+        {
+            station8ComboBox.Text = "AIM-7F";
+        }
+
+        private void ToolStripMenuItem148_Click(object sender, EventArgs e)
+        {
+            station8ComboBox.Text = "AIM-7MH";
+        }
+
+        private void ToolStripMenuItem149_Click(object sender, EventArgs e)
+        {
+            station8ComboBox.Text = "AIM-9L";
+        }
+
+        private void ToolStripMenuItem150_Click(object sender, EventArgs e)
+        {
+            station8ComboBox.Text = "AIM-9M";
+        }
+
+        private void ToolStripMenuItem151_Click(object sender, EventArgs e)
+        {
+            station8ComboBox.Text = "AIM-9X";
+        }
+
+        private void ToolStripMenuItem152_Click(object sender, EventArgs e)
+        {
+            station8ComboBox.Text = "CAP-9M";
+        }
+
+        private void ToolStripMenuItem154_Click(object sender, EventArgs e)
+        {
+            station8ComboBox.Text = "CBU-99 x2";
+        }
+
+        private void ToolStripMenuItem163_Click(object sender, EventArgs e)
+        {
+            station8ComboBox.Text = "CBU-99";
+        }
+
+        private void ToolStripMenuItem155_Click(object sender, EventArgs e)
+        {
+            station8ComboBox.Text = "GBU-12 x2";
+        }
+
+        private void ToolStripMenuItem165_Click(object sender, EventArgs e)
+        {
+            station8ComboBox.Text = "GBU-12";
+        }
+
+        private void ToolStripMenuItem156_Click(object sender, EventArgs e)
+        {
+            station8ComboBox.Text = "Mk-20 Rockeye x2";
+        }
+
+        private void ToolStripMenuItem170_Click(object sender, EventArgs e)
+        {
+            station8ComboBox.Text = "Mk-20 Rockeye";
+        }
+
+        private void ToolStripMenuItem157_Click(object sender, EventArgs e)
+        {
+            station8ComboBox.Text = "Mk-82 x2";
+        }
+
+        private void ToolStripMenuItem171_Click(object sender, EventArgs e)
+        {
+            station8ComboBox.Text = "Mk-82";
+        }
+
+        private void ToolStripMenuItem158_Click(object sender, EventArgs e)
+        {
+            station8ComboBox.Text = "Mk-82 SnakeEye x2";
+        }
+
+        private void ToolStripMenuItem172_Click(object sender, EventArgs e)
+        {
+            station8ComboBox.Text = "Mk-82 SnakeEye";
+        }
+
+        private void ToolStripMenuItem159_Click(object sender, EventArgs e)
+        {
+            station8ComboBox.Text = "Mk-82Y x2";
+        }
+
+        private void ToolStripMenuItem173_Click(object sender, EventArgs e)
+        {
+            station8ComboBox.Text = "Mk-82Y";
+        }
+
+        private void ToolStripMenuItem160_Click(object sender, EventArgs e)
+        {
+            station8ComboBox.Text = "Mk-83 x2";
+        }
+
+        private void ToolStripMenuItem174_Click(object sender, EventArgs e)
+        {
+            station8ComboBox.Text = "Mk-83";
+        }
+
+        private void ToolStripMenuItem161_Click(object sender, EventArgs e)
+        {
+            station8ComboBox.Text = "BDU-33 x6";
+        }
+
+        private void ToolStripMenuItem162_Click(object sender, EventArgs e)
+        {
+            station8ComboBox.Text = "GBU-38 x2";
+        }
+
+        private void ToolStripMenuItem169_Click(object sender, EventArgs e)
+        {
+            station8ComboBox.Text = "GBU-38";
+        }
+
+        private void ToolStripMenuItem164_Click(object sender, EventArgs e)
+        {
+            station8ComboBox.Text = "GBU-10";
+        }
+
+        private void ToolStripMenuItem166_Click(object sender, EventArgs e)
+        {
+            station8ComboBox.Text = "GBU-16";
+        }
+
+        private void ToolStripMenuItem167_Click(object sender, EventArgs e)
+        {
+            station8ComboBox.Text = "GBU-31";
+        }
+
+        private void ToolStripMenuItem168_Click(object sender, EventArgs e)
+        {
+            station8ComboBox.Text = "GBU-31(V)3/B";
+        }
+
+        private void ToolStripMenuItem175_Click(object sender, EventArgs e)
+        {
+            station8ComboBox.Text = "Mk-84";
+        }
+
+        private void ToolStripMenuItem177_Click(object sender, EventArgs e)
+        {
+            station8ComboBox.Text = "AGM-154A";
+        }
+
+        private void ToolStripMenuItem180_Click(object sender, EventArgs e)
+        {
+            station8ComboBox.Text = "AGM-154A x2";
+        }
+
+        private void ToolStripMenuItem178_Click(object sender, EventArgs e)
+        {
+            station8ComboBox.Text = "AGM-154C";
+        }
+
+        private void ToolStripMenuItem181_Click(object sender, EventArgs e)
+        {
+            station8ComboBox.Text = "AGM-154C x2";
+        }
+
+        private void ToolStripMenuItem179_Click(object sender, EventArgs e)
+        {
+            station8ComboBox.Text = "AGM-88";
+        }
+
+        private void ToolStripMenuItem182_Click(object sender, EventArgs e)
+        {
+            station8ComboBox.Text = "AGM-65E";
+        }
+
+        private void ToolStripMenuItem183_Click(object sender, EventArgs e)
+        {
+            station8ComboBox.Text = "AGM-65F";
+        }
+
+        private void ToolStripMenuItem185_Click(object sender, EventArgs e)
+        {
+            station8ComboBox.Text = "4 ZUNI MK 71 x2";
+        }
+
+        private void ToolStripMenuItem189_Click(object sender, EventArgs e)
+        {
+            station8ComboBox.Text = "4 ZUNI MK 71";
+        }
+
+        private void ToolStripMenuItem186_Click(object sender, EventArgs e)
+        {
+            station8ComboBox.Text = "19 2.75' rockets M151 HE x2";
+        }
+
+        private void ToolStripMenuItem190_Click(object sender, EventArgs e)
+        {
+            station8ComboBox.Text = "19 2.75' rockets M151 HE";
+        }
+
+        private void ToolStripMenuItem187_Click(object sender, EventArgs e)
+        {
+            station8ComboBox.Text = "7 2.75' rockets MK151 (HE) x2";
+        }
+
+        private void ToolStripMenuItem191_Click(object sender, EventArgs e)
+        {
+            station8ComboBox.Text = "7 2.75' rockets MK151 (HE)";
+        }
+
+        private void ToolStripMenuItem188_Click(object sender, EventArgs e)
+        {
+            station8ComboBox.Text = "7 2.75' rockets M5 (HE) x2";
+        }
+
+        private void ToolStripMenuItem192_Click(object sender, EventArgs e)
+        {
+            station8ComboBox.Text = "7 2.75' rockets M5 (HE)";
+        }
     }
-    class IniFile   // revision 11
+    class IniFile   // revision 11  //this is the backbone code for the ini reading and writing
     {
         string Path;
         string EXE = Assembly.GetExecutingAssembly().GetName().Name;
@@ -5306,7 +5959,7 @@ namespace DCS_Loadout_Calculator_Utility
             return Read(Key, Section).Length > 0;
         }
 
-    } //this is the backbone code for the ini reading and writing
+    } 
     public static class StringExtensions//this method is required for the duplicate name checker to work
     {
         public static bool Contains(this string source, string toCheck, StringComparison comp)
@@ -5315,7 +5968,3 @@ namespace DCS_Loadout_Calculator_Utility
         }
     }
 }
-/*
- completed pop up station 1 and 2 and 3.
- do 4,5,6,7,8, and 9. 
- */
