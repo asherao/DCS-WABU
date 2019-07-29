@@ -18,10 +18,10 @@ using System.Runtime.InteropServices;
  * -Learn how to populate the Combo List Box with the aircraft
  * -complete AJS37WeaponWeightTable
  * -make it so that if a preset loadout is not already in the saved games location, then make one
- * -Put in DCS-like menu for Su-33 
- * -Enable Su-33 export
- * -Put in DCS-like menu for Bf 109 K-4
- * -Enable Bf 109 K-4 export
+ * -Put in DCS-like menu for Su-33 Flanker D 
+ * -Enable Su-33 Flanker D export
+ * -Put in DCS-like menu for Bf 109 K-4 Messerschmitt
+ * -Enable Bf 109 K-4 Messerschmitt export
  *
  * -document, document, document
  * -after completely finishing the F18, document how to add another aircraft. To include ecel and notepad
@@ -99,7 +99,7 @@ namespace DCS_Loadout_Calculator_Utility
         public static int[] weaponWeight_FA18C_FPU8AFuelTank330gallons = new int[] { 0, 0, 291, 0, 291, 0, 291, 0, 0, 0, 0, 0 };
 
 
-        //initalize Su-33 weapon arrays (2 1D strings and one 2D string method
+        //initalize Su-33 Flanker D weapon arrays (2 1D strings and one 2D string method
         string[] SU33Stations = new string[] { "station1", "station2", "station3", "station4",
             "station5", "station6","station7", "station8", "station9", "station10", "station11",
             "station12"};
@@ -150,7 +150,7 @@ namespace DCS_Loadout_Calculator_Utility
             {"0","0","794","794","0","0","0","0","794","794","0","0"},
             {"0","0","1091","1091","0","0","0","0","1091","1091","0","0"},
         };
-        //init Bf 109 K-4 weapon arrays
+        //init Bf 109 K-4 Messerschmitt weapon arrays
         string[] BF109K4Stations = new string[] { "station1"};
         string[] BF109K4Weapons = new string[] { "", "Empty", "SC-250", "SC-500", "Fuel Tank 300 Liters" };
         string[,] BF109K4WeaponWeightTable = new string[,] //the last 0 at the end of all of these indicates the "Empty" state of the combo box
@@ -273,6 +273,17 @@ namespace DCS_Loadout_Calculator_Utility
             
             textBox_loadoutName.Enabled = false;//makes it so that the user does not enter a value for the box before selecting an airctaft
             button_exportLoadout.Enabled = false;
+            
+            //makes the list of available aircraft
+            List<string> AircraftList = new List<string>();
+            AircraftList.Add("F/A-18C Hornet");
+            AircraftList.Add("AJS-37 Viggen");
+            AircraftList.Add("Su-33 Flanker D");
+            //AircraftList.Add("F/A-18C Hornet");
+            AircraftList.Add("Bf 109 K-4 Messerschmitt");
+            AircraftList.Sort();
+            selectAirctaftListBox.DataSource = AircraftList;
+
         }
 
         private void Label1_Click(object sender, EventArgs e)
@@ -310,7 +321,7 @@ namespace DCS_Loadout_Calculator_Utility
             station11ComboBox.Text = "Empty";
             station12ComboBox.Text = "Empty";
 
-            if (selectAirctaftListBox.SelectedItem == "F/A-18")//this enables the export textbox on the mentioned aircraft
+            if (selectAirctaftListBox.SelectedItem == "F/A-18C Hornet")//this enables the export textbox on the mentioned aircraft
             {
                 textBox_loadoutName.Enabled = true;
                 button_exportLoadout.Enabled = true;
@@ -347,7 +358,7 @@ namespace DCS_Loadout_Calculator_Utility
             
 
 
-            if (selectedAircraft == "F/A-18")
+            if (selectedAircraft == "F/A-18C Hornet")
             {
                 //ini for FA18
                 station1Label.ContextMenuStrip = contextMenuStrip_Station1_FA18C3;
@@ -463,7 +474,7 @@ namespace DCS_Loadout_Calculator_Utility
 
                 CalculateWeights(); //makes sure that the numbers on the left change every time something is changed
             }
-            else if (selectedAircraft == "Su-33")
+            else if (selectedAircraft == "Su-33 Flanker D")
             {
                 //ini for SU33
                 //in progress. make it look like the F18
@@ -584,7 +595,7 @@ namespace DCS_Loadout_Calculator_Utility
 
                 //CalculateWeights();
             }
-            else if (selectedAircraft == "Bf 109 K-4")
+            else if (selectedAircraft == "Bf 109 K-4 Messerschmitt")
             {
                 gunTrackBar.Enabled = true;
                 gunTrackBar.Maximum = 190;
@@ -746,7 +757,7 @@ namespace DCS_Loadout_Calculator_Utility
         public void CalculateWeights()
         {
             //calculate weights does what you'd think it does. 
-            if (selectAirctaftListBox.SelectedItem == "Su-33")
+            if (selectAirctaftListBox.SelectedItem == "Su-33 Flanker D")
             {
                 
             }
@@ -818,24 +829,24 @@ namespace DCS_Loadout_Calculator_Utility
         }
         private void Station1ComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (selectAirctaftListBox.SelectedItem == "F/A-18")
+            if (selectAirctaftListBox.SelectedItem == "F/A-18C Hornet")
             {
                 string station1Store = station1ComboBox.SelectedValue.ToString();
                 //int station1Weight = 0;//this was keeping the value zero for some reason
                 station1Weight = GetStation1Weight_FA18C();//requests the weight of the named ' station3Store'
                                                            //MessageBox.Show(Convert.ToString(station1Weight)); //debugging   
             }
-            else if (selectAirctaftListBox.SelectedItem == "Su-33")
+            else if (selectAirctaftListBox.SelectedItem == "Su-33 Flanker D")
             {
 
                 GetStationWeights_SU33();
             }
-            else if (selectAirctaftListBox.SelectedItem == "Bf 109 K-4")
+            else if (selectAirctaftListBox.SelectedItem == "Bf 109 K-4 Messerschmitt")
             {
                 GetStationWeights_BF109K4();
                 //MessageBox.Show("you changed the box");
                 station1Store = station1ComboBox.SelectedValue.ToString();
-                if (station1Store == "Fuel Tank 300 Liters")//adding ' && selectedAircraft == "F/A-18"' does not seem to work
+                if (station1Store == "Fuel Tank 300 Liters")//adding ' && selectedAircraft == "F/A-18C Hornet"' does not seem to work
                 {
                     station1FuelWeight = 491-15;// minus 15 because that is the traped fuel amount
                     //MessageBox.Show(Convert.ToString(station7FuelWeight));
@@ -857,13 +868,13 @@ namespace DCS_Loadout_Calculator_Utility
         }
         private void Station2ComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (selectAirctaftListBox.SelectedItem == "F/A-18")
+            if (selectAirctaftListBox.SelectedItem == "F/A-18C Hornet")
             {
                 string station2Store = station2ComboBox.SelectedValue.ToString();
                 station2Weight = GetStation2Weight_FA18C();//requests the weight of the named ' station3Store'         
                 
             }
-            else if (selectAirctaftListBox.SelectedItem == "Su-33")
+            else if (selectAirctaftListBox.SelectedItem == "Su-33 Flanker D")
             {
 
                 GetStationWeights_SU33();
@@ -877,7 +888,7 @@ namespace DCS_Loadout_Calculator_Utility
         }
         private void Station3ComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (selectAirctaftListBox.SelectedItem == "F/A-18")
+            if (selectAirctaftListBox.SelectedItem == "F/A-18C Hornet")
             {
                 string station3Store = station3ComboBox.SelectedValue.ToString();
                 //int station3Weight = 0;//this was keeping the value zero for some reason
@@ -885,7 +896,7 @@ namespace DCS_Loadout_Calculator_Utility
                                                            //MessageBox.Show(Convert.ToString(station3Weight)); //debugging          
 
                 //this sets the poundage of the fuel tank only when it is selected
-                if (station3Store == "FPU-8A Fuel Tank 330 gallons")//adding ' && selectedAircraft == "F/A-18"' does not seem to work
+                if (station3Store == "FPU-8A Fuel Tank 330 gallons")//adding ' && selectedAircraft == "F/A-18C Hornet"' does not seem to work
                 {
                     station3FuelWeight = 2244;
                     //MessageBox.Show(Convert.ToString(station3FuelWeight));
@@ -896,7 +907,7 @@ namespace DCS_Loadout_Calculator_Utility
                     //MessageBox.Show(Convert.ToString(station3FuelWeight));
                 }
             }
-            else if (selectAirctaftListBox.SelectedItem == "Su-33")
+            else if (selectAirctaftListBox.SelectedItem == "Su-33 Flanker D")
             {
 
                 GetStationWeights_SU33();
@@ -911,13 +922,13 @@ namespace DCS_Loadout_Calculator_Utility
         private void Station4ComboBox_SelectedIndexChanged_1(object sender, EventArgs e)
         {
             station4Store = station4ComboBox.SelectedValue.ToString();
-            if (selectAirctaftListBox.SelectedItem == "F/A-18")
+            if (selectAirctaftListBox.SelectedItem == "F/A-18C Hornet")
             {
                 string station4Store = station4ComboBox.SelectedValue.ToString();
                 station4Weight = GetStation4Weight_FA18C();
                 //MessageBox.Show(Convert.ToString(station4Weight)); //debugging 
             }
-            else if (selectAirctaftListBox.SelectedItem == "Su-33")
+            else if (selectAirctaftListBox.SelectedItem == "Su-33 Flanker D")
             {
 
                 GetStationWeights_SU33();
@@ -927,7 +938,7 @@ namespace DCS_Loadout_Calculator_Utility
             else if (selectAirctaftListBox.SelectedItem == "AJS-37 Viggen")
             {
                 GetStationWeights_AJS37();
-                if (station4Store == "AJS X-Tank")//adding ' && selectedAircraft == "F/A-18"' does not seem to work
+                if (station4Store == "AJS X-Tank")//adding ' && selectedAircraft == "F/A-18C Hornet"' does not seem to work
                 {
                     //MessageBox.Show("you changed the tank box");
                     station4FuelWeight = 2233;
@@ -942,14 +953,14 @@ namespace DCS_Loadout_Calculator_Utility
         }
         private void Station5ComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (selectAirctaftListBox.SelectedItem == "F/A-18")
+            if (selectAirctaftListBox.SelectedItem == "F/A-18C Hornet")
             {
                 string station5Store = station5ComboBox.SelectedValue.ToString();
                 station5Weight = GetStation5Weight_FA18C();
                 //MessageBox.Show(Convert.ToString(station5Weight)); //debugging  
 
                 //this sets the poundage of the fuel tank only when it is selected
-                if (station5Store == "FPU-8A Fuel Tank 330 gallons")//adding ' && selectedAircraft == "F/A-18"' does not seem to work
+                if (station5Store == "FPU-8A Fuel Tank 330 gallons")//adding ' && selectedAircraft == "F/A-18C Hornet"' does not seem to work
                 {
                     station5FuelWeight = 2244;
                     //MessageBox.Show(Convert.ToString(station5FuelWeight));
@@ -960,7 +971,7 @@ namespace DCS_Loadout_Calculator_Utility
                     //MessageBox.Show(Convert.ToString(station5FuelWeight));
                 }
             }
-            else if (selectAirctaftListBox.SelectedItem == "Su-33")
+            else if (selectAirctaftListBox.SelectedItem == "Su-33 Flanker D")
             {
 
                 GetStationWeights_SU33();
@@ -974,12 +985,12 @@ namespace DCS_Loadout_Calculator_Utility
         }
         private void Station6ComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (selectAirctaftListBox.SelectedItem == "F/A-18")
+            if (selectAirctaftListBox.SelectedItem == "F/A-18C Hornet")
             {
                 string station6Store = station6ComboBox.SelectedValue.ToString();
                 station6Weight = GetStation6Weight_FA18C();
             }
-            else if (selectAirctaftListBox.SelectedItem == "Su-33")
+            else if (selectAirctaftListBox.SelectedItem == "Su-33 Flanker D")
             {
 
                 GetStationWeights_SU33();
@@ -993,13 +1004,13 @@ namespace DCS_Loadout_Calculator_Utility
         }
         private void Station7ComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (selectAirctaftListBox.SelectedItem == "F/A-18")
+            if (selectAirctaftListBox.SelectedItem == "F/A-18C Hornet")
             {
                 string station7Store = station7ComboBox.SelectedValue.ToString();
                 station7Weight = GetStation7Weight_FA18C();
 
                 //this sets the poundage of the fuel tank only when it is selected
-                if (station7Store == "FPU-8A Fuel Tank 330 gallons")//adding ' && selectedAircraft == "F/A-18"' does not seem to work
+                if (station7Store == "FPU-8A Fuel Tank 330 gallons")//adding ' && selectedAircraft == "F/A-18C Hornet"' does not seem to work
                 {
                     station7FuelWeight = 2244;
                     //MessageBox.Show(Convert.ToString(station7FuelWeight));
@@ -1010,7 +1021,7 @@ namespace DCS_Loadout_Calculator_Utility
                     //MessageBox.Show(Convert.ToString(station7FuelWeight));
                 }
             }
-            else if (selectAirctaftListBox.SelectedItem == "Su-33")
+            else if (selectAirctaftListBox.SelectedItem == "Su-33 Flanker D")
             {
 
                 GetStationWeights_SU33();
@@ -1024,12 +1035,12 @@ namespace DCS_Loadout_Calculator_Utility
         }
         private void Station8ComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (selectAirctaftListBox.SelectedItem == "F/A-18")
+            if (selectAirctaftListBox.SelectedItem == "F/A-18C Hornet")
             {
                 string station8Store = station8ComboBox.SelectedValue.ToString();
                 station8Weight = GetStation8Weight_FA18C();
             }
-            else if (selectAirctaftListBox.SelectedItem == "Su-33")
+            else if (selectAirctaftListBox.SelectedItem == "Su-33 Flanker D")
             {
 
                 GetStationWeights_SU33();
@@ -1038,12 +1049,12 @@ namespace DCS_Loadout_Calculator_Utility
         }
         private void Station9ComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (selectAirctaftListBox.SelectedItem == "F/A-18")
+            if (selectAirctaftListBox.SelectedItem == "F/A-18C Hornet")
             {
                 string station9Store = station9ComboBox.SelectedValue.ToString();
                 station9Weight = GetStation9Weight_FA18C();
             }
-            else if (selectAirctaftListBox.SelectedItem == "Su-33")
+            else if (selectAirctaftListBox.SelectedItem == "Su-33 Flanker D")
             {
 
                 GetStationWeights_SU33();
@@ -1052,7 +1063,7 @@ namespace DCS_Loadout_Calculator_Utility
         }
         private void Station10ComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (selectAirctaftListBox.SelectedItem == "Su-33")
+            if (selectAirctaftListBox.SelectedItem == "Su-33 Flanker D")
             {
                 GetStationWeights_SU33();
             }
@@ -1061,7 +1072,7 @@ namespace DCS_Loadout_Calculator_Utility
 
         private void Station11ComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (selectAirctaftListBox.SelectedItem == "Su-33")
+            if (selectAirctaftListBox.SelectedItem == "Su-33 Flanker D")
             {
                 GetStationWeights_SU33();
             }
@@ -1070,7 +1081,7 @@ namespace DCS_Loadout_Calculator_Utility
 
         private void Station12ComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (selectAirctaftListBox.SelectedItem == "Su-33")
+            if (selectAirctaftListBox.SelectedItem == "Su-33 Flanker D")
             {
                 GetStationWeights_SU33();
             }
@@ -3084,7 +3095,7 @@ namespace DCS_Loadout_Calculator_Utility
 
             //MessageBox.Show("You clicked the Export button");
             //Dummy File path C:\Users\Bailey\source\repos\DCS_Airctaft_Loadout_Generator\DCS_Airctaft_Loadout_Generator\Dummy DCS Files
-            if (selectAirctaftListBox.GetItemText(selectAirctaftListBox.SelectedItem) == "F/A-18")
+            if (selectAirctaftListBox.GetItemText(selectAirctaftListBox.SelectedItem) == "F/A-18C Hornet")
             {
                 
                 //MessageBox.Show("You clicked the Export button for F18");
@@ -5218,13 +5229,27 @@ namespace DCS_Loadout_Calculator_Utility
 
         private void Button_clearLoadout_Click(object sender, EventArgs e)
         {
-            if (selectAirctaftListBox.SelectedItem == "F/A-18")
+            /*
+            if (selectAirctaftListBox.SelectedItem == "F/A-18C Hornet")
             {
-                int index_clearLoadout = selectAirctaftListBox.FindString("F/A-18");
+                int index_clearLoadout = selectAirctaftListBox.FindString("F/A-18C Hornet");
                 selectAirctaftListBox.SetSelected(index_clearLoadout, true);
                 //MessageBox.Show("clear button ready");
 
             }
+            */
+            station1ComboBox.Text = "Empty";
+            station2ComboBox.Text = "Empty";
+            station3ComboBox.Text = "Empty";
+            station4ComboBox.Text = "Empty";
+            station5ComboBox.Text = "Empty";
+            station6ComboBox.Text = "Empty";
+            station7ComboBox.Text = "Empty";
+            station8ComboBox.Text = "Empty";
+            station9ComboBox.Text = "Empty";
+            station10ComboBox.Text = "Empty";
+            station11ComboBox.Text = "Empty";
+            station12ComboBox.Text = "Empty";
         }
 
         private void Button_setDcsLocation_Click(object sender, EventArgs e)

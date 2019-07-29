@@ -521,7 +521,7 @@
             "weapon13",
             "weapon14",
             "weapon15"});
-            this.station1ComboBox.Location = new System.Drawing.Point(285, 7);
+            this.station1ComboBox.Location = new System.Drawing.Point(290, 7);
             this.station1ComboBox.Name = "station1ComboBox";
             this.station1ComboBox.Size = new System.Drawing.Size(175, 21);
             this.station1ComboBox.TabIndex = 5;
@@ -559,7 +559,7 @@
             "weapon13",
             "weapon14",
             "weapon15"});
-            this.station2ComboBox.Location = new System.Drawing.Point(285, 37);
+            this.station2ComboBox.Location = new System.Drawing.Point(290, 37);
             this.station2ComboBox.Name = "station2ComboBox";
             this.station2ComboBox.Size = new System.Drawing.Size(175, 21);
             this.station2ComboBox.TabIndex = 17;
@@ -588,7 +588,7 @@
             "weapon13",
             "weapon14",
             "weapon15"});
-            this.station4ComboBox.Location = new System.Drawing.Point(285, 97);
+            this.station4ComboBox.Location = new System.Drawing.Point(290, 97);
             this.station4ComboBox.Name = "station4ComboBox";
             this.station4ComboBox.Size = new System.Drawing.Size(175, 21);
             this.station4ComboBox.TabIndex = 21;
@@ -626,7 +626,7 @@
             "weapon13",
             "weapon14",
             "weapon15"});
-            this.station3ComboBox.Location = new System.Drawing.Point(285, 67);
+            this.station3ComboBox.Location = new System.Drawing.Point(290, 67);
             this.station3ComboBox.Name = "station3ComboBox";
             this.station3ComboBox.Size = new System.Drawing.Size(175, 21);
             this.station3ComboBox.TabIndex = 19;
@@ -664,7 +664,7 @@
             "weapon13",
             "weapon14",
             "weapon15"});
-            this.station8ComboBox.Location = new System.Drawing.Point(285, 217);
+            this.station8ComboBox.Location = new System.Drawing.Point(290, 217);
             this.station8ComboBox.Name = "station8ComboBox";
             this.station8ComboBox.Size = new System.Drawing.Size(175, 21);
             this.station8ComboBox.TabIndex = 29;
@@ -702,7 +702,7 @@
             "weapon13",
             "weapon14",
             "weapon15"});
-            this.station7ComboBox.Location = new System.Drawing.Point(285, 187);
+            this.station7ComboBox.Location = new System.Drawing.Point(290, 187);
             this.station7ComboBox.Name = "station7ComboBox";
             this.station7ComboBox.Size = new System.Drawing.Size(175, 21);
             this.station7ComboBox.TabIndex = 27;
@@ -740,7 +740,7 @@
             "weapon13",
             "weapon14",
             "weapon15"});
-            this.station6ComboBox.Location = new System.Drawing.Point(285, 157);
+            this.station6ComboBox.Location = new System.Drawing.Point(290, 157);
             this.station6ComboBox.Name = "station6ComboBox";
             this.station6ComboBox.Size = new System.Drawing.Size(175, 21);
             this.station6ComboBox.TabIndex = 25;
@@ -778,7 +778,7 @@
             "weapon13",
             "weapon14",
             "weapon15"});
-            this.station5ComboBox.Location = new System.Drawing.Point(285, 127);
+            this.station5ComboBox.Location = new System.Drawing.Point(290, 127);
             this.station5ComboBox.Name = "station5ComboBox";
             this.station5ComboBox.Size = new System.Drawing.Size(175, 21);
             this.station5ComboBox.TabIndex = 23;
@@ -816,7 +816,7 @@
             "weapon13",
             "weapon14",
             "weapon15"});
-            this.station12ComboBox.Location = new System.Drawing.Point(285, 337);
+            this.station12ComboBox.Location = new System.Drawing.Point(290, 337);
             this.station12ComboBox.Name = "station12ComboBox";
             this.station12ComboBox.Size = new System.Drawing.Size(175, 21);
             this.station12ComboBox.TabIndex = 37;
@@ -854,7 +854,7 @@
             "weapon13",
             "weapon14",
             "weapon15"});
-            this.station11ComboBox.Location = new System.Drawing.Point(285, 307);
+            this.station11ComboBox.Location = new System.Drawing.Point(290, 307);
             this.station11ComboBox.Name = "station11ComboBox";
             this.station11ComboBox.Size = new System.Drawing.Size(175, 21);
             this.station11ComboBox.TabIndex = 35;
@@ -892,7 +892,7 @@
             "weapon13",
             "weapon14",
             "weapon15"});
-            this.station10ComboBox.Location = new System.Drawing.Point(285, 277);
+            this.station10ComboBox.Location = new System.Drawing.Point(290, 277);
             this.station10ComboBox.Name = "station10ComboBox";
             this.station10ComboBox.Size = new System.Drawing.Size(175, 21);
             this.station10ComboBox.TabIndex = 33;
@@ -930,7 +930,7 @@
             "weapon13",
             "weapon14",
             "weapon15"});
-            this.station9ComboBox.Location = new System.Drawing.Point(285, 247);
+            this.station9ComboBox.Location = new System.Drawing.Point(290, 247);
             this.station9ComboBox.Name = "station9ComboBox";
             this.station9ComboBox.Size = new System.Drawing.Size(175, 21);
             this.station9ComboBox.TabIndex = 31;
@@ -3457,7 +3457,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(467, 438);
+            this.ClientSize = new System.Drawing.Size(473, 438);
             this.Controls.Add(this.button_radnomTests);
             this.Controls.Add(this.button_clearLoadout);
             this.Controls.Add(this.textBox_loadoutName);
