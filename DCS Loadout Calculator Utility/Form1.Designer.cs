@@ -396,7 +396,7 @@
             // selectAircraftLabel
             // 
             this.selectAircraftLabel.AutoSize = true;
-            this.selectAircraftLabel.Location = new System.Drawing.Point(10, 10);
+            this.selectAircraftLabel.Location = new System.Drawing.Point(5, 10);
             this.selectAircraftLabel.Name = "selectAircraftLabel";
             this.selectAircraftLabel.Size = new System.Drawing.Size(76, 13);
             this.selectAircraftLabel.TabIndex = 0;
@@ -411,7 +411,7 @@
             "Bf 109 K-4",
             "F/A-18",
             "Su-33"});
-            this.selectAirctaftListBox.Location = new System.Drawing.Point(10, 25);
+            this.selectAirctaftListBox.Location = new System.Drawing.Point(5, 25);
             this.selectAirctaftListBox.Name = "selectAirctaftListBox";
             this.selectAirctaftListBox.Size = new System.Drawing.Size(180, 69);
             this.selectAirctaftListBox.Sorted = true;
@@ -421,7 +421,7 @@
             // station1Label
             // 
             this.station1Label.AutoSize = true;
-            this.station1Label.Location = new System.Drawing.Point(230, 10);
+            this.station1Label.Location = new System.Drawing.Point(225, 10);
             this.station1Label.Name = "station1Label";
             this.station1Label.Size = new System.Drawing.Size(52, 13);
             this.station1Label.TabIndex = 3;
@@ -521,16 +521,16 @@
             "weapon13",
             "weapon14",
             "weapon15"});
-            this.station1ComboBox.Location = new System.Drawing.Point(290, 7);
+            this.station1ComboBox.Location = new System.Drawing.Point(285, 7);
             this.station1ComboBox.Name = "station1ComboBox";
-            this.station1ComboBox.Size = new System.Drawing.Size(175, 21);
+            this.station1ComboBox.Size = new System.Drawing.Size(296, 21);
             this.station1ComboBox.TabIndex = 5;
             this.station1ComboBox.SelectedIndexChanged += new System.EventHandler(this.Station1ComboBox_SelectedIndexChanged);
             // 
             // station2Label
             // 
             this.station2Label.AutoSize = true;
-            this.station2Label.Location = new System.Drawing.Point(230, 40);
+            this.station2Label.Location = new System.Drawing.Point(225, 40);
             this.station2Label.Name = "station2Label";
             this.station2Label.Size = new System.Drawing.Size(52, 13);
             this.station2Label.TabIndex = 6;
@@ -559,9 +559,9 @@
             "weapon13",
             "weapon14",
             "weapon15"});
-            this.station2ComboBox.Location = new System.Drawing.Point(290, 37);
+            this.station2ComboBox.Location = new System.Drawing.Point(285, 37);
             this.station2ComboBox.Name = "station2ComboBox";
-            this.station2ComboBox.Size = new System.Drawing.Size(175, 21);
+            this.station2ComboBox.Size = new System.Drawing.Size(296, 21);
             this.station2ComboBox.TabIndex = 17;
             this.station2ComboBox.SelectedIndexChanged += new System.EventHandler(this.Station2ComboBox_SelectedIndexChanged);
             // 
@@ -588,16 +588,16 @@
             "weapon13",
             "weapon14",
             "weapon15"});
-            this.station4ComboBox.Location = new System.Drawing.Point(290, 97);
+            this.station4ComboBox.Location = new System.Drawing.Point(285, 97);
             this.station4ComboBox.Name = "station4ComboBox";
-            this.station4ComboBox.Size = new System.Drawing.Size(175, 21);
+            this.station4ComboBox.Size = new System.Drawing.Size(296, 21);
             this.station4ComboBox.TabIndex = 21;
             this.station4ComboBox.SelectedIndexChanged += new System.EventHandler(this.Station4ComboBox_SelectedIndexChanged_1);
             // 
             // station4Label
             // 
             this.station4Label.AutoSize = true;
-            this.station4Label.Location = new System.Drawing.Point(230, 100);
+            this.station4Label.Location = new System.Drawing.Point(225, 100);
             this.station4Label.Name = "station4Label";
             this.station4Label.Size = new System.Drawing.Size(52, 13);
             this.station4Label.TabIndex = 20;
@@ -626,16 +626,16 @@
             "weapon13",
             "weapon14",
             "weapon15"});
-            this.station3ComboBox.Location = new System.Drawing.Point(290, 67);
+            this.station3ComboBox.Location = new System.Drawing.Point(285, 67);
             this.station3ComboBox.Name = "station3ComboBox";
-            this.station3ComboBox.Size = new System.Drawing.Size(175, 21);
+            this.station3ComboBox.Size = new System.Drawing.Size(296, 21);
             this.station3ComboBox.TabIndex = 19;
             this.station3ComboBox.SelectedIndexChanged += new System.EventHandler(this.Station3ComboBox_SelectedIndexChanged);
             // 
             // station3Label
             // 
             this.station3Label.AutoSize = true;
-            this.station3Label.Location = new System.Drawing.Point(230, 70);
+            this.station3Label.Location = new System.Drawing.Point(225, 70);
             this.station3Label.Name = "station3Label";
             this.station3Label.Size = new System.Drawing.Size(52, 13);
             this.station3Label.TabIndex = 18;
@@ -664,16 +664,16 @@
             "weapon13",
             "weapon14",
             "weapon15"});
-            this.station8ComboBox.Location = new System.Drawing.Point(290, 217);
+            this.station8ComboBox.Location = new System.Drawing.Point(285, 217);
             this.station8ComboBox.Name = "station8ComboBox";
-            this.station8ComboBox.Size = new System.Drawing.Size(175, 21);
+            this.station8ComboBox.Size = new System.Drawing.Size(296, 21);
             this.station8ComboBox.TabIndex = 29;
             this.station8ComboBox.SelectedIndexChanged += new System.EventHandler(this.Station8ComboBox_SelectedIndexChanged);
             // 
             // station8Label
             // 
             this.station8Label.AutoSize = true;
-            this.station8Label.Location = new System.Drawing.Point(230, 220);
+            this.station8Label.Location = new System.Drawing.Point(225, 220);
             this.station8Label.Name = "station8Label";
             this.station8Label.Size = new System.Drawing.Size(52, 13);
             this.station8Label.TabIndex = 28;
@@ -702,16 +702,16 @@
             "weapon13",
             "weapon14",
             "weapon15"});
-            this.station7ComboBox.Location = new System.Drawing.Point(290, 187);
+            this.station7ComboBox.Location = new System.Drawing.Point(285, 187);
             this.station7ComboBox.Name = "station7ComboBox";
-            this.station7ComboBox.Size = new System.Drawing.Size(175, 21);
+            this.station7ComboBox.Size = new System.Drawing.Size(296, 21);
             this.station7ComboBox.TabIndex = 27;
             this.station7ComboBox.SelectedIndexChanged += new System.EventHandler(this.Station7ComboBox_SelectedIndexChanged);
             // 
             // station7Label
             // 
             this.station7Label.AutoSize = true;
-            this.station7Label.Location = new System.Drawing.Point(230, 190);
+            this.station7Label.Location = new System.Drawing.Point(225, 190);
             this.station7Label.Name = "station7Label";
             this.station7Label.Size = new System.Drawing.Size(52, 13);
             this.station7Label.TabIndex = 26;
@@ -740,16 +740,16 @@
             "weapon13",
             "weapon14",
             "weapon15"});
-            this.station6ComboBox.Location = new System.Drawing.Point(290, 157);
+            this.station6ComboBox.Location = new System.Drawing.Point(285, 157);
             this.station6ComboBox.Name = "station6ComboBox";
-            this.station6ComboBox.Size = new System.Drawing.Size(175, 21);
+            this.station6ComboBox.Size = new System.Drawing.Size(296, 21);
             this.station6ComboBox.TabIndex = 25;
             this.station6ComboBox.SelectedIndexChanged += new System.EventHandler(this.Station6ComboBox_SelectedIndexChanged);
             // 
             // station6Label
             // 
             this.station6Label.AutoSize = true;
-            this.station6Label.Location = new System.Drawing.Point(230, 160);
+            this.station6Label.Location = new System.Drawing.Point(225, 160);
             this.station6Label.Name = "station6Label";
             this.station6Label.Size = new System.Drawing.Size(52, 13);
             this.station6Label.TabIndex = 24;
@@ -778,16 +778,16 @@
             "weapon13",
             "weapon14",
             "weapon15"});
-            this.station5ComboBox.Location = new System.Drawing.Point(290, 127);
+            this.station5ComboBox.Location = new System.Drawing.Point(285, 127);
             this.station5ComboBox.Name = "station5ComboBox";
-            this.station5ComboBox.Size = new System.Drawing.Size(175, 21);
+            this.station5ComboBox.Size = new System.Drawing.Size(296, 21);
             this.station5ComboBox.TabIndex = 23;
             this.station5ComboBox.SelectedIndexChanged += new System.EventHandler(this.Station5ComboBox_SelectedIndexChanged);
             // 
             // station5Label
             // 
             this.station5Label.AutoSize = true;
-            this.station5Label.Location = new System.Drawing.Point(230, 130);
+            this.station5Label.Location = new System.Drawing.Point(225, 130);
             this.station5Label.Name = "station5Label";
             this.station5Label.Size = new System.Drawing.Size(52, 13);
             this.station5Label.TabIndex = 22;
@@ -816,16 +816,16 @@
             "weapon13",
             "weapon14",
             "weapon15"});
-            this.station12ComboBox.Location = new System.Drawing.Point(290, 337);
+            this.station12ComboBox.Location = new System.Drawing.Point(285, 337);
             this.station12ComboBox.Name = "station12ComboBox";
-            this.station12ComboBox.Size = new System.Drawing.Size(175, 21);
+            this.station12ComboBox.Size = new System.Drawing.Size(296, 21);
             this.station12ComboBox.TabIndex = 37;
             this.station12ComboBox.SelectedIndexChanged += new System.EventHandler(this.Station12ComboBox_SelectedIndexChanged);
             // 
             // station12Label
             // 
             this.station12Label.AutoSize = true;
-            this.station12Label.Location = new System.Drawing.Point(230, 340);
+            this.station12Label.Location = new System.Drawing.Point(225, 340);
             this.station12Label.Name = "station12Label";
             this.station12Label.Size = new System.Drawing.Size(58, 13);
             this.station12Label.TabIndex = 36;
@@ -854,16 +854,16 @@
             "weapon13",
             "weapon14",
             "weapon15"});
-            this.station11ComboBox.Location = new System.Drawing.Point(290, 307);
+            this.station11ComboBox.Location = new System.Drawing.Point(285, 307);
             this.station11ComboBox.Name = "station11ComboBox";
-            this.station11ComboBox.Size = new System.Drawing.Size(175, 21);
+            this.station11ComboBox.Size = new System.Drawing.Size(296, 21);
             this.station11ComboBox.TabIndex = 35;
             this.station11ComboBox.SelectedIndexChanged += new System.EventHandler(this.Station11ComboBox_SelectedIndexChanged);
             // 
             // station11Label
             // 
             this.station11Label.AutoSize = true;
-            this.station11Label.Location = new System.Drawing.Point(230, 310);
+            this.station11Label.Location = new System.Drawing.Point(225, 310);
             this.station11Label.Name = "station11Label";
             this.station11Label.Size = new System.Drawing.Size(58, 13);
             this.station11Label.TabIndex = 34;
@@ -892,16 +892,16 @@
             "weapon13",
             "weapon14",
             "weapon15"});
-            this.station10ComboBox.Location = new System.Drawing.Point(290, 277);
+            this.station10ComboBox.Location = new System.Drawing.Point(285, 277);
             this.station10ComboBox.Name = "station10ComboBox";
-            this.station10ComboBox.Size = new System.Drawing.Size(175, 21);
+            this.station10ComboBox.Size = new System.Drawing.Size(296, 21);
             this.station10ComboBox.TabIndex = 33;
             this.station10ComboBox.SelectedIndexChanged += new System.EventHandler(this.Station10ComboBox_SelectedIndexChanged);
             // 
             // station10Label
             // 
             this.station10Label.AutoSize = true;
-            this.station10Label.Location = new System.Drawing.Point(230, 280);
+            this.station10Label.Location = new System.Drawing.Point(225, 280);
             this.station10Label.Name = "station10Label";
             this.station10Label.Size = new System.Drawing.Size(58, 13);
             this.station10Label.TabIndex = 32;
@@ -930,16 +930,16 @@
             "weapon13",
             "weapon14",
             "weapon15"});
-            this.station9ComboBox.Location = new System.Drawing.Point(290, 247);
+            this.station9ComboBox.Location = new System.Drawing.Point(285, 247);
             this.station9ComboBox.Name = "station9ComboBox";
-            this.station9ComboBox.Size = new System.Drawing.Size(175, 21);
+            this.station9ComboBox.Size = new System.Drawing.Size(296, 21);
             this.station9ComboBox.TabIndex = 31;
             this.station9ComboBox.SelectedIndexChanged += new System.EventHandler(this.Station9ComboBox_SelectedIndexChanged);
             // 
             // station9Label
             // 
             this.station9Label.AutoSize = true;
-            this.station9Label.Location = new System.Drawing.Point(230, 250);
+            this.station9Label.Location = new System.Drawing.Point(225, 250);
             this.station9Label.Name = "station9Label";
             this.station9Label.Size = new System.Drawing.Size(52, 13);
             this.station9Label.TabIndex = 30;
@@ -948,7 +948,7 @@
             // internalFuelTrackBar
             // 
             this.internalFuelTrackBar.BackColor = System.Drawing.SystemColors.Control;
-            this.internalFuelTrackBar.Location = new System.Drawing.Point(72, 227);
+            this.internalFuelTrackBar.Location = new System.Drawing.Point(67, 227);
             this.internalFuelTrackBar.Maximum = 1;
             this.internalFuelTrackBar.Name = "internalFuelTrackBar";
             this.internalFuelTrackBar.Size = new System.Drawing.Size(125, 45);
@@ -961,7 +961,7 @@
             // fuelWeightLabel
             // 
             this.fuelWeightLabel.AutoSize = true;
-            this.fuelWeightLabel.Location = new System.Drawing.Point(10, 220);
+            this.fuelWeightLabel.Location = new System.Drawing.Point(5, 220);
             this.fuelWeightLabel.Name = "fuelWeightLabel";
             this.fuelWeightLabel.Size = new System.Drawing.Size(64, 13);
             this.fuelWeightLabel.TabIndex = 40;
@@ -971,7 +971,7 @@
             // emptyLabel
             // 
             this.emptyLabel.AutoSize = true;
-            this.emptyLabel.Location = new System.Drawing.Point(10, 143);
+            this.emptyLabel.Location = new System.Drawing.Point(5, 143);
             this.emptyLabel.Name = "emptyLabel";
             this.emptyLabel.Size = new System.Drawing.Size(73, 13);
             this.emptyLabel.TabIndex = 41;
@@ -981,7 +981,7 @@
             // weaponsLabel
             // 
             this.weaponsLabel.AutoSize = true;
-            this.weaponsLabel.Location = new System.Drawing.Point(10, 259);
+            this.weaponsLabel.Location = new System.Drawing.Point(5, 259);
             this.weaponsLabel.Name = "weaponsLabel";
             this.weaponsLabel.Size = new System.Drawing.Size(53, 13);
             this.weaponsLabel.TabIndex = 42;
@@ -991,7 +991,7 @@
             // MaxLabel
             // 
             this.MaxLabel.AutoSize = true;
-            this.MaxLabel.Location = new System.Drawing.Point(10, 173);
+            this.MaxLabel.Location = new System.Drawing.Point(5, 173);
             this.MaxLabel.Name = "MaxLabel";
             this.MaxLabel.Size = new System.Drawing.Size(64, 13);
             this.MaxLabel.TabIndex = 43;
@@ -1001,7 +1001,7 @@
             // totalTrackBar
             // 
             this.totalTrackBar.Enabled = false;
-            this.totalTrackBar.Location = new System.Drawing.Point(73, 326);
+            this.totalTrackBar.Location = new System.Drawing.Point(68, 326);
             this.totalTrackBar.Maximum = 100;
             this.totalTrackBar.Name = "totalTrackBar";
             this.totalTrackBar.Size = new System.Drawing.Size(125, 45);
@@ -1011,7 +1011,7 @@
             // 
             // gunTrackBar
             // 
-            this.gunTrackBar.Location = new System.Drawing.Point(72, 184);
+            this.gunTrackBar.Location = new System.Drawing.Point(67, 184);
             this.gunTrackBar.Maximum = 1;
             this.gunTrackBar.Name = "gunTrackBar";
             this.gunTrackBar.Size = new System.Drawing.Size(125, 45);
@@ -1024,7 +1024,7 @@
             // gunLabel
             // 
             this.gunLabel.AutoSize = true;
-            this.gunLabel.Location = new System.Drawing.Point(10, 196);
+            this.gunLabel.Location = new System.Drawing.Point(5, 196);
             this.gunLabel.Name = "gunLabel";
             this.gunLabel.Size = new System.Drawing.Size(66, 13);
             this.gunLabel.TabIndex = 46;
@@ -1033,7 +1033,7 @@
             // 
             // fuelWeightTextBox
             // 
-            this.fuelWeightTextBox.Location = new System.Drawing.Point(85, 217);
+            this.fuelWeightTextBox.Location = new System.Drawing.Point(80, 217);
             this.fuelWeightTextBox.Name = "fuelWeightTextBox";
             this.fuelWeightTextBox.ReadOnly = true;
             this.fuelWeightTextBox.Size = new System.Drawing.Size(100, 20);
@@ -1042,7 +1042,7 @@
             // 
             // emptyTextBox
             // 
-            this.emptyTextBox.Location = new System.Drawing.Point(85, 142);
+            this.emptyTextBox.Location = new System.Drawing.Point(80, 142);
             this.emptyTextBox.Name = "emptyTextBox";
             this.emptyTextBox.ReadOnly = true;
             this.emptyTextBox.Size = new System.Drawing.Size(100, 20);
@@ -1051,7 +1051,7 @@
             // 
             // weaponsTextBox
             // 
-            this.weaponsTextBox.Location = new System.Drawing.Point(85, 257);
+            this.weaponsTextBox.Location = new System.Drawing.Point(80, 257);
             this.weaponsTextBox.Name = "weaponsTextBox";
             this.weaponsTextBox.ReadOnly = true;
             this.weaponsTextBox.Size = new System.Drawing.Size(100, 20);
@@ -1060,7 +1060,7 @@
             // 
             // maxTextBox
             // 
-            this.maxTextBox.Location = new System.Drawing.Point(85, 172);
+            this.maxTextBox.Location = new System.Drawing.Point(80, 172);
             this.maxTextBox.Name = "maxTextBox";
             this.maxTextBox.ReadOnly = true;
             this.maxTextBox.Size = new System.Drawing.Size(100, 20);
@@ -1070,7 +1070,7 @@
             // total2Label
             // 
             this.total2Label.AutoSize = true;
-            this.total2Label.Location = new System.Drawing.Point(10, 319);
+            this.total2Label.Location = new System.Drawing.Point(5, 319);
             this.total2Label.Name = "total2Label";
             this.total2Label.Size = new System.Drawing.Size(31, 13);
             this.total2Label.TabIndex = 52;
@@ -1079,7 +1079,7 @@
             // 
             // totalTextBox
             // 
-            this.totalTextBox.Location = new System.Drawing.Point(85, 316);
+            this.totalTextBox.Location = new System.Drawing.Point(80, 316);
             this.totalTextBox.Name = "totalTextBox";
             this.totalTextBox.ReadOnly = true;
             this.totalTextBox.Size = new System.Drawing.Size(100, 20);
@@ -1088,7 +1088,7 @@
             // 
             // deltaTextBox
             // 
-            this.deltaTextBox.Location = new System.Drawing.Point(85, 286);
+            this.deltaTextBox.Location = new System.Drawing.Point(80, 286);
             this.deltaTextBox.Name = "deltaTextBox";
             this.deltaTextBox.ReadOnly = true;
             this.deltaTextBox.Size = new System.Drawing.Size(100, 20);
@@ -1098,7 +1098,7 @@
             // deltaLabel
             // 
             this.deltaLabel.AutoSize = true;
-            this.deltaLabel.Location = new System.Drawing.Point(10, 289);
+            this.deltaLabel.Location = new System.Drawing.Point(5, 289);
             this.deltaLabel.Name = "deltaLabel";
             this.deltaLabel.Size = new System.Drawing.Size(32, 13);
             this.deltaLabel.TabIndex = 54;
@@ -3368,7 +3368,7 @@
             // label_InternalFuelPercent
             // 
             this.label_InternalFuelPercent.AutoSize = true;
-            this.label_InternalFuelPercent.Location = new System.Drawing.Point(191, 239);
+            this.label_InternalFuelPercent.Location = new System.Drawing.Point(186, 239);
             this.label_InternalFuelPercent.Name = "label_InternalFuelPercent";
             this.label_InternalFuelPercent.Size = new System.Drawing.Size(15, 13);
             this.label_InternalFuelPercent.TabIndex = 67;
@@ -3378,7 +3378,7 @@
             // label_GunPercent
             // 
             this.label_GunPercent.AutoSize = true;
-            this.label_GunPercent.Location = new System.Drawing.Point(191, 199);
+            this.label_GunPercent.Location = new System.Drawing.Point(186, 199);
             this.label_GunPercent.Name = "label_GunPercent";
             this.label_GunPercent.Size = new System.Drawing.Size(15, 13);
             this.label_GunPercent.TabIndex = 68;
@@ -3388,7 +3388,7 @@
             // label_TotalPercent
             // 
             this.label_TotalPercent.AutoSize = true;
-            this.label_TotalPercent.Location = new System.Drawing.Point(191, 339);
+            this.label_TotalPercent.Location = new System.Drawing.Point(186, 339);
             this.label_TotalPercent.Name = "label_TotalPercent";
             this.label_TotalPercent.Size = new System.Drawing.Size(15, 13);
             this.label_TotalPercent.TabIndex = 69;
@@ -3397,9 +3397,9 @@
             // 
             // button_exportLoadout
             // 
-            this.button_exportLoadout.Location = new System.Drawing.Point(310, 397);
+            this.button_exportLoadout.Location = new System.Drawing.Point(461, 366);
             this.button_exportLoadout.Name = "button_exportLoadout";
-            this.button_exportLoadout.Size = new System.Drawing.Size(150, 23);
+            this.button_exportLoadout.Size = new System.Drawing.Size(121, 23);
             this.button_exportLoadout.TabIndex = 70;
             this.button_exportLoadout.Text = "Export Loadout";
             this.button_exportLoadout.UseVisualStyleBackColor = true;
@@ -3407,7 +3407,7 @@
             // 
             // button_setDcsLocation
             // 
-            this.button_setDcsLocation.Location = new System.Drawing.Point(10, 105);
+            this.button_setDcsLocation.Location = new System.Drawing.Point(5, 105);
             this.button_setDcsLocation.Name = "button_setDcsLocation";
             this.button_setDcsLocation.Size = new System.Drawing.Size(180, 23);
             this.button_setDcsLocation.TabIndex = 71;
@@ -3418,7 +3418,7 @@
             // label_loadoutName
             // 
             this.label_loadoutName.AutoSize = true;
-            this.label_loadoutName.Location = new System.Drawing.Point(230, 370);
+            this.label_loadoutName.Location = new System.Drawing.Point(225, 370);
             this.label_loadoutName.Name = "label_loadoutName";
             this.label_loadoutName.Size = new System.Drawing.Size(80, 13);
             this.label_loadoutName.TabIndex = 72;
@@ -3427,7 +3427,7 @@
             // 
             // textBox_loadoutName
             // 
-            this.textBox_loadoutName.Location = new System.Drawing.Point(310, 367);
+            this.textBox_loadoutName.Location = new System.Drawing.Point(305, 367);
             this.textBox_loadoutName.Name = "textBox_loadoutName";
             this.textBox_loadoutName.Size = new System.Drawing.Size(150, 20);
             this.textBox_loadoutName.TabIndex = 73;
@@ -3435,7 +3435,7 @@
             // 
             // button_clearLoadout
             // 
-            this.button_clearLoadout.Location = new System.Drawing.Point(10, 363);
+            this.button_clearLoadout.Location = new System.Drawing.Point(5, 366);
             this.button_clearLoadout.Name = "button_clearLoadout";
             this.button_clearLoadout.Size = new System.Drawing.Size(175, 23);
             this.button_clearLoadout.TabIndex = 74;
@@ -3457,7 +3457,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(473, 438);
+            this.ClientSize = new System.Drawing.Size(588, 390);
             this.Controls.Add(this.button_radnomTests);
             this.Controls.Add(this.button_clearLoadout);
             this.Controls.Add(this.textBox_loadoutName);
@@ -3510,7 +3510,7 @@
             this.Controls.Add(this.selectAirctaftListBox);
             this.Controls.Add(this.selectAircraftLabel);
             this.Name = "Form1";
-            this.Text = "DCS Loadout Calculator and Export by Bailey";
+            this.Text = "DCS WABU (Weight and Balance Utility) by Bailey";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.contextMenuStrip_Station1_FA18C2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.internalFuelTrackBar)).EndInit();

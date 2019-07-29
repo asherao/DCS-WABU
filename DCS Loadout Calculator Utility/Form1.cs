@@ -12,17 +12,18 @@ using System.Globalization;
 using System.IO;
 using System.Reflection;
 using System.Runtime.InteropServices;
+using System.Threading;
 
 /*TODO
  * 
- * -Learn how to populate the Combo List Box with the aircraft
- * -complete AJS37WeaponWeightTable
  * -make it so that if a preset loadout is not already in the saved games location, then make one
  * -Put in DCS-like menu for Su-33 Flanker D 
  * -Enable Su-33 Flanker D export
  * -Put in DCS-like menu for Bf 109 K-4 Messerschmitt
  * -Enable Bf 109 K-4 Messerschmitt export
- *
+ * -Put in DCS-like menu for Viggen
+ * -Enable viggen export
+ * 
  * -document, document, document
  * -after completely finishing the F18, document how to add another aircraft. To include ecel and notepad
  * and how to get data fast and accurately
@@ -198,6 +199,119 @@ namespace DCS_Loadout_Calculator_Utility
             {"0","0","0","430","0","0","0"},
          };
 
+        //init A-10C Warthog weapon arrays
+        string[] A10CStations = new string[] { "station1", "station2", "station3",
+            "station4", "station5", "station6", "station7", "station8", "station9", "station10", "station11" };
+        string[] A10CWeapons = new string[] { "", "Empty", "AIM-9L x2", "AIM-9M x2", "CAP-9M x2", "AIM-9L",
+            "AIM-9M", "CAP-9M", "BDU-33 x3", "BDU-50HD", "BDU-50LD", "BDU-50LGB", "CBU-87", "CBU-97", "CBU-103",
+            "CBU-105", "GBU-10", "GBU-12 x3", "GBU-12", "GBU-31", "GBU-31(V)3/B", "GBU-38", "Mk-82 x3", "Mk-82",
+            "Mk-82AIR x3", "Mk-82AIR", "Mk-84", "SUU-25 * 8 LUU-2 x3", "SUU-25 * 8LUU-2", "AGM-65D", "AGM-65G",
+            "AGM-65H", "AGM-65K", "CATM-65K", "TGM-65D", "TGM-65G", "TGM-65H", "AGM-65D x1", "AGM-65D x2",
+            "AGM-65D x3", "AGM-65H x1", "AGM-65H x2", "AGM-65H x3", "ALQ-131", "ALQ-184", "AN/AAQ-28 LITENING",
+            "AN/ASQ-T50 TCTS Pod", "BRU-42LS", "LAU-105", "MXU-648 Travel Pod", "7 2.75' rockets M151 (HE) LAU-131",
+            "7 2.75' rockets M156 (WP) LAU-131", "7 2.75' rockets M257 (Parachute Illumination) LAU-131",
+            "7 2.75' rockets M274 (Practice smoke) LAU-131", "7 2.75' rockets MK5 (HE) LAU-131",
+            "7 2.75' rockets MK61 (Practice) LAU-131", "7 2.75' rockets Mk1 (Practice) LAU-131",
+            "7 2.75' rockets WTU1B (Practice) LAU-131", "7 2.75' rockets M151 (HE) LAU-131 x3",
+            "7 2.75' rockets M156 (WP) LAU-131 x3", "7 2.75' rockets M257 (Parachute Illumination) LAU-131 x3",
+            "7 2.75' rockets M274 (Practice smoke) LAU-131 x3", "7 2.75' rockets MK5 (HE) LAU-131 x3",
+            "7 2.75' rockets MK61 (Practice) LAU-131 x3", "7 2.75' rockets Mk1 (Practice) LAU-131 x3",
+            "7 2.75' rockets WTU1B (Practice) LAU-131 x3", "7 2.75' rockets M151 (HE) LAU-68",
+            "7 2.75' rockets M156 (WP) LAU-68", "7 2.75' rockets M257 (Parachute Illumination) LAU-68",
+            "7 2.75' rockets M274 (Practice smoke) LAU-68", "7 2.75' rockets MK5 (HE) LAU-68",
+            "7 2.75' rockets MK61 (Practice) LAU-68", "7 2.75' rockets Mk1 (Practice) LAU-68",
+            "7 2.75' rockets WTU1B (Practice) LAU-68", "7 2.75' rockets M151 (HE) LAU-68 x3",
+            "7 2.75' rockets M156 (WP) LAU-68 x3", "7 2.75' rockets M257 (Parachute Illumination) LAU-68 x3",
+            "7 2.75' rockets M274 (Practice smoke) LAU-68 x3", "7 2.75' rockets MK5 (HE) LAU-68 x3",
+            "7 2.75' rockets MK61 (Practice) LAU-68 x3", "7 2.75' rockets Mk1 (Practice) LAU-68 x3",
+            "7 2.75' rockets WTU1B (Practice) LAU-68 x3", "Fuel Tank FT600" };
+
+        string[,] A10CWeaponWeightTable = new string[,]
+         {
+            {"0","0","0","0","0","0","0","0","0","0","0"},
+            {"0","0","0","0","0","0","0","0","0","0","0"},
+            {"443","0","0","0","0","0","0","0","0","0","443"},
+            {"448","0","0","0","0","0","0","0","0","0","448"},
+            {"443","0","0","0","0","0","0","0","0","0","443"},
+            {"256","0","0","0","0","0","0","0","0","0","256"},
+            {"258","0","0","0","0","0","0","0","0","0","258"},
+            {"256","0","0","0","0","0","0","0","0","0","256"},
+            {"0","0","216","216","216","216","216","216","216","0","0"},
+            {"511","511","511","511","511","511","511","511","511","511","511"},
+            {"511","511","511","511","511","511","511","511","511","511","511"},
+            {"617","617","617","617","617","617","617","617","617","617","617"},
+            {"948","948","948","948","948","948","948","948","948","948","948"},
+            {"919","919","919","919","919","919","919","919","919","919","919"},
+            {"0","0","948","948","948","0","948","948","948","0","0"},
+            {"0","0","919","919","919","0","919","919","919","0","0"},
+            {"0","0","2562","2562","2562","2562","2562","2562","2562","0","0"},
+            {"0","0","1931","1931","0","0","0","1931","1931","0","0"},
+            {"606","606","606","606","606","606","606","606","606","606","606"},
+            {"0","0","1971","1971","1971","0","1971","1971","1971","0","0"},
+            {"0","0","2163","2163","2163","0","2163","2163","2163","0","0"},
+            {"0","0","531","531","531","0","531","531","531","0","0"},
+            {"0","0","1726","1726","1726","0","1726","1726","1726","0","0"},
+            {"531","531","531","531","531","531","531","531","531","531","531"},
+            {"0","0","1726","1726","1726","0","1726","1726","1726","0","0"},
+            {"511","511","511","511","511","511","511","511","511","511","511"},
+            {"0","0","1971","1971","1971","1971","1971","1971","1971","0","0"},
+            {"0","0","1080","0","0","0","0","0","1080","0","0"},
+            {"0","287","287","0","0","0","0","0","287","287","0"},
+            {"0","0","611","0","0","0","0","0","611","0","0"},
+            {"0","0","794","0","0","0","0","0","794","0","0"},
+            {"0","0","589","0","0","0","0","0","589","0","0"},
+            {"0","0","924","0","0","0","0","0","924","0","0"},
+            {"0","0","924","0","0","0","0","0","924","0","0"},
+            {"0","0","611","0","0","0","0","0","611","0","0"},
+            {"0","0","794","0","0","0","0","0","794","0","0"},
+            {"0","0","589","0","0","0","0","0","589","0","0"},
+            {"0","0","946","0","0","0","0","0","946","0","0"},
+            {"0","0","1426","0","0","0","0","0","1426","0","0"},
+            {"0","0","1907","0","0","0","0","0","1907","0","0"},
+            {"0","0","924","0","0","0","0","0","924","0","0"},
+            {"0","0","1382","0","0","0","0","0","1382","0","0"},
+            {"0","0","1841","0","0","0","0","0","1841","0","0"},
+            {"672","0","0","0","0","0","0","0","0","0","672"},
+            {"474","0","0","0","0","0","0","0","0","0","474"},
+            {"0","661","0","0","0","0","0","0","0","661","0"},
+            {"205","0","0","0","0","0","0","0","0","0","205"},
+            {"0","0","143","143","143","143","143","143","143","0","0"},
+            {"40","0","0","0","0","0","0","0","0","0","40"},
+            {"0","0","661","661","661","661","661","661","661","0","0"},
+            {"0","225","225","225","0","0","0","225","225","225","0"},
+            {"0","229","229","229","0","0","0","229","229","229","0"},
+            {"0","238","238","238","0","0","0","238","238","238","0"},
+            {"0","225","225","225","0","0","0","225","225","225","0"},
+            {"0","201","201","201","0","0","0","201","201","201","0"},
+            {"0","205","205","205","0","0","0","205","205","205","0"},
+            {"0","205","205","205","0","0","0","205","205","205","0"},
+            {"0","225","225","225","0","0","0","225","225","225","0"},
+            {"0","0","789","789","0","0","0","789","789","0","0"},
+            {"0","0","796","796","0","0","0","796","796","0","0"},
+            {"0","0","827","827","0","0","0","827","827","0","0"},
+            {"0","0","789","789","0","0","0","789","789","0","0"},
+            {"0","0","714","714","0","0","0","714","714","0","0"},
+            {"0","0","730","730","0","0","0","730","730","0","0"},
+            {"0","0","730","730","0","0","0","730","730","0","0"},
+            {"0","0","789","789","0","0","0","789","789","0","0"},
+            {"0","254","254","254","0","0","0","254","254","254","0"},
+            {"0","229","229","229","0","0","0","229","229","229","0"},
+            {"0","238","238","238","0","0","0","238","238","238","0"},
+            {"0","225","225","225","0","0","0","225","225","225","0"},
+            {"0","227","227","227","0","0","0","227","227","227","0"},
+            {"0","234","234","234","0","0","0","234","234","234","0"},
+            {"0","234","234","234","0","0","0","234","234","234","0"},
+            {"0","254","254","254","0","0","0","254","254","254","0"},
+            {"0","0","869","869","0","0","0","869","869","0","0"},
+            {"0","0","877","877","0","0","0","877","877","0","0"},
+            {"0","0","906","906","0","0","0","906","906","0","0"},
+            {"0","0","869","869","0","0","0","869","869","0","0"},
+            {"0","0","796","796","0","0","0","796","796","0","0"},
+            {"0","0","809","809","0","0","0","809","809","0","0"},
+            {"0","0","809","809","0","0","0","809","809","0","0"},
+            {"0","0","869","869","0","0","0","869","869","0","0"},
+            {"0","0","0","243","0","243","0","243","0","0","0"},
+         };
 
         private int station1Weight;
         private int station2Weight;
@@ -273,6 +387,8 @@ namespace DCS_Loadout_Calculator_Utility
             
             textBox_loadoutName.Enabled = false;//makes it so that the user does not enter a value for the box before selecting an airctaft
             button_exportLoadout.Enabled = false;
+
+            button_radnomTests.Visible = false;
             
             //makes the list of available aircraft
             List<string> AircraftList = new List<string>();
@@ -281,6 +397,7 @@ namespace DCS_Loadout_Calculator_Utility
             AircraftList.Add("Su-33 Flanker D");
             //AircraftList.Add("F/A-18C Hornet");
             AircraftList.Add("Bf 109 K-4 Messerschmitt");
+            AircraftList.Add("A-10C Warthog");
             AircraftList.Sort();
             selectAirctaftListBox.DataSource = AircraftList;
 
@@ -308,6 +425,7 @@ namespace DCS_Loadout_Calculator_Utility
 
         private void SelectAirctaftListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            clearLoadout();
             station1ComboBox.Text = "Empty";
             station2ComboBox.Text = "Empty";
             station3ComboBox.Text = "Empty";
@@ -732,11 +850,189 @@ namespace DCS_Loadout_Calculator_Utility
                 string[] station7Stores_AJS37 = new string[] { "Empty", "RB-24", "RB-24J" };
                 station7ComboBox.DataSource = station7Stores_AJS37;
             }
+            if (selectedAircraft == "A-10C Warthog")
+            {
+                //ini for A10C
+                gunTrackBar.Enabled = true;
+                gunTrackBar.Maximum = 1775;
+                gunTrackBar.Value = 1775;
+                internalFuelTrackBar.Maximum = 11087;
+                internalFuelTrackBar.Value = 11087;
+                internalFuelTrackBar.Minimum = 0;
+                int internalFuelWeightInt = internalFuelTrackBar.Value;
 
-            
+                //fuelWeightTextBox.Text = internalFuelTextBox.Value + fuelValue //placeholders
+                emptyTextBox.Text = "24967";
+                int emptyWeightInt = int.Parse(emptyTextBox.Text);
+                weaponsTextBox.Text = Convert.ToString(gunTrackBar.Value); //something+something+moreSomething
+                int weaponsWeightInt = int.Parse(weaponsTextBox.Text);
+                maxTextBox.Text = "46476";
+
+                int gunWeightInt = gunTrackBar.Value;
+                int totalWeightInt = internalFuelWeightInt + emptyWeightInt + gunWeightInt +
+                    station1Weight + station2Weight + station3Weight + station4Weight +
+                    station5Weight + station6Weight + station7Weight + station8Weight +
+                    station9Weight + station10Weight + station11Weight + station12Weight; //+externalFuelWeightInt+ weaponsWeightInt 
+                string totalWeightString = totalWeightInt.ToString();
+                totalTextBox.Text = totalWeightString;
+
+                station1Label.Visible = true;
+                station2Label.Visible = true;
+                station3Label.Visible = true;
+                station4Label.Visible = true;
+                station5Label.Visible = true;
+                station6Label.Visible = true;
+                station7Label.Visible = true;
+                station8Label.Visible = true;
+                station9Label.Visible = true;
+                station10Label.Visible = true;
+                station11Label.Visible = true;
+                station12Label.Visible = false;
+
+                station1ComboBox.Visible = true;
+                station2ComboBox.Visible = true;
+                station3ComboBox.Visible = true;
+                station4ComboBox.Visible = true;
+                station5ComboBox.Visible = true;
+                station6ComboBox.Visible = true;
+                station7ComboBox.Visible = true;
+                station8ComboBox.Visible = true;
+                station9ComboBox.Visible = true;
+                station10ComboBox.Visible = true;
+                station11ComboBox.Visible = true;
+                station12ComboBox.Visible = false;
+
+
+                string[] station1Stores_A10C = new string[] { "Empty", "AIM-9L x2", "AIM-9M x2", "CAP-9M x2",
+                    "AIM-9L", "AIM-9M", "CAP-9M", "BDU-50HD", "BDU-50LD", "BDU-50LGB", "CBU-87", "CBU-97",
+                    "GBU-12", "Mk-82", "Mk-82AIR", "ALQ-131", "ALQ-184", "AN/ASQ-T50 TCTS Pod", "LAU-105" };
+                station1ComboBox.DataSource = station1Stores_A10C;
+                string[] station2Stores_A10C = new string[] { "Empty", "BDU-50HD", "BDU-50LD", "BDU-50LGB", "CBU-87",
+                    "CBU-97", "GBU-12", "Mk-82", "Mk-82AIR", "SUU-25 * 8LUU-2", "AN/AAQ-28 LITENING",
+                    "7 2.75' rockets M151 (HE) LAU-131", "7 2.75' rockets M156 (WP) LAU-131",
+                    "7 2.75' rockets M257 (Parachute Illumination) LAU-131", "7 2.75' rockets M274 (Practice smoke) LAU-131",
+                    "7 2.75' rockets MK5 (HE) LAU-131", "7 2.75' rockets MK61 (Practice) LAU-131",
+                    "7 2.75' rockets Mk1 (Practice) LAU-131", "7 2.75' rockets WTU1B (Practice) LAU-131",
+                    "7 2.75' rockets M151 (HE) LAU-68", "7 2.75' rockets M156 (WP) LAU-68",
+                    "7 2.75' rockets M257 (Parachute Illumination) LAU-68", "7 2.75' rockets M274 (Practice smoke) LAU-68",
+                    "7 2.75' rockets MK5 (HE) LAU-68", "7 2.75' rockets MK61 (Practice) LAU-68",
+                    "7 2.75' rockets Mk1 (Practice) LAU-68", "7 2.75' rockets WTU1B (Practice) LAU-68" };
+                station2ComboBox.DataSource = station2Stores_A10C;
+                string[] station3Stores_A10C = new string[] { "Empty", "BDU-33 x3", "BDU-50HD", "BDU-50LD", "BDU-50LGB", "CBU-103",
+                    "CBU-105", "GBU-10", "GBU-12 x3", "GBU-12", "GBU-31", "GBU-31(V)3/B", "GBU-38", "Mk-82 x3", "Mk-82", "Mk-82AIR x3",
+                    "Mk-82AIR", "Mk-84", "SUU-25 * 8 LUU-2 x3", "SUU-25 * 8LUU-2", "AGM-65D", "AGM-65G", "AGM-65H", "AGM-65K",
+                    "CATM-65K", "TGM-65D", "TGM-65G", "TGM-65H", "AGM-65D x1", "AGM-65D x2", "AGM-65D x3", "AGM-65H x1", "AGM-65H x2",
+                    "AGM-65H x3", "BRU-42LS", "MXU-648 Travel Pod", "7 2.75' rockets M151 (HE) LAU-131",
+                    "7 2.75' rockets M156 (WP) LAU-131", "7 2.75' rockets M257 (Parachute Illumination) LAU-131",
+                    "7 2.75' rockets M274 (Practice smoke) LAU-131", "7 2.75' rockets MK5 (HE) LAU-131",
+                    "7 2.75' rockets MK61 (Practice) LAU-131", "7 2.75' rockets Mk1 (Practice) LAU-131",
+                    "7 2.75' rockets WTU1B (Practice) LAU-131", "7 2.75' rockets M151 (HE) LAU-131 x3",
+                    "7 2.75' rockets M156 (WP) LAU-131 x3", "7 2.75' rockets M257 (Parachute Illumination) LAU-131 x3",
+                    "7 2.75' rockets M274 (Practice smoke) LAU-131 x3", "7 2.75' rockets MK5 (HE) LAU-131 x3",
+                    "7 2.75' rockets MK61 (Practice) LAU-131 x3", "7 2.75' rockets Mk1 (Practice) LAU-131 x3",
+                    "7 2.75' rockets WTU1B (Practice) LAU-131 x3", "7 2.75' rockets M151 (HE) LAU-68",
+                    "7 2.75' rockets M156 (WP) LAU-68", "7 2.75' rockets M257 (Parachute Illumination) LAU-68",
+                    "7 2.75' rockets M274 (Practice smoke) LAU-68", "7 2.75' rockets MK5 (HE) LAU-68",
+                    "7 2.75' rockets MK61 (Practice) LAU-68", "7 2.75' rockets Mk1 (Practice) LAU-68",
+                    "7 2.75' rockets WTU1B (Practice) LAU-68", "7 2.75' rockets M151 (HE) LAU-68 x3",
+                    "7 2.75' rockets M156 (WP) LAU-68 x3", "7 2.75' rockets M257 (Parachute Illumination) LAU-68 x3",
+                    "7 2.75' rockets M274 (Practice smoke) LAU-68 x3", "7 2.75' rockets MK5 (HE) LAU-68 x3",
+                    "7 2.75' rockets MK61 (Practice) LAU-68 x3", "7 2.75' rockets Mk1 (Practice) LAU-68 x3",
+                    "7 2.75' rockets WTU1B (Practice) LAU-68 x3" };
+                station3ComboBox.DataSource = station3Stores_A10C;
+                string[] station4Stores_A10C = new string[] { "Empty", "BDU-33 x3", "BDU-50HD", "BDU-50LD", "BDU-50LGB", "CBU-87",
+                    "CBU-97", "CBU-103", "CBU-105", "GBU-10", "GBU-12 x3", "GBU-12", "GBU-31", "GBU-31(V)3/B", "GBU-38", "Mk-82 x3",
+                    "Mk-82", "Mk-82AIR x3", "Mk-82AIR", "Mk-84", "BRU-42LS", "MXU-648 Travel Pod", "7 2.75' rockets M151 (HE) LAU-131",
+                    "7 2.75' rockets M156 (WP) LAU-131", "7 2.75' rockets M257 (Parachute Illumination) LAU-131",
+                    "7 2.75' rockets M274 (Practice smoke) LAU-131", "7 2.75' rockets MK5 (HE) LAU-131",
+                    "7 2.75' rockets MK61 (Practice) LAU-131", "7 2.75' rockets Mk1 (Practice) LAU-131",
+                    "7 2.75' rockets WTU1B (Practice) LAU-131", "7 2.75' rockets M151 (HE) LAU-131 x3",
+                    "7 2.75' rockets M156 (WP) LAU-131 x3", "7 2.75' rockets M257 (Parachute Illumination) LAU-131 x3",
+                    "7 2.75' rockets M274 (Practice smoke) LAU-131 x3", "7 2.75' rockets MK5 (HE) LAU-131 x3",
+                    "7 2.75' rockets MK61 (Practice) LAU-131 x3", "7 2.75' rockets Mk1 (Practice) LAU-131 x3",
+                    "7 2.75' rockets WTU1B (Practice) LAU-131 x3", "7 2.75' rockets M151 (HE) LAU-68",
+                    "7 2.75' rockets M156 (WP) LAU-68", "7 2.75' rockets M257 (Parachute Illumination) LAU-68",
+                    "7 2.75' rockets M274 (Practice smoke) LAU-68", "7 2.75' rockets MK5 (HE) LAU-68",
+                    "7 2.75' rockets MK61 (Practice) LAU-68", "7 2.75' rockets Mk1 (Practice) LAU-68",
+                    "7 2.75' rockets WTU1B (Practice) LAU-68", "7 2.75' rockets M151 (HE) LAU-68 x3",
+                    "7 2.75' rockets M156 (WP) LAU-68 x3", "7 2.75' rockets M257 (Parachute Illumination) LAU-68 x3",
+                    "7 2.75' rockets M274 (Practice smoke) LAU-68 x3", "7 2.75' rockets MK5 (HE) LAU-68 x3",
+                    "7 2.75' rockets MK61 (Practice) LAU-68 x3", "7 2.75' rockets Mk1 (Practice) LAU-68 x3",
+                    "7 2.75' rockets WTU1B (Practice) LAU-68 x3", "Fuel Tank FT600" };
+                station4ComboBox.DataSource = station4Stores_A10C;
+                string[] station5Stores_A10C = new string[] { "Empty", "BDU-33 x3", "BDU-50HD", "BDU-50LD", "BDU-50LGB", "CBU-87",
+                    "CBU-97", "CBU-103", "CBU-105", "GBU-10", "GBU-12", "GBU-31", "GBU-31(V)3/B", "GBU-38", "Mk-82 x3", "Mk-82",
+                    "Mk-82AIR x3", "Mk-82AIR", "Mk-84", "BRU-42LS", "MXU-648 Travel Pod" };
+                station5ComboBox.DataSource = station5Stores_A10C;
+                string[] station6Stores_A10C = new string[] { "Empty", "BDU-33 x3", "BDU-50HD", "BDU-50LD", "BDU-50LGB", "CBU-87",
+                    "CBU-97", "GBU-10", "GBU-12", "Mk-82", "Mk-82AIR", "Mk-84", "BRU-42LS", "MXU-648 Travel Pod", "Fuel Tank FT600" };
+                station6ComboBox.DataSource = station6Stores_A10C;
+                string[] station7Stores_A10C = new string[] { "Empty", "BDU-33 x3", "BDU-50HD", "BDU-50LD", "BDU-50LGB", "CBU-87",
+                    "CBU-97", "CBU-103", "CBU-105", "GBU-10", "GBU-12", "GBU-31", "GBU-31(V)3/B", "GBU-38", "Mk-82 x3", "Mk-82",
+                    "Mk-82AIR x3", "Mk-82AIR", "Mk-84", "BRU-42LS", "MXU-648 Travel Pod" };
+                station7ComboBox.DataSource = station7Stores_A10C;
+                string[] station8Stores_A10C = new string[] { "Empty", "BDU-33 x3", "BDU-50HD", "BDU-50LD", "BDU-50LGB", "CBU-87",
+                    "CBU-97", "CBU-103", "CBU-105", "GBU-10", "GBU-12 x3", "GBU-12", "GBU-31", "GBU-31(V)3/B", "GBU-38", "Mk-82 x3",
+                    "Mk-82", "Mk-82AIR x3", "Mk-82AIR", "Mk-84", "BRU-42LS", "MXU-648 Travel Pod", "7 2.75' rockets M151 (HE) LAU-131",
+                    "7 2.75' rockets M156 (WP) LAU-131", "7 2.75' rockets M257 (Parachute Illumination) LAU-131",
+                    "7 2.75' rockets M274 (Practice smoke) LAU-131", "7 2.75' rockets MK5 (HE) LAU-131",
+                    "7 2.75' rockets MK61 (Practice) LAU-131", "7 2.75' rockets Mk1 (Practice) LAU-131",
+                    "7 2.75' rockets WTU1B (Practice) LAU-131", "7 2.75' rockets M151 (HE) LAU-131 x3",
+                    "7 2.75' rockets M156 (WP) LAU-131 x3", "7 2.75' rockets M257 (Parachute Illumination) LAU-131 x3",
+                    "7 2.75' rockets M274 (Practice smoke) LAU-131 x3", "7 2.75' rockets MK5 (HE) LAU-131 x3",
+                    "7 2.75' rockets MK61 (Practice) LAU-131 x3", "7 2.75' rockets Mk1 (Practice) LAU-131 x3",
+                    "7 2.75' rockets WTU1B (Practice) LAU-131 x3", "7 2.75' rockets M151 (HE) LAU-68",
+                    "7 2.75' rockets M156 (WP) LAU-68", "7 2.75' rockets M257 (Parachute Illumination) LAU-68",
+                    "7 2.75' rockets M274 (Practice smoke) LAU-68", "7 2.75' rockets MK5 (HE) LAU-68",
+                    "7 2.75' rockets MK61 (Practice) LAU-68", "7 2.75' rockets Mk1 (Practice) LAU-68",
+                    "7 2.75' rockets WTU1B (Practice) LAU-68", "7 2.75' rockets M151 (HE) LAU-68 x3",
+                    "7 2.75' rockets M156 (WP) LAU-68 x3", "7 2.75' rockets M257 (Parachute Illumination) LAU-68 x3",
+                    "7 2.75' rockets M274 (Practice smoke) LAU-68 x3", "7 2.75' rockets MK5 (HE) LAU-68 x3",
+                    "7 2.75' rockets MK61 (Practice) LAU-68 x3", "7 2.75' rockets Mk1 (Practice) LAU-68 x3",
+                    "7 2.75' rockets WTU1B (Practice) LAU-68 x3", "Fuel Tank FT600" };
+                station8ComboBox.DataSource = station8Stores_A10C;
+                string[] station9Stores_A10C = new string[] { "Empty", "BDU-33 x3", "BDU-50HD", "BDU-50LD", "BDU-50LGB", "CBU-103",
+                    "CBU-105", "GBU-10", "GBU-12 x3", "GBU-12", "GBU-31", "GBU-31(V)3/B", "GBU-38", "Mk-82 x3", "Mk-82", "Mk-82AIR x3",
+                    "Mk-82AIR", "Mk-84", "SUU-25 * 8 LUU-2 x3", "SUU-25 * 8LUU-2", "AGM-65D", "AGM-65G", "AGM-65H", "AGM-65K",
+                    "CATM-65K", "TGM-65D", "TGM-65G", "TGM-65H", "AGM-65D x1", "AGM-65D x2", "AGM-65D x3", "AGM-65H x1", "AGM-65H x2",
+                    "AGM-65H x3", "BRU-42LS", "MXU-648 Travel Pod", "7 2.75' rockets M151 (HE) LAU-131",
+                    "7 2.75' rockets M156 (WP) LAU-131", "7 2.75' rockets M257 (Parachute Illumination) LAU-131",
+                    "7 2.75' rockets M274 (Practice smoke) LAU-131", "7 2.75' rockets MK5 (HE) LAU-131",
+                    "7 2.75' rockets MK61 (Practice) LAU-131", "7 2.75' rockets Mk1 (Practice) LAU-131",
+                    "7 2.75' rockets WTU1B (Practice) LAU-131", "7 2.75' rockets M151 (HE) LAU-131 x3",
+                    "7 2.75' rockets M156 (WP) LAU-131 x3", "7 2.75' rockets M257 (Parachute Illumination) LAU-131 x3",
+                    "7 2.75' rockets M274 (Practice smoke) LAU-131 x3", "7 2.75' rockets MK5 (HE) LAU-131 x3",
+                    "7 2.75' rockets MK61 (Practice) LAU-131 x3", "7 2.75' rockets Mk1 (Practice) LAU-131 x3",
+                    "7 2.75' rockets WTU1B (Practice) LAU-131 x3", "7 2.75' rockets M151 (HE) LAU-68",
+                    "7 2.75' rockets M156 (WP) LAU-68", "7 2.75' rockets M257 (Parachute Illumination) LAU-68",
+                    "7 2.75' rockets M274 (Practice smoke) LAU-68", "7 2.75' rockets MK5 (HE) LAU-68",
+                    "7 2.75' rockets MK61 (Practice) LAU-68", "7 2.75' rockets Mk1 (Practice) LAU-68",
+                    "7 2.75' rockets WTU1B (Practice) LAU-68", "7 2.75' rockets M151 (HE) LAU-68 x3",
+                    "7 2.75' rockets M156 (WP) LAU-68 x3", "7 2.75' rockets M257 (Parachute Illumination) LAU-68 x3",
+                    "7 2.75' rockets M274 (Practice smoke) LAU-68 x3", "7 2.75' rockets MK5 (HE) LAU-68 x3",
+                    "7 2.75' rockets MK61 (Practice) LAU-68 x3", "7 2.75' rockets Mk1 (Practice) LAU-68 x3",
+                    "7 2.75' rockets WTU1B (Practice) LAU-68 x3" };
+                station9ComboBox.DataSource = station9Stores_A10C;
+                string[] station10Stores_A10C = new string[] { "Empty", "BDU-50HD", "BDU-50LD", "BDU-50LGB", "CBU-87",
+                    "CBU-97", "GBU-12", "Mk-82", "Mk-82AIR", "SUU-25 * 8LUU-2", "AN/AAQ-28 LITENING",
+                    "7 2.75' rockets M151 (HE) LAU-131", "7 2.75' rockets M156 (WP) LAU-131",
+                    "7 2.75' rockets M257 (Parachute Illumination) LAU-131", "7 2.75' rockets M274 (Practice smoke) LAU-131",
+                    "7 2.75' rockets MK5 (HE) LAU-131", "7 2.75' rockets MK61 (Practice) LAU-131",
+                    "7 2.75' rockets Mk1 (Practice) LAU-131", "7 2.75' rockets WTU1B (Practice) LAU-131",
+                    "7 2.75' rockets M151 (HE) LAU-68", "7 2.75' rockets M156 (WP) LAU-68",
+                    "7 2.75' rockets M257 (Parachute Illumination) LAU-68", "7 2.75' rockets M274 (Practice smoke) LAU-68",
+                    "7 2.75' rockets MK5 (HE) LAU-68", "7 2.75' rockets MK61 (Practice) LAU-68",
+                    "7 2.75' rockets Mk1 (Practice) LAU-68", "7 2.75' rockets WTU1B (Practice) LAU-68" };
+                station10ComboBox.DataSource = station10Stores_A10C;
+                string[] station11Stores_A10C = new string[] { "Empty", "AIM-9L x2", "AIM-9M x2", "CAP-9M x2",
+                    "AIM-9L", "AIM-9M", "CAP-9M", "BDU-50HD", "BDU-50LD", "BDU-50LGB", "CBU-87", "CBU-97",
+                    "GBU-12", "Mk-82", "Mk-82AIR", "ALQ-131", "ALQ-184", "AN/ASQ-T50 TCTS Pod", "LAU-105" };
+                station11ComboBox.DataSource = station11Stores_A10C;
+            }
+            //next aircraft goes here
             }
 
-        private void GunBar_Scroll(object sender, EventArgs e)
+            private void GunBar_Scroll(object sender, EventArgs e)
         {
             CalculateWeights();//recalculates values when the bar is moved
         }
@@ -829,6 +1125,7 @@ namespace DCS_Loadout_Calculator_Utility
         }
         private void Station1ComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            station1Store = station1ComboBox.SelectedValue.ToString();
             if (selectAirctaftListBox.SelectedItem == "F/A-18C Hornet")
             {
                 string station1Store = station1ComboBox.SelectedValue.ToString();
@@ -859,15 +1156,18 @@ namespace DCS_Loadout_Calculator_Utility
             }
             else if (selectAirctaftListBox.SelectedItem == "AJS-37 Viggen")
             {
-
                 GetStationWeights_AJS37();
             }
-
+            else if (selectAirctaftListBox.SelectedItem == "A-10C Warthog")
+            {
+                GetStationWeights_A10C();
+            }
 
             CalculateWeights();
         }
         private void Station2ComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            station2Store = station2ComboBox.SelectedValue.ToString();
             if (selectAirctaftListBox.SelectedItem == "F/A-18C Hornet")
             {
                 string station2Store = station2ComboBox.SelectedValue.ToString();
@@ -884,10 +1184,15 @@ namespace DCS_Loadout_Calculator_Utility
 
                 GetStationWeights_AJS37();
             }
+            else if (selectAirctaftListBox.SelectedItem == "A-10C Warthog")
+            {
+                GetStationWeights_A10C();
+            }
             CalculateWeights();
         }
         private void Station3ComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            station3Store = station3ComboBox.SelectedValue.ToString();
             if (selectAirctaftListBox.SelectedItem == "F/A-18C Hornet")
             {
                 string station3Store = station3ComboBox.SelectedValue.ToString();
@@ -917,10 +1222,15 @@ namespace DCS_Loadout_Calculator_Utility
 
                 GetStationWeights_AJS37();
             }
+            else if (selectAirctaftListBox.SelectedItem == "A-10C Warthog")
+            {
+                GetStationWeights_A10C();
+            }
             CalculateWeights();
         }
         private void Station4ComboBox_SelectedIndexChanged_1(object sender, EventArgs e)
         {
+            station4Store = station4ComboBox.SelectedValue.ToString();
             station4Store = station4ComboBox.SelectedValue.ToString();
             if (selectAirctaftListBox.SelectedItem == "F/A-18C Hornet")
             {
@@ -930,11 +1240,8 @@ namespace DCS_Loadout_Calculator_Utility
             }
             else if (selectAirctaftListBox.SelectedItem == "Su-33 Flanker D")
             {
-
                 GetStationWeights_SU33();
             }
-
-           
             else if (selectAirctaftListBox.SelectedItem == "AJS-37 Viggen")
             {
                 GetStationWeights_AJS37();
@@ -949,10 +1256,25 @@ namespace DCS_Loadout_Calculator_Utility
                     station4FuelWeight = 0;
                 }
             }
+            else if (selectAirctaftListBox.SelectedItem == "A-10C Warthog")
+            {
+                GetStationWeights_A10C();
+                if (station4Store == "Fuel Tank FT600")//adding ' && selectedAircraft == "F/A-18C Hornet"' does not seem to work
+                {
+                    //MessageBox.Show("you changed the tank box");
+                    station4FuelWeight = 4001;
+                    //MessageBox.Show(Convert.ToString(station4FuelWeight));
+                }
+                else
+                {
+                    station4FuelWeight = 0;
+                }
+            }
             CalculateWeights();
         }
         private void Station5ComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            station5Store = station5ComboBox.SelectedValue.ToString();
             if (selectAirctaftListBox.SelectedItem == "F/A-18C Hornet")
             {
                 string station5Store = station5ComboBox.SelectedValue.ToString();
@@ -981,10 +1303,15 @@ namespace DCS_Loadout_Calculator_Utility
 
                 GetStationWeights_AJS37();
             }
+            else if (selectAirctaftListBox.SelectedItem == "A-10C Warthog")
+            {
+                GetStationWeights_A10C();
+            }
             CalculateWeights();
         }
         private void Station6ComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            station6Store = station6ComboBox.SelectedValue.ToString();
             if (selectAirctaftListBox.SelectedItem == "F/A-18C Hornet")
             {
                 string station6Store = station6ComboBox.SelectedValue.ToString();
@@ -1000,12 +1327,27 @@ namespace DCS_Loadout_Calculator_Utility
 
                 GetStationWeights_AJS37();
             }
+            else if (selectAirctaftListBox.SelectedItem == "A-10C Warthog")
+            {
+                GetStationWeights_A10C();
+                if (station6Store == "Fuel Tank FT600")//adding ' && selectedAircraft == "F/A-18C Hornet"' does not seem to work
+                {
+                    //MessageBox.Show("you changed the tank box");
+                    station6FuelWeight = 4001;
+                    //MessageBox.Show(Convert.ToString(station4FuelWeight));
+                }
+                else
+                {
+                    station6FuelWeight = 0;
+                }
+            }
             CalculateWeights();
         }
         private void Station7ComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (selectAirctaftListBox.SelectedItem == "F/A-18C Hornet")
             {
+               
                 string station7Store = station7ComboBox.SelectedValue.ToString();
                 station7Weight = GetStation7Weight_FA18C();
 
@@ -1031,10 +1373,15 @@ namespace DCS_Loadout_Calculator_Utility
 
                 GetStationWeights_AJS37();
             }
+            else if (selectAirctaftListBox.SelectedItem == "A-10C Warthog")
+            {
+                GetStationWeights_A10C();
+            }
             CalculateWeights();          
         }
         private void Station8ComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            station8Store = station8ComboBox.SelectedValue.ToString();
             if (selectAirctaftListBox.SelectedItem == "F/A-18C Hornet")
             {
                 string station8Store = station8ComboBox.SelectedValue.ToString();
@@ -1045,10 +1392,25 @@ namespace DCS_Loadout_Calculator_Utility
 
                 GetStationWeights_SU33();
             }
+            else if (selectAirctaftListBox.SelectedItem == "A-10C Warthog")
+            {
+                GetStationWeights_A10C();
+                if (station8Store == "Fuel Tank FT600")//adding ' && selectedAircraft == "F/A-18C Hornet"' does not seem to work
+                {
+                    //MessageBox.Show("you changed the tank box");
+                    station8FuelWeight = 4001;
+                    //MessageBox.Show(Convert.ToString(station4FuelWeight));
+                }
+                else
+                {
+                    station8FuelWeight = 0;
+                }
+            }
             CalculateWeights();
         }
         private void Station9ComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            station9Store = station9ComboBox.SelectedValue.ToString();
             if (selectAirctaftListBox.SelectedItem == "F/A-18C Hornet")
             {
                 string station9Store = station9ComboBox.SelectedValue.ToString();
@@ -1059,31 +1421,50 @@ namespace DCS_Loadout_Calculator_Utility
 
                 GetStationWeights_SU33();
             }
+            else if (selectAirctaftListBox.SelectedItem == "A-10C Warthog")
+            {
+                GetStationWeights_A10C();
+            }
             CalculateWeights();
         }
         private void Station10ComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            station10Store = station10ComboBox.SelectedValue.ToString();
             if (selectAirctaftListBox.SelectedItem == "Su-33 Flanker D")
             {
                 GetStationWeights_SU33();
+            }
+            else if (selectAirctaftListBox.SelectedItem == "A-10C Warthog")
+            {
+                GetStationWeights_A10C();
             }
             CalculateWeights();
         }
 
         private void Station11ComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            station11Store = station11ComboBox.SelectedValue.ToString();
             if (selectAirctaftListBox.SelectedItem == "Su-33 Flanker D")
             {
                 GetStationWeights_SU33();
+            }
+            else if (selectAirctaftListBox.SelectedItem == "A-10C Warthog")
+            {
+                GetStationWeights_A10C();
             }
             CalculateWeights();
         }
 
         private void Station12ComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            station12Store = station12ComboBox.SelectedValue.ToString();
             if (selectAirctaftListBox.SelectedItem == "Su-33 Flanker D")
             {
                 GetStationWeights_SU33();
+            }
+            else if (selectAirctaftListBox.SelectedItem == "A-10C Warthog")
+            {
+                GetStationWeights_A10C();
             }
             CalculateWeights();
         }
@@ -3079,6 +3460,53 @@ namespace DCS_Loadout_Calculator_Utility
             string weapon1weight = BF109K4WeaponWeightTable[weaponType1, 0];//0 is the index for weapon station 1
             station1Weight = Convert.ToInt32(weapon1weight);
             //MessageBox.Show(Convert.ToString(station1Weight)); //debugging
+            CalculateWeights();
+        }
+        public void GetStationWeights_A10C()
+        {
+            //int weaponType1 = Array.IndexOf(A10CWeapons, station1ComboBox.Text); originals this line and next line
+            //string weapon1weight = A10CWeaponWeightTable[0, weaponType1];//0 is the index for weapon station 1
+            int weaponType1 = Array.IndexOf(A10CWeapons, station1ComboBox.Text);
+            string weapon1weight = A10CWeaponWeightTable[weaponType1, 0];//0 is the index for weapon station 1
+            station1Weight = Convert.ToInt32(weapon1weight);
+
+            int weaponType2 = Array.IndexOf(A10CWeapons, station2ComboBox.Text);
+            //MessageBox.Show(Convert.ToString(weaponType2));
+            //MessageBox.Show(station2ComboBox.Text);
+            string weapon2weight = A10CWeaponWeightTable[weaponType2, 1];
+
+            station2Weight = Convert.ToInt32(weapon2weight);
+
+            int weaponType3 = Array.IndexOf(A10CWeapons, station3ComboBox.Text);
+            string weapon3weight = A10CWeaponWeightTable[weaponType3, 2];
+            station3Weight = Convert.ToInt32(weapon3weight);
+
+            int weaponType4 = Array.IndexOf(A10CWeapons, station4ComboBox.Text);
+            string weapon4weight = A10CWeaponWeightTable[weaponType4, 3];
+            station4Weight = Convert.ToInt32(weapon4weight);
+
+            int weaponType5 = Array.IndexOf(A10CWeapons, station5ComboBox.Text);
+            string weapon5weight = A10CWeaponWeightTable[weaponType5, 4];
+            station5Weight = Convert.ToInt32(weapon5weight);
+            int weaponType6 = Array.IndexOf(A10CWeapons, station6ComboBox.Text);
+            string weapon6weight = A10CWeaponWeightTable[weaponType6, 5];
+            station6Weight = Convert.ToInt32(weapon6weight);
+            int weaponType7 = Array.IndexOf(A10CWeapons, station7ComboBox.Text);
+            string weapon7weight = A10CWeaponWeightTable[weaponType7, 6];
+            station7Weight = Convert.ToInt32(weapon7weight);
+            int weaponType8 = Array.IndexOf(A10CWeapons, station8ComboBox.Text);
+            string weapon8weight = A10CWeaponWeightTable[weaponType8, 7];
+            station8Weight = Convert.ToInt32(weapon8weight);
+            int weaponType9 = Array.IndexOf(A10CWeapons, station9ComboBox.Text);
+            string weapon9weight = A10CWeaponWeightTable[weaponType9, 8];
+            station9Weight = Convert.ToInt32(weapon9weight);
+            int weaponType10 = Array.IndexOf(A10CWeapons, station10ComboBox.Text);
+            string weapon10weight = A10CWeaponWeightTable[weaponType10, 9];
+            station10Weight = Convert.ToInt32(weapon10weight);
+            int weaponType11 = Array.IndexOf(A10CWeapons, station11ComboBox.Text);
+            string weapon11weight = A10CWeaponWeightTable[weaponType11, 10];
+            station11Weight = Convert.ToInt32(weapon11weight);
+      
             CalculateWeights();
         }
 
@@ -5238,6 +5666,11 @@ namespace DCS_Loadout_Calculator_Utility
 
             }
             */
+            clearLoadout();
+            
+        }
+        public void clearLoadout()
+        {
             station1ComboBox.Text = "Empty";
             station2ComboBox.Text = "Empty";
             station3ComboBox.Text = "Empty";
@@ -5250,6 +5683,7 @@ namespace DCS_Loadout_Calculator_Utility
             station10ComboBox.Text = "Empty";
             station11ComboBox.Text = "Empty";
             station12ComboBox.Text = "Empty";
+            Thread.Sleep(100);//this prevents that error that comes up when switching aircraft
         }
 
         private void Button_setDcsLocation_Click(object sender, EventArgs e)
