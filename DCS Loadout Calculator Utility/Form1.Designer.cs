@@ -407,6 +407,8 @@
             // 
             this.selectAirctaftListBox.FormattingEnabled = true;
             this.selectAirctaftListBox.Items.AddRange(new object[] {
+            "AJS-37 Viggen",
+            "Bf 109 K-4",
             "F/A-18",
             "Su-33"});
             this.selectAirctaftListBox.Location = new System.Drawing.Point(10, 25);
