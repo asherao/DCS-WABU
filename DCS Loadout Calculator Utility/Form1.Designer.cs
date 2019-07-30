@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.selectAircraftLabel = new System.Windows.Forms.Label();
             this.selectAirctaftListBox = new System.Windows.Forms.ListBox();
             this.station1Label = new System.Windows.Forms.Label();
@@ -3457,6 +3458,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(588, 390);
             this.Controls.Add(this.button_radnomTests);
             this.Controls.Add(this.button_clearLoadout);
@@ -3509,8 +3511,11 @@
             this.Controls.Add(this.station1Label);
             this.Controls.Add(this.selectAirctaftListBox);
             this.Controls.Add(this.selectAircraftLabel);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "Form1";
             this.Text = "DCS WABU (Weight and Balance Utility) by Bailey";
+            this.TransparencyKey = System.Drawing.Color.Maroon;
             this.Load += new System.EventHandler(this.Form1_Load);
             this.contextMenuStrip_Station1_FA18C2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.internalFuelTrackBar)).EndInit();

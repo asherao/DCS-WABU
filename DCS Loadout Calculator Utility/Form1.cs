@@ -1091,10 +1091,13 @@ namespace DCS_Loadout_Calculator_Utility
             if (totalTrackBarValueLimiter > 100)
             {
                 totalTrackBar.Value = 100;
+                label_TotalPercent.ForeColor = System.Drawing.Color.Red;//changes the color to red when overweight
+                //myLabel.ForeColor = Color.FromArgb(0, 0, 0);//(R, G, B) (0, 0, 0 = black)// another way of changing the color
             }
             else
             {
                 totalTrackBar.Value = totalTrackBarValueLimiter;
+                label_TotalPercent.ForeColor = System.Drawing.Color.Black;
             }
             //totalTrackBar.Value = ((totalWeightInt*100) / Convert.ToInt32(maxTextBox.Text));
             deltaTextBox.Text = Convert.ToString(totalWeightInt - Convert.ToInt32(maxTextBox.Text));
