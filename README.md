@@ -1,5 +1,5 @@
 # DCS-WABU
-DCS-WABU
+DCS-WABU (Weight and Balance Utility)
 
 This is a calculator and exporter for Digital Combat Simulator (DCS).
 
