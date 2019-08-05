@@ -17,6 +17,8 @@ Weight and Balance implemented for:
 
 -M2000C Mirage
 
+-AV-8B Harrier
+
 -More planned
 
 Loadout export enabled for the F18C.
