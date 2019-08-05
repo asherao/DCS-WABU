@@ -4,6 +4,7 @@ DCS-WABU (Weight and Balance Utility)
 This is a calculator and exporter for Digital Combat Simulator (DCS).
 
 Weight and Balance implemented for: 
+
 -A10C
 
 -F18C
