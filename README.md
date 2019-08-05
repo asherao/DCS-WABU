@@ -3,7 +3,14 @@ DCS-WABU (Weight and Balance Utility)
 
 This is a calculator and exporter for Digital Combat Simulator (DCS).
 
-Weight and Balance implemented for the A10C, F18C, Bf 109, Su-33, and the Viggen. More planned.
+Weight and Balance implemented for: 
+-A10C
+-F18C
+-Bf 109
+-Su-33
+-Viggen
+-M2000C Mirage
+-More planned.
 
 Loadout export enabled for the F18C.
 ~Bailey
