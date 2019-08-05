@@ -15,7 +15,6 @@ using System.Runtime.InteropServices;
 using System.Threading;
 
 /*TODO
-<<<<<<< Updated upstreamg
  * 
  * -Program M2000C station 4, 6, and 7 dependences. code line starting at 1234 (postpone bc M2000C logic isnt consistant in DCS)
  * -update f18 in new format
@@ -25,6 +24,8 @@ using System.Threading;
  * and how to get data fast and accurately
  * -make the arrays and weapon data more coding friendly
  * 
+ * before av8b" 7389
+ * after av8b:
  * BUGS:
  * -None, yay1
  */
@@ -339,6 +340,82 @@ namespace DCS_Loadout_Calculator_Utility
             {"0","0","0","0","397","0","0","0","0","0"},
             {"0","0","0","0","397","0","0","0","0","0"},
          };
+        //init AV8BNA Mirage weapon arrays
+        string[] AV8BNAStations = new string[] { "station1", "station2", "station3",
+            "station4", "station5", "station6", "station7"};
+        string[] AV8BNAWeapons = new string[] { "", "Empty", "AIM-9M", "CAP-9M", "BDU-33",
+            "BDU-33 x3", "GBU-12", "GBU-12 x2", "GBU-12 x3", "GBU-16", "GBU-16 x2", "Mk-20",
+            "Mk-20 Rockeye x2", "Mk-20 Rockeye x3", "Mk-81", "Mk-81 x3", "Mk-82", "Mk-82 x2",
+            "Mk-82 x3", "Mk-82 SnakeEye", "Mk-82 SnakeEye x2", "Mk-82 SnakeEye x3", "Mk-82AIR",
+            "Mk-82AIR x2", "Mk-82AIR x3", "Mk-83", "Mk-83 x2", "Mk-83 x3", "SUU-25 * 8 LUU-2",
+            "SUU-25 * 8 LUU-2 x3", "AGM-122 Sidearm", "AGM-65E", "AGM-65G", "TGM-65G", "4 Zuni MK 71",
+            "19 FFAR M156 WP", "19 FFAR Mk1 HE", "19 FFAR Mk5 HEAT", "7 2.75' rockets M151 (HE) x3",
+            "7 2.75' rockets M156 (WP) x3", "7 2.75' rockets M257 (Parachute Illumination)",
+            "7 2.75' rockets M257 (Parachute Illumination) x3", "7 2.75' rockets M274 (Practice Smoke)",
+            "7 2.75' rockets M274 (Practice Smoke) x3", "7 2.75' rockets MK5 (HE) x3",
+            "7 2.75' rockets WTU1B (Practice)", "7 2.75' rockets WTU1B (Practice) x3",
+            "7 FFAR M156 WP", "7 FFAR Mk1 HE", "7 FFAR Mk5 HEAT", "AN/ALQ-164 DECM Pod",
+            "AN/AAQ-28 LITENING", "AN/ASQ-T50 TCTS Pod", "GAU 12 Gunpod", "AERO 1D 300 Gallons Fuel Tank",
+            "AERO 1D 300 Gallons Fuel Tank (Empty)" };
+        string[,] AV8BNAWeaponWeightTable = new string[,]
+         {
+            {"0","0","0","0","0","0","0","0"},
+            {"0","0","0","0","0","0","0","0"},
+            {"192","225","0","0","0","0","225","192"},
+            {"190","0","0","0","0","0","0","190"},
+            {"24","24","24","0","0","24","24","24"},
+            {"0","216","216","0","0","216","216","0"},
+            {"606","606","606","0","0","606","606","606"},
+            {"0","1345","1345","0","0","1345","1345","0"},
+            {"0","1951","1951","0","0","1951","1951","0"},
+            {"0","1243","1243","0","0","1243","1243","0"},
+            {"0","0","2315","0","0","2315","0","0"},
+            {"489","489","489","0","0","489","489","489"},
+            {"0","1111","1111","0","0","1111","1111","0"},
+            {"0","0","1111","0","0","1111","0","0"},
+            {"260","260","260","0","0","260","260","260"},
+            {"0","913","913","0","0","913","913","0"},
+            {"531","531","531","0","0","531","531","531"},
+            {"0","1195","1195","0","0","1195","1195","0"},
+            {"0","1726","1726","0","0","1726","1726","0"},
+            {"511","511","511","0","0","511","511","511"},
+            {"0","1195","1195","0","0","1195","1195","0"},
+            {"0","1726","1726","0","0","1726","1726","0"},
+            {"511","511","511","0","0","511","511","511"},
+            {"0","1195","1195","0","0","1195","1195","0"},
+            {"0","1726","1726","0","0","1726","1726","0"},
+            {"0","985","985","0","0","985","985","0"},
+            {"0","0","2103","0","0","2103","0","0"},
+            {"0","0","3089","0","0","3089","0","0"},
+            {"0","287","0","0","0","0","287","0"},
+            {"0","1080","0","0","0","0","1080","0"},
+            {"203","0","0","0","0","0","0","203"},
+            {"0","0","761","0","0","761","0","0"},
+            {"0","0","794","0","0","794","0","0"},
+            {"0","0","794","0","0","794","0","0"},
+            {"0","0","970","0","0","970","0","0"},
+            {"0","0","690","0","0","690","0","0"},
+            {"0","0","628","0","0","628","0","0"},
+            {"0","0","631","0","0","631","0","0"},
+            {"0","0","869","0","0","869","0","0"},
+            {"0","0","877","0","0","877","0","0"},
+            {"0","0","265","0","0","265","0","0"},
+            {"0","0","906","0","0","906","0","0"},
+            {"0","0","254","0","0","254","0","0"},
+            {"0","0","869","0","0","869","0","0"},
+            {"0","0","796","0","0","796","0","0"},
+            {"0","0","254","0","0","254","0","0"},
+            {"0","0","869","0","0","869","0","0"},
+            {"0","0","265","0","0","265","0","0"},
+            {"0","0","243","0","0","243","0","0"},
+            {"0","0","243","0","0","243","0","0"},
+            {"0","0","0","0","317","0","0","0"},
+            {"0","0","661","0","661","661","0","0"},
+            {"139","0","0","0","0","0","0","139"},
+            {"0","0","0","1314","0","0","0","0"},
+            {"0","207","207","0","0","207","207","0"},
+            {"0","207","207","0","0","207","207","0"},
+         };
 
         private int station1Weight;
         private int station2Weight;
@@ -425,6 +502,7 @@ namespace DCS_Loadout_Calculator_Utility
             AircraftList.Add("Bf 109 K-4 Messerschmitt");
             AircraftList.Add("A-10C Warthog");
             AircraftList.Add("M2000-C Mirage");
+            AircraftList.Add("AV-8B Night Attack V/STOL");
             AircraftList.Sort();
             selectAirctaftListBox.DataSource = AircraftList;
         }
@@ -451,6 +529,8 @@ namespace DCS_Loadout_Calculator_Utility
 
         private void SelectAirctaftListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+           
+            
             clearLoadout();
             station1ComboBox.Text = "Empty";
             station2ComboBox.Text = "Empty";
@@ -464,6 +544,22 @@ namespace DCS_Loadout_Calculator_Utility
             station10ComboBox.Text = "Empty";
             station11ComboBox.Text = "Empty";
             station12ComboBox.Text = "Empty";
+
+            //resetting for that silly station 9 harrier bug
+            station1Weight = 0;
+            station2Weight = 0;
+            station3Weight = 0;
+            station4Weight = 0;
+            station5Weight = 0;
+            station6Weight = 0;
+            station7Weight = 0;
+            station8Weight = 0;
+            station9Weight = 0;
+            station10Weight = 0;
+            station11Weight = 0;
+            station12Weight = 0;
+
+
 
             if (selectAirctaftListBox.SelectedItem == "F/A-18C Hornet")//this enables the export textbox on the mentioned aircraft
             {
@@ -1136,6 +1232,111 @@ namespace DCS_Loadout_Calculator_Utility
                 string[] station10Stores_M2000C = new string[] { "Empty", "Eclair"};
                 station10ComboBox.DataSource = station10Stores_M2000C;
             }
+            if (selectedAircraft == "AV-8B Night Attack V/STOL")
+            {
+                //ini for AV8BNA
+                gunTrackBar.Enabled = true;
+                gunTrackBar.Maximum = 0;
+                gunTrackBar.Value = 0;
+                internalFuelTrackBar.Maximum = 7758;
+                internalFuelTrackBar.Value = 7758;
+                internalFuelTrackBar.Minimum = 0;
+                int internalFuelWeightInt = internalFuelTrackBar.Value;
+
+                //fuelWeightTextBox.Text = internalFuelTextBox.Value + fuelValue //placeholders
+                emptyTextBox.Text = "14804";
+                int emptyWeightInt = int.Parse(emptyTextBox.Text);
+                weaponsTextBox.Text = Convert.ToString(gunTrackBar.Value); //something+something+moreSomething
+                int weaponsWeightInt = int.Parse(weaponsTextBox.Text);
+                maxTextBox.Text = "31085";
+
+                int gunWeightInt = gunTrackBar.Value;
+                int totalWeightInt = internalFuelWeightInt + emptyWeightInt + gunWeightInt +
+                    station1Weight + station2Weight + station3Weight + station4Weight +
+                    station5Weight + station6Weight + station7Weight + station8Weight +
+                    station9Weight + station10Weight + station11Weight + station12Weight; //+externalFuelWeightInt+ weaponsWeightInt 
+                string totalWeightString = totalWeightInt.ToString();
+                totalTextBox.Text = totalWeightString;
+
+                station1Label.Visible = true;
+                station2Label.Visible = true;
+                station3Label.Visible = true;
+                station4Label.Visible = true;
+                station5Label.Visible = true;
+                station6Label.Visible = true;
+                station7Label.Visible = true;
+                station8Label.Visible = true;
+                station9Label.Visible = false;
+                station10Label.Visible = false;
+                station11Label.Visible = false;
+                station12Label.Visible = false;
+
+                station1ComboBox.Visible = true;
+                station2ComboBox.Visible = true;
+                station3ComboBox.Visible = true;
+                station4ComboBox.Visible = true;
+                station5ComboBox.Visible = true;
+                station6ComboBox.Visible = true;
+                station7ComboBox.Visible = true;
+                station8ComboBox.Visible = true;
+                station9ComboBox.Visible = false;
+                station10ComboBox.Visible = false;
+                station11ComboBox.Visible = false;
+                station12ComboBox.Visible = false;
+
+
+
+                string[] station1Stores_AV8BNA = new string[] { "Empty", "AIM-9M", "CAP-9M", "BDU-33", "GBU-12", "Mk-20", "Mk-81",
+                    "Mk-82", "Mk-82 SnakeEye", "Mk-82AIR", "AGM-122 Sidearm", "AN/ASQ-T50 TCTS Pod" };
+                station1ComboBox.DataSource = station1Stores_AV8BNA;
+
+                string[] station2Stores_AV8BNA = new string[] { "Empty", "AIM-9M", "BDU-33", "BDU-33 x3", "GBU-12", "GBU-12 x2",
+                    "GBU-12 x3", "GBU-16", "Mk-20", "Mk-20 Rockeye x2", "Mk-81", "Mk-81 x3", "Mk-82", "Mk-82 x2", "Mk-82 x3",
+                    "Mk-82 SnakeEye", "Mk-82 SnakeEye x2", "Mk-82 SnakeEye x3", "Mk-82AIR", "Mk-82AIR x2", "Mk-82AIR x3", "Mk-83",
+                    "SUU-25 * 8 LUU-2", "SUU-25 * 8 LUU-2 x3", "AERO 1D 300 Gallons Fuel Tank",
+                    "AERO 1D 300 Gallons Fuel Tank (Empty)" };
+                station2ComboBox.DataSource = station2Stores_AV8BNA;
+
+                string[] station3Stores_AV8BNA = new string[] { "Empty", "BDU-33", "BDU-33 x3", "GBU-12", "GBU-12 x2", "GBU-12 x3",
+                    "GBU-16", "GBU-16 x2", "Mk-20", "Mk-20 Rockeye x2", "Mk-20 Rockeye x3", "Mk-81", "Mk-81 x3", "Mk-82", "Mk-82 x2",
+                    "Mk-82 x3", "Mk-82 SnakeEye", "Mk-82 SnakeEye x2", "Mk-82 SnakeEye x3", "Mk-82AIR", "Mk-82AIR x2", "Mk-82AIR x3",
+                    "Mk-83", "Mk-83 x2", "Mk-83 x3", "AGM-65E", "AGM-65G", "TGM-65G", "4 Zuni MK 71", "19 FFAR M156 WP", "19 FFAR Mk1 HE",
+                    "19 FFAR Mk5 HEAT", "7 2.75' rockets M151 (HE) x3", "7 2.75' rockets M156 (WP) x3",
+                    "7 2.75' rockets M257 (Parachute Illumination)", "7 2.75' rockets M257 (Parachute Illumination) x3",
+                    "7 2.75' rockets M274 (Practice Smoke)", "7 2.75' rockets M274 (Practice Smoke) x3", "7 2.75' rockets MK5 (HE) x3",
+                    "7 2.75' rockets WTU1B (Practice)", "7 2.75' rockets WTU1B (Practice) x3", "7 FFAR M156 WP",
+                    "7 FFAR Mk1 HE", "7 FFAR Mk5 HEAT", "AN/AAQ-28 LITENING", "AERO 1D 300 Gallons Fuel Tank",
+                    "AERO 1D 300 Gallons Fuel Tank (Empty)" };
+
+                station3ComboBox.DataSource = station3Stores_AV8BNA;
+                string[] station4Stores_AV8BNA = new string[] {"Empty", "GAU 12 Gunpod"};
+                station4ComboBox.DataSource = station4Stores_AV8BNA;
+                string[] station5Stores_AV8BNA = new string[] { "Empty", "AN/ALQ-164 DECM Pod", "AN/AAQ-28 LITENING" };
+
+                station5ComboBox.DataSource = station5Stores_AV8BNA;
+                string[] station6Stores_AV8BNA = new string[] { "Empty", "BDU-33", "BDU-33 x3", "GBU-12", "GBU-12 x2", "GBU-12 x3",
+                    "GBU-16", "GBU-16 x2", "Mk-20", "Mk-20 Rockeye x2", "Mk-20 Rockeye x3", "Mk-81", "Mk-81 x3", "Mk-82", "Mk-82 x2",
+                    "Mk-82 x3", "Mk-82 SnakeEye", "Mk-82 SnakeEye x2", "Mk-82 SnakeEye x3", "Mk-82AIR", "Mk-82AIR x2", "Mk-82AIR x3",
+                    "Mk-83", "Mk-83 x2", "Mk-83 x3", "AGM-65E", "AGM-65G", "TGM-65G", "4 Zuni MK 71", "19 FFAR M156 WP", "19 FFAR Mk1 HE",
+                    "19 FFAR Mk5 HEAT", "7 2.75' rockets M151 (HE) x3", "7 2.75' rockets M156 (WP) x3",
+                    "7 2.75' rockets M257 (Parachute Illumination)", "7 2.75' rockets M257 (Parachute Illumination) x3",
+                    "7 2.75' rockets M274 (Practice Smoke)", "7 2.75' rockets M274 (Practice Smoke) x3", "7 2.75' rockets MK5 (HE) x3",
+                    "7 2.75' rockets WTU1B (Practice)", "7 2.75' rockets WTU1B (Practice) x3", "7 FFAR M156 WP",
+                    "7 FFAR Mk1 HE", "7 FFAR Mk5 HEAT", "AN/AAQ-28 LITENING", "AERO 1D 300 Gallons Fuel Tank",
+                    "AERO 1D 300 Gallons Fuel Tank (Empty)" };
+                station6ComboBox.DataSource = station6Stores_AV8BNA;
+
+                string[] station7Stores_AV8BNA = new string[] { "Empty", "AIM-9M", "BDU-33", "BDU-33 x3", "GBU-12", "GBU-12 x2",
+                    "GBU-12 x3", "GBU-16", "Mk-20", "Mk-20 Rockeye x2", "Mk-81", "Mk-81 x3", "Mk-82", "Mk-82 x2", "Mk-82 x3",
+                    "Mk-82 SnakeEye", "Mk-82 SnakeEye x2", "Mk-82 SnakeEye x3", "Mk-82AIR", "Mk-82AIR x2", "Mk-82AIR x3", "Mk-83",
+                    "SUU-25 * 8 LUU-2", "SUU-25 * 8 LUU-2 x3", "AERO 1D 300 Gallons Fuel Tank",
+                    "AERO 1D 300 Gallons Fuel Tank (Empty)" };
+                station7ComboBox.DataSource = station7Stores_AV8BNA;
+
+                string[] station8Stores_AV8BNA = new string[] { "Empty", "AIM-9M", "CAP-9M", "BDU-33", "GBU-12", "Mk-20", "Mk-81",
+                    "Mk-82", "Mk-82 SnakeEye", "Mk-82AIR", "AGM-122 Sidearm", "AN/ASQ-T50 TCTS Pod" };
+                station8ComboBox.DataSource = station8Stores_AV8BNA;
+            }
             //next aircraft goes here
         }
 
@@ -1274,7 +1475,10 @@ namespace DCS_Loadout_Calculator_Utility
                 station9ComboBox.Text = station1ComboBox.Text;
                 GetStationWeights_M2000C();
             }
-
+            else if (selectAirctaftListBox.SelectedItem == "AV-8B Night Attack V/STOL")
+            {
+                GetStationWeights_AV8BNA();
+            }
             CalculateWeights();
         }
         private void Station2ComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -1308,6 +1512,20 @@ namespace DCS_Loadout_Calculator_Utility
                 if (station2Store == "RPL 541 2000 liters Fuel Tank")//adding ' && selectedAircraft == "F/A-18C Hornet"' does not seem to work
                 {
                     station2FuelWeight = 3483;
+                    //MessageBox.Show(Convert.ToString(station3FuelWeight));
+                }
+                else
+                {
+                    station2FuelWeight = 0;
+                    //MessageBox.Show(Convert.ToString(station3FuelWeight));
+                }
+            }
+            else if (selectAirctaftListBox.SelectedItem == "AV-8B Night Attack V/STOL")
+            {
+                GetStationWeights_AV8BNA();
+                if (station2Store == "AERO 1D 300 Gallons Fuel Tank")//adding ' && selectedAircraft == "F/A-18C Hornet"' does not seem to work
+                {
+                    station2FuelWeight = 2003;
                     //MessageBox.Show(Convert.ToString(station3FuelWeight));
                 }
                 else
@@ -1392,6 +1610,20 @@ namespace DCS_Loadout_Calculator_Utility
                 station7ComboBox.Text = station3ComboBox.Text;
                 GetStationWeights_M2000C();
             }
+            else if (selectAirctaftListBox.SelectedItem == "AV-8B Night Attack V/STOL")
+            {
+                GetStationWeights_AV8BNA();
+                if (station3Store == "AERO 1D 300 Gallons Fuel Tank")//adding ' && selectedAircraft == "F/A-18C Hornet"' does not seem to work
+                {
+                    station3FuelWeight = 2003;
+                    //MessageBox.Show(Convert.ToString(station3FuelWeight));
+                }
+                else
+                {
+                    station3FuelWeight = 0;
+                    //MessageBox.Show(Convert.ToString(station3FuelWeight));
+                }
+            }
             CalculateWeights();
         }
         private void Station4ComboBox_SelectedIndexChanged_1(object sender, EventArgs e)
@@ -1465,6 +1697,10 @@ namespace DCS_Loadout_Calculator_Utility
                 station6ComboBox.Text = station4ComboBox.Text;
                 GetStationWeights_M2000C();
             }
+            else if (selectAirctaftListBox.SelectedItem == "AV-8B Night Attack V/STOL")
+            {
+                GetStationWeights_AV8BNA();
+            }
             CalculateWeights();
         }
         private void Station5ComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -1515,6 +1751,10 @@ namespace DCS_Loadout_Calculator_Utility
                     station5FuelWeight = 0;
                     //MessageBox.Show(Convert.ToString(station3FuelWeight));
                 }
+            }
+            else if (selectAirctaftListBox.SelectedItem == "AV-8B Night Attack V/STOL")
+            {
+                GetStationWeights_AV8BNA();
             }
             CalculateWeights();
         }
@@ -1579,13 +1819,28 @@ namespace DCS_Loadout_Calculator_Utility
                 station4ComboBox.Text = station6ComboBox.Text;
                 GetStationWeights_M2000C();
             }
+            else if (selectAirctaftListBox.SelectedItem == "AV-8B Night Attack V/STOL")
+            {
+                GetStationWeights_AV8BNA();
+                if (station6Store == "AERO 1D 300 Gallons Fuel Tank")//adding ' && selectedAircraft == "F/A-18C Hornet"' does not seem to work
+                {
+                    station6FuelWeight = 2003;
+                    //MessageBox.Show(Convert.ToString(station3FuelWeight));
+                }
+                else
+                {
+                    station6FuelWeight = 0;
+                    //MessageBox.Show(Convert.ToString(station3FuelWeight));
+                }
+            }
             CalculateWeights();
         }
         private void Station7ComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            string station7Store = station7ComboBox.SelectedValue.ToString();
             if (selectAirctaftListBox.SelectedItem == "F/A-18C Hornet")
             {
-                string station7Store = station7ComboBox.SelectedValue.ToString();
+                
                 station7Weight = GetStation7Weight_FA18C();
 
                 //this sets the poundage of the fuel tank only when it is selected
@@ -1649,6 +1904,22 @@ namespace DCS_Loadout_Calculator_Utility
                 station3ComboBox.Text = station7ComboBox.Text;
                 GetStationWeights_M2000C();
             }
+            else if (selectAirctaftListBox.SelectedItem == "AV-8B Night Attack V/STOL")
+            {
+                //MessageBox.Show("Works");
+                
+                GetStationWeights_AV8BNA();
+                if (station7Store == "AERO 1D 300 Gallons Fuel Tank")//adding ' && selectedAircraft == "F/A-18C Hornet"' does not seem to work
+                {
+                    station7FuelWeight = 2003;
+                    //MessageBox.Show(Convert.ToString(station3FuelWeight));
+                }
+                else
+                {
+                    station7FuelWeight = 0;
+                    //MessageBox.Show(Convert.ToString(station3FuelWeight));
+                }
+            }
             CalculateWeights();          
         }
         private void Station8ComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -1693,6 +1964,10 @@ namespace DCS_Loadout_Calculator_Utility
                     //MessageBox.Show(Convert.ToString(station3FuelWeight));
                 }
             }
+            else if (selectAirctaftListBox.SelectedItem == "AV-8B Night Attack V/STOL")
+            {
+                GetStationWeights_AV8BNA();
+            }
             CalculateWeights();
         }
         private void Station9ComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -1736,7 +2011,6 @@ namespace DCS_Loadout_Calculator_Utility
             }
             CalculateWeights();
         }
-
         private void Station11ComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             station11Store = station11ComboBox.SelectedValue.ToString();
@@ -1750,7 +2024,6 @@ namespace DCS_Loadout_Calculator_Utility
             }
             CalculateWeights();
         }
-
         private void Station12ComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             station12Store = station12ComboBox.SelectedValue.ToString();
@@ -3673,48 +3946,103 @@ namespace DCS_Loadout_Calculator_Utility
             //int weaponType1 = Array.IndexOf(SU33Weapons, station1ComboBox.Text); originals this line and next line
             //string weapon1weight = SU33WeaponWeightTable[0, weaponType1];//0 is the index for weapon station 1
             int weaponType1 = Array.IndexOf(SU33Weapons, station1ComboBox.Text);
+            if (weaponType1 == -1)//this was implemented becase the clearLoadouts method was not working as intended
+            {
+                weaponType1 = 0;
+            }
             string weapon1weight = SU33WeaponWeightTable[weaponType1,0 ];//0 is the index for weapon station 1
             station1Weight = Convert.ToInt32(weapon1weight);
 
             int weaponType2 = Array.IndexOf(SU33Weapons, station2ComboBox.Text);
+            if (weaponType2 == -1)
+            {
+                weaponType2 = 0;
+            }
             //MessageBox.Show(Convert.ToString(weaponType2));
             //MessageBox.Show(station2ComboBox.Text);
             string weapon2weight = SU33WeaponWeightTable[weaponType2,1 ];
-
             station2Weight = Convert.ToInt32(weapon2weight);
 
             int weaponType3 = Array.IndexOf(SU33Weapons, station3ComboBox.Text);
+            if (weaponType3 == -1)
+            {
+                weaponType3 = 0;
+            }
             string weapon3weight = SU33WeaponWeightTable[weaponType3,2 ];
             station3Weight = Convert.ToInt32(weapon3weight);
 
             int weaponType4 = Array.IndexOf(SU33Weapons, station4ComboBox.Text);
+            if (weaponType4 == -1)
+            {
+                weaponType4 = 0;
+            }
             string weapon4weight = SU33WeaponWeightTable[weaponType4,3 ];
             station4Weight = Convert.ToInt32(weapon4weight);
 
             int weaponType5 = Array.IndexOf(SU33Weapons, station5ComboBox.Text);
+            if (weaponType5 == -1)
+            {
+                weaponType5 = 0;
+            }
             string weapon5weight = SU33WeaponWeightTable[weaponType5, 4];
             station5Weight = Convert.ToInt32(weapon5weight);
+
             int weaponType6 = Array.IndexOf(SU33Weapons, station6ComboBox.Text);
+            if (weaponType6 == -1)
+            {
+                weaponType6 = 0;
+            }
             string weapon6weight = SU33WeaponWeightTable[weaponType6, 5];
             station6Weight = Convert.ToInt32(weapon6weight);
+
             int weaponType7 = Array.IndexOf(SU33Weapons, station7ComboBox.Text);
+            if (weaponType7 == -1)
+            {
+                weaponType7 = 0;
+            }
             string weapon7weight = SU33WeaponWeightTable[weaponType7, 6];
             station7Weight = Convert.ToInt32(weapon7weight);
+
             int weaponType8 = Array.IndexOf(SU33Weapons, station8ComboBox.Text);
+            if (weaponType8 == -1)
+            {
+                weaponType8 = 0;
+            }
             string weapon8weight = SU33WeaponWeightTable[weaponType8, 7];
             station8Weight = Convert.ToInt32(weapon8weight);
+
             int weaponType9 = Array.IndexOf(SU33Weapons, station9ComboBox.Text);
+            if (weaponType9 == -1)
+            {
+                weaponType9 = 0;
+            }
             string weapon9weight = SU33WeaponWeightTable[weaponType9, 8];
             station9Weight = Convert.ToInt32(weapon9weight);
+
             int weaponType10 = Array.IndexOf(SU33Weapons, station10ComboBox.Text);
+            if (weaponType10 == -1)
+            {
+                weaponType10 = 0;
+            }
             string weapon10weight = SU33WeaponWeightTable[weaponType10, 9];
             station10Weight = Convert.ToInt32(weapon10weight);
+
             int weaponType11 = Array.IndexOf(SU33Weapons, station11ComboBox.Text);
+            if (weaponType11 == -1)
+            {
+                weaponType11 = 0;
+            }
             string weapon11weight = SU33WeaponWeightTable[weaponType11, 10];
             station11Weight = Convert.ToInt32(weapon11weight);
+
             int weaponType12 = Array.IndexOf(SU33Weapons, station12ComboBox.Text);
+            if (weaponType12 == -1)
+            {
+                weaponType12 = 0;
+            }
             string weapon12weight = SU33WeaponWeightTable[weaponType12, 11];
             station12Weight = Convert.ToInt32(weapon12weight);
+
             CalculateWeights();
         }
         public void GetStationWeights_AJS37()
@@ -3723,36 +4051,70 @@ namespace DCS_Loadout_Calculator_Utility
             //string weapon1weight = AJS37WeaponWeightTable[0, weaponType1];//0 is the index for weapon station 1
             int weaponType1 = Array.IndexOf(AJS37Weapons, station1ComboBox.Text);
             //MessageBox.Show(Convert.ToString(weaponType1));
+            if (weaponType1 == -1)
+            {
+                weaponType1 = 0;
+            }
             string weapon1weight = AJS37WeaponWeightTable[weaponType1, 0];//0 is the index for weapon station 1
             station1Weight = Convert.ToInt32(weapon1weight);
 
             int weaponType2 = Array.IndexOf(AJS37Weapons, station2ComboBox.Text);
-            
+            if (weaponType2 == -1)
+            {
+                weaponType2 = 0;
+            }
             string weapon2weight = AJS37WeaponWeightTable[weaponType2, 1];
             station2Weight = Convert.ToInt32(weapon2weight);
 
             int weaponType3 = Array.IndexOf(AJS37Weapons, station3ComboBox.Text);
+            if (weaponType3 == -1)
+            {
+                weaponType3 = 0;
+            }
             string weapon3weight = AJS37WeaponWeightTable[weaponType3, 2];
             station3Weight = Convert.ToInt32(weapon3weight);
 
             int weaponType4 = Array.IndexOf(AJS37Weapons, station4ComboBox.Text);
+            if (weaponType4 == -1)
+            {
+                weaponType4 = 0;
+            }
             string weapon4weight = AJS37WeaponWeightTable[weaponType4, 3];
             station4Weight = Convert.ToInt32(weapon4weight);
 
             int weaponType5 = Array.IndexOf(AJS37Weapons, station5ComboBox.Text);
+            if (weaponType5 == -1)
+            {
+                weaponType5 = 0;
+            }
             string weapon5weight = AJS37WeaponWeightTable[weaponType5, 4];
             station5Weight = Convert.ToInt32(weapon5weight);
+
             int weaponType6 = Array.IndexOf(AJS37Weapons, station6ComboBox.Text);
+            if (weaponType6 == -1)
+            {
+                weaponType6 = 0;
+            }
             string weapon6weight = AJS37WeaponWeightTable[weaponType6, 5];
             station6Weight = Convert.ToInt32(weapon6weight);
+
             int weaponType7 = Array.IndexOf(AJS37Weapons, station7ComboBox.Text);
+            if (weaponType7 == -1)
+            {
+                weaponType7 = 0;
+            }
             string weapon7weight = AJS37WeaponWeightTable[weaponType7, 6];
             station7Weight = Convert.ToInt32(weapon7weight);
+
             CalculateWeights();
         }
         public void GetStationWeights_BF109K4()
         {
             int weaponType1 = Array.IndexOf(BF109K4Weapons, station1ComboBox.Text);
+            if (weaponType1 == -1)
+            {
+                weaponType1 = 0;
+            }
             string weapon1weight = BF109K4WeaponWeightTable[weaponType1, 0];//0 is the index for weapon station 1
             station1Weight = Convert.ToInt32(weapon1weight);
             //MessageBox.Show(Convert.ToString(station1Weight)); //debugging
@@ -3763,43 +4125,92 @@ namespace DCS_Loadout_Calculator_Utility
             //int weaponType1 = Array.IndexOf(A10CWeapons, station1ComboBox.Text); originals this line and next line
             //string weapon1weight = A10CWeaponWeightTable[0, weaponType1];//0 is the index for weapon station 1
             int weaponType1 = Array.IndexOf(A10CWeapons, station1ComboBox.Text);
+            if (weaponType1 == -1)
+            {
+                weaponType1 = 0;
+            }
             string weapon1weight = A10CWeaponWeightTable[weaponType1, 0];//0 is the index for weapon station 1
             station1Weight = Convert.ToInt32(weapon1weight);
 
             int weaponType2 = Array.IndexOf(A10CWeapons, station2ComboBox.Text);
             //MessageBox.Show(Convert.ToString(weaponType2));
             //MessageBox.Show(station2ComboBox.Text);
+            if (weaponType2 == -1)
+            {
+                weaponType2 = 0;
+            }
             string weapon2weight = A10CWeaponWeightTable[weaponType2, 1];
-
             station2Weight = Convert.ToInt32(weapon2weight);
 
             int weaponType3 = Array.IndexOf(A10CWeapons, station3ComboBox.Text);
+            if (weaponType3 == -1)
+            {
+                weaponType3 = 0;
+            }
             string weapon3weight = A10CWeaponWeightTable[weaponType3, 2];
             station3Weight = Convert.ToInt32(weapon3weight);
 
             int weaponType4 = Array.IndexOf(A10CWeapons, station4ComboBox.Text);
+            if (weaponType4 == -1)
+            {
+                weaponType4 = 0;
+            }
             string weapon4weight = A10CWeaponWeightTable[weaponType4, 3];
             station4Weight = Convert.ToInt32(weapon4weight);
 
             int weaponType5 = Array.IndexOf(A10CWeapons, station5ComboBox.Text);
+            if (weaponType5 == -1)
+            {
+                weaponType5 = 0;
+            }
             string weapon5weight = A10CWeaponWeightTable[weaponType5, 4];
             station5Weight = Convert.ToInt32(weapon5weight);
+
             int weaponType6 = Array.IndexOf(A10CWeapons, station6ComboBox.Text);
+            if (weaponType6 == -1)
+            {
+                weaponType6 = 0;
+            }
             string weapon6weight = A10CWeaponWeightTable[weaponType6, 5];
             station6Weight = Convert.ToInt32(weapon6weight);
+
             int weaponType7 = Array.IndexOf(A10CWeapons, station7ComboBox.Text);
+            if (weaponType7 == -1)
+            {
+                weaponType7 = 0;
+            }
             string weapon7weight = A10CWeaponWeightTable[weaponType7, 6];
             station7Weight = Convert.ToInt32(weapon7weight);
+
             int weaponType8 = Array.IndexOf(A10CWeapons, station8ComboBox.Text);
+            if (weaponType8 == -1)
+            {
+                weaponType8 = 0;
+            }
             string weapon8weight = A10CWeaponWeightTable[weaponType8, 7];
             station8Weight = Convert.ToInt32(weapon8weight);
+
             int weaponType9 = Array.IndexOf(A10CWeapons, station9ComboBox.Text);
+            if (weaponType9 == -1)
+            {
+                weaponType9 = 0;
+            }
             string weapon9weight = A10CWeaponWeightTable[weaponType9, 8];
             station9Weight = Convert.ToInt32(weapon9weight);
+
             int weaponType10 = Array.IndexOf(A10CWeapons, station10ComboBox.Text);
+            if (weaponType10 == -1)
+            {
+                weaponType10= 0;
+            }
             string weapon10weight = A10CWeaponWeightTable[weaponType10, 9];
             station10Weight = Convert.ToInt32(weapon10weight);
+
             int weaponType11 = Array.IndexOf(A10CWeapons, station11ComboBox.Text);
+            if (weaponType11 == -1)
+            {
+                weaponType11 = 0;
+            }
             string weapon11weight = A10CWeaponWeightTable[weaponType11, 10];
             station11Weight = Convert.ToInt32(weapon11weight);
       
@@ -3810,43 +4221,160 @@ namespace DCS_Loadout_Calculator_Utility
             //int weaponType1 = Array.IndexOf(M2000CWeapons, station1ComboBox.Text); originals this line and next line
             //string weapon1weight = M2000CWeaponWeightTable[0, weaponType1];//0 is the index for weapon station 1
             int weaponType1 = Array.IndexOf(M2000CWeapons, station1ComboBox.Text);
+            if (weaponType1 == -1)
+            {
+                weaponType1 = 0;
+            }
             string weapon1weight = M2000CWeaponWeightTable[weaponType1, 0];//0 is the index for weapon station 1
             station1Weight = Convert.ToInt32(weapon1weight);
 
             int weaponType2 = Array.IndexOf(M2000CWeapons, station2ComboBox.Text);
             //MessageBox.Show(Convert.ToString(weaponType2));
             //MessageBox.Show(station2ComboBox.Text);
+            if (weaponType2 == -1)
+            {
+                weaponType2 = 0;
+            }
             string weapon2weight = M2000CWeaponWeightTable[weaponType2, 1];
 
             station2Weight = Convert.ToInt32(weapon2weight);
 
             int weaponType3 = Array.IndexOf(M2000CWeapons, station3ComboBox.Text);
+            if (weaponType3 == -1)
+            {
+                weaponType3 = 0;
+            }
             string weapon3weight = M2000CWeaponWeightTable[weaponType3, 2];
             station3Weight = Convert.ToInt32(weapon3weight);
 
             int weaponType4 = Array.IndexOf(M2000CWeapons, station4ComboBox.Text);
+            if (weaponType4 == -1)
+            {
+                weaponType4 = 0;
+            }
             string weapon4weight = M2000CWeaponWeightTable[weaponType4, 3];
             station4Weight = Convert.ToInt32(weapon4weight);
 
             int weaponType5 = Array.IndexOf(M2000CWeapons, station5ComboBox.Text);
+            if (weaponType5 == -1)
+            {
+                weaponType5 = 0;
+            }
             string weapon5weight = M2000CWeaponWeightTable[weaponType5, 4];
             station5Weight = Convert.ToInt32(weapon5weight);
+
             int weaponType6 = Array.IndexOf(M2000CWeapons, station6ComboBox.Text);
+            if (weaponType6 == -1)
+            {
+                weaponType6 = 0;
+            }
             string weapon6weight = M2000CWeaponWeightTable[weaponType6, 5];
             station6Weight = Convert.ToInt32(weapon6weight);
+
             int weaponType7 = Array.IndexOf(M2000CWeapons, station7ComboBox.Text);
+            if (weaponType7 == -1)
+            {
+                weaponType7 = 0;
+            }
             string weapon7weight = M2000CWeaponWeightTable[weaponType7, 6];
             station7Weight = Convert.ToInt32(weapon7weight);
+
             int weaponType8 = Array.IndexOf(M2000CWeapons, station8ComboBox.Text);
+            if (weaponType8 == -1)
+            {
+                weaponType8 = 0;
+            }
             string weapon8weight = M2000CWeaponWeightTable[weaponType8, 7];
             station8Weight = Convert.ToInt32(weapon8weight);
+
             int weaponType9 = Array.IndexOf(M2000CWeapons, station9ComboBox.Text);
+            if (weaponType9 == -1)
+            {
+                weaponType9 = 0;
+            }
             string weapon9weight = M2000CWeaponWeightTable[weaponType9, 8];
             station9Weight = Convert.ToInt32(weapon9weight);
+
             int weaponType10 = Array.IndexOf(M2000CWeapons, station10ComboBox.Text);
+            if (weaponType10 == -1)
+            {
+                weaponType10 = 0;
+            }
             string weapon10weight = M2000CWeaponWeightTable[weaponType10, 9];
             station10Weight = Convert.ToInt32(weapon10weight);
            
+            CalculateWeights();
+        }
+        public void GetStationWeights_AV8BNA()
+        {
+            //int weaponType1 = Array.IndexOf(AV8BNAWeapons, station1ComboBox.Text); originals this line and next line
+            //string weapon1weight = AV8BNAWeaponWeightTable[0, weaponType1];//0 is the index for weapon station 1
+            int weaponType1 = Array.IndexOf(AV8BNAWeapons, station1ComboBox.Text);
+            if (weaponType1 == -1)
+            {
+                weaponType1 = 0;
+            }
+            string weapon1weight = AV8BNAWeaponWeightTable[weaponType1, 0];//0 is the index for weapon station 1
+            station1Weight = Convert.ToInt32(weapon1weight);
+
+            int weaponType2 = Array.IndexOf(AV8BNAWeapons, station2ComboBox.Text);
+            //MessageBox.Show(Convert.ToString(weaponType2));
+            //MessageBox.Show(station2ComboBox.Text);
+            //MessageBox.Show(Convert.ToString(weaponType2));
+            if (weaponType2 == -1)
+            {
+                weaponType2 = 0;
+            }
+            string weapon2weight = AV8BNAWeaponWeightTable[weaponType2, 1];
+            station2Weight = Convert.ToInt32(weapon2weight);
+           
+            int weaponType3 = Array.IndexOf(AV8BNAWeapons, station3ComboBox.Text);
+            if (weaponType3 == -1)
+            {
+                weaponType3 = 0;
+            }
+            string weapon3weight = AV8BNAWeaponWeightTable[weaponType3, 2];
+            station3Weight = Convert.ToInt32(weapon3weight);
+
+            int weaponType4 = Array.IndexOf(AV8BNAWeapons, station4ComboBox.Text);
+            if (weaponType4 == -1)
+            {
+                weaponType4 = 0;
+            }
+            string weapon4weight = AV8BNAWeaponWeightTable[weaponType4, 3];
+            station4Weight = Convert.ToInt32(weapon4weight);
+
+            int weaponType5 = Array.IndexOf(AV8BNAWeapons, station5ComboBox.Text);
+            if (weaponType5 == -1)
+            {
+                weaponType5 = 0;
+            }
+            string weapon5weight = AV8BNAWeaponWeightTable[weaponType5, 4];
+            station5Weight = Convert.ToInt32(weapon5weight);
+
+            int weaponType6 = Array.IndexOf(AV8BNAWeapons, station6ComboBox.Text);
+            if (weaponType6 == -1)
+            {
+                weaponType6 = 0;
+            }
+            string weapon6weight = AV8BNAWeaponWeightTable[weaponType6, 5];
+            station6Weight = Convert.ToInt32(weapon6weight);
+
+            int weaponType7 = Array.IndexOf(AV8BNAWeapons, station7ComboBox.Text);
+            if (weaponType7 == -1)
+            {
+                weaponType7 = 0;
+            }
+            string weapon7weight = AV8BNAWeaponWeightTable[weaponType7, 6];
+            station7Weight = Convert.ToInt32(weapon7weight);
+
+            int weaponType8 = Array.IndexOf(AV8BNAWeapons, station8ComboBox.Text);
+            if (weaponType8 == -1)
+            {
+                weaponType8 = 0;
+            }
+            string weapon8weight = AV8BNAWeaponWeightTable[weaponType8, 7];
+            station8Weight = Convert.ToInt32(weapon8weight);
             CalculateWeights();
         }
 
@@ -6011,6 +6539,8 @@ namespace DCS_Loadout_Calculator_Utility
         }
         public void clearLoadout()
         {
+            
+
             station1ComboBox.Text = "Empty";
             station2ComboBox.Text = "Empty";
             station3ComboBox.Text = "Empty";
@@ -6023,7 +6553,8 @@ namespace DCS_Loadout_Calculator_Utility
             station10ComboBox.Text = "Empty";
             station11ComboBox.Text = "Empty";
             station12ComboBox.Text = "Empty";
-            Thread.Sleep(100);//this prevents that error that comes up when switching aircraft
+            Thread.Sleep(100);//this sometimes prevents that error that comes up when switching aircraft
+         
         }
 
         private void Button_setDcsLocation_Click(object sender, EventArgs e)
