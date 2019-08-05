@@ -17,17 +17,16 @@ using System.Threading;
 /*TODO
 <<<<<<< Updated upstreamg
  * 
- * -Program M2000C station 4, 6, and 7 dependences. code line starting at 1234 (postpone bc M2000C logic isnt consistant in DCS
+ * -Program M2000C station 4, 6, and 7 dependences. code line starting at 1234 (postpone bc M2000C logic isnt consistant in DCS)
  * -update f18 in new format
->>>>>>> Stashed changes
  * -make it so that if a preset loadout is not already in the saved games location, then make one
- * 
  * -document, document, document
  * -after completely finishing the F18, document how to add another aircraft. To include ecel and notepad
  * and how to get data fast and accurately
  * -make the arrays and weapon data more coding friendly
  * 
  * BUGS:
+ * -None, yay1
  */
 
 namespace DCS_Loadout_Calculator_Utility
@@ -1390,6 +1389,7 @@ namespace DCS_Loadout_Calculator_Utility
                     station7ComboBox.Text = "Empty";
                 }
                 */
+                station7ComboBox.Text = station3ComboBox.Text;
                 GetStationWeights_M2000C();
             }
             CalculateWeights();
@@ -1462,6 +1462,7 @@ namespace DCS_Loadout_Calculator_Utility
                     station6ComboBox.Text = station4ComboBox.Text;
                     station7ComboBox.Text = station4ComboBox.Text;
                 }*/
+                station6ComboBox.Text = station4ComboBox.Text;
                 GetStationWeights_M2000C();
             }
             CalculateWeights();
@@ -1575,7 +1576,7 @@ namespace DCS_Loadout_Calculator_Utility
                     station4ComboBox.Text = station6ComboBox.Text;
                     station7ComboBox.Text = station6ComboBox.Text;
                 }*/
-
+                station4ComboBox.Text = station6ComboBox.Text;
                 GetStationWeights_M2000C();
             }
             CalculateWeights();
@@ -1584,7 +1585,6 @@ namespace DCS_Loadout_Calculator_Utility
         {
             if (selectAirctaftListBox.SelectedItem == "F/A-18C Hornet")
             {
-               
                 string station7Store = station7ComboBox.SelectedValue.ToString();
                 station7Weight = GetStation7Weight_FA18C();
 
@@ -1646,6 +1646,7 @@ namespace DCS_Loadout_Calculator_Utility
                     station6ComboBox.Text = "Empty";
                     station3ComboBox.Text = "Empty";
                 }*/
+                station3ComboBox.Text = station7ComboBox.Text;
                 GetStationWeights_M2000C();
             }
             CalculateWeights();          
