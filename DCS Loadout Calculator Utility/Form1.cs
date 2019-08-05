@@ -15,24 +15,20 @@ using System.Runtime.InteropServices;
 using System.Threading;
 
 /*TODO
+<<<<<<< Updated upstreamg
+ * 
+ * -Program M2000C station 4, 6, and 7 dependences. code line starting at 1234 (postpone bc M2000C logic isnt consistant in DCS
  * -update f18 in new format
+>>>>>>> Stashed changes
  * -make it so that if a preset loadout is not already in the saved games location, then make one
- * -Put in DCS-like menu for Su-33 Flanker D 
- * -Enable Su-33 Flanker D export
- * -Put in DCS-like menu for Bf 109 K-4 Messerschmitt
- * -Enable Bf 109 K-4 Messerschmitt export
- * -Put in DCS-like menu for Viggen
- * -Enable viggen export
  * 
  * -document, document, document
  * -after completely finishing the F18, document how to add another aircraft. To include ecel and notepad
  * and how to get data fast and accurately
- * -do another aircraft :) (likely the SU33 next because it uses all 12 store slots)
  * -make the arrays and weapon data more coding friendly
  * 
  * BUGS:
- * -when f18 stations are populated  and then switching to viggen, get some error for the waepon array
-*/
+ */
 
 namespace DCS_Loadout_Calculator_Utility
 {
@@ -97,7 +93,6 @@ namespace DCS_Loadout_Calculator_Utility
         public static int[] weaponWeight_FA18C_rocketsM151HE = new int[] {0,816,816,0,0,0,816,816,0,0,0,0};
         public static int[] weaponWeight_FA18C_rocketsMK151HE = new int[] {0,428,428,0,0,0,428,428,0,0,0,0};
         public static int[] weaponWeight_FA18C_rocketsM5HE = new int[] {0,401,0,0,0,0,0,401,0,0,0,0};
-        public static int[] weaponWeight_FA18C_ANAAQ28LITENING = new int[] { 0, 0, 0, 0, 661, 0, 0, 0, 0, 0, 0, 0 };
         public static int[] weaponWeight_FA18C_FPU8AFuelTank330gallons = new int[] { 0, 0, 291, 0, 291, 0, 291, 0, 0, 0, 0, 0 };
 
 
@@ -314,6 +309,38 @@ namespace DCS_Loadout_Calculator_Utility
             {"0","0","0","243","0","243","0","243","0","0","0"},
          };
 
+        //init M2000C Mirage weapon arrays
+        string[] M2000CStations = new string[] { "station1", "station2", "station3",
+            "station4", "station5", "station6", "station7", "station8", "station9", "station10"};
+        string[] M2000CWeapons = new string[] { "", "Empty", "Matra Magic II", "Matra Super 530D",
+            "BLG-66-AC Belouga", "BLG-66-AC Belouga x2", "GBU-12", "GBU-12 x2", "GBU-16", "GBU-24",
+            "Mk-82", "MK-82 x2", "Mk-82 SnakeEye", "MK-82 SnakeEyes x2", "Matra Type 155 Rocket Pod",
+            "Eclair", "RPL 541 2000 liters Fuel Tank", "RPL 541 2000 liters Fuel Tank (Empty)",
+            "RPL 522 1300 liters Fuel Tank", "RPL 522 1300 liters Fuel Tank (Empty)" };
+        string[,] M2000CWeaponWeightTable = new string[,]
+         {
+            {"0","0","0","0","0","0","0","0","0","0"},
+            {"0","0","0","0","0","0","0","0","0","0"},
+            {"187","188","0","0","0","0","0","187","188","0"},
+            {"0","606","0","0","0","0","0","607","0","0"},
+            {"0","672","673","672","672","673","672","673","0","0"},
+            {"0","1510","0","0","0","0","0","1510","0","0"},
+            {"0","0","606","0","606","0","607","0","0","0"},
+            {"0","0","0","0","1369","0","0","0","0","0"},
+            {"0","0","0","0","1243","0","0","0","0","0"},
+            {"0","0","0","0","1984","0","0","0","0","0"},
+            {"0","531","532","531","0","532","531","532","0","0"},
+            {"0","1157","0","0","0","0","0","1158","0","0"},
+            {"0","511","512","511","0","512","511","512","0","0"},
+            {"0","1157","0","0","0","0","0","1158","0","0"},
+            {"419","419","0","0","0","0","0","419","419","0"},
+            {"0","0","0","0","0","0","0","0","0","44"},
+            {"0","566","0","0","0","0","0","567","0","0"},
+            {"0","566","0","0","0","0","0","567","0","0"},
+            {"0","0","0","0","397","0","0","0","0","0"},
+            {"0","0","0","0","397","0","0","0","0","0"},
+         };
+
         private int station1Weight;
         private int station2Weight;
         private int station3Weight;
@@ -396,12 +423,11 @@ namespace DCS_Loadout_Calculator_Utility
             AircraftList.Add("F/A-18C Hornet");
             AircraftList.Add("AJS-37 Viggen");
             AircraftList.Add("Su-33 Flanker D");
-            //AircraftList.Add("F/A-18C Hornet");
             AircraftList.Add("Bf 109 K-4 Messerschmitt");
             AircraftList.Add("A-10C Warthog");
+            AircraftList.Add("M2000-C Mirage");
             AircraftList.Sort();
             selectAirctaftListBox.DataSource = AircraftList;
-
         }
 
         private void Label1_Click(object sender, EventArgs e)
@@ -421,7 +447,7 @@ namespace DCS_Loadout_Calculator_Utility
         }
 
         private void Form1_Load(object sender, EventArgs e)
-        {            
+        {         
         }
 
         private void SelectAirctaftListBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -565,7 +591,7 @@ namespace DCS_Loadout_Calculator_Utility
                 station4ComboBox.DataSource = station4Stores_FA18C;
                 string[] station5Stores_FA18C = new string[] { "Empty","CBU-99 x2", "Mk-20 Rockeye x2",
                     "Mk-82 x2", "Mk-82 SnakeEye x2", "Mk-82Y x2", "CBU-99", "Mk-20", "Mk-82", "Mk-82 SnakeEye",
-                    "Mk-82Y", "Mk-83", "Mk-84","AN/AAQ-28 LITENING","FPU-8A Fuel Tank 330 gallons" };
+                    "Mk-82Y", "Mk-83", "Mk-84","FPU-8A Fuel Tank 330 gallons" };
                 station5ComboBox.DataSource = station5Stores_FA18C;
                 string[] station6Stores_FA18C = new string[] { "Empty", "AIM-120B", "AIM-120C", "AIM-7M", "AIM-7F", "AIM-7MH" };
                 station6ComboBox.DataSource = station6Stores_FA18C;
@@ -1030,8 +1056,89 @@ namespace DCS_Loadout_Calculator_Utility
                     "GBU-12", "Mk-82", "Mk-82AIR", "ALQ-131", "ALQ-184", "AN/ASQ-T50 TCTS Pod", "LAU-105" };
                 station11ComboBox.DataSource = station11Stores_A10C;
             }
-            //next aircraft goes here
+            if (selectedAircraft == "M2000-C Mirage")
+            {
+                //ini for M2000C
+                gunTrackBar.Enabled = true;
+                gunTrackBar.Maximum = 313;
+                gunTrackBar.Value = 313;
+                internalFuelTrackBar.Maximum = 6978;
+                internalFuelTrackBar.Value = 6978;
+                internalFuelTrackBar.Minimum = 0;
+                int internalFuelWeightInt = internalFuelTrackBar.Value;
+
+                //fuelWeightTextBox.Text = internalFuelTextBox.Value + fuelValue //placeholders
+                emptyTextBox.Text = "16755";
+                int emptyWeightInt = int.Parse(emptyTextBox.Text);
+                weaponsTextBox.Text = Convert.ToString(gunTrackBar.Value); //something+something+moreSomething
+                int weaponsWeightInt = int.Parse(weaponsTextBox.Text);
+                maxTextBox.Text = "36376";
+
+                int gunWeightInt = gunTrackBar.Value;
+                int totalWeightInt = internalFuelWeightInt + emptyWeightInt + gunWeightInt +
+                    station1Weight + station2Weight + station3Weight + station4Weight +
+                    station5Weight + station6Weight + station7Weight + station8Weight +
+                    station9Weight + station10Weight + station11Weight + station12Weight; //+externalFuelWeightInt+ weaponsWeightInt 
+                string totalWeightString = totalWeightInt.ToString();
+                totalTextBox.Text = totalWeightString;
+
+                station1Label.Visible = true;
+                station2Label.Visible = true;
+                station3Label.Visible = true;
+                station4Label.Visible = true;
+                station5Label.Visible = true;
+                station6Label.Visible = true;
+                station7Label.Visible = true;
+                station8Label.Visible = true;
+                station9Label.Visible = true;
+                station10Label.Visible = true;
+                station11Label.Visible = false;
+                station12Label.Visible = false;
+
+                station1ComboBox.Visible = true;
+                station2ComboBox.Visible = true;
+                station3ComboBox.Visible = true;
+                station4ComboBox.Visible = true;
+                station5ComboBox.Visible = true;
+                station6ComboBox.Visible = true;
+                station7ComboBox.Visible = true;
+                station8ComboBox.Visible = true;
+                station9ComboBox.Visible = true;
+                station10ComboBox.Visible = true;
+                station11ComboBox.Visible = false;
+                station12ComboBox.Visible = false;
+
+                
+
+                string[] station1Stores_M2000C = new string[] { "Empty", "Matra Magic II", "Matra Type 155 Rocket Pod" };
+                station1ComboBox.DataSource = station1Stores_M2000C;
+                string[] station2Stores_M2000C = new string[] { "Empty", "Matra Magic II", "Matra Super 530D",
+                    "BLG-66-AC Belouga", "BLG-66-AC Belouga x2", "Mk-82", "MK-82 x2", "Mk-82 SnakeEye",
+                    "MK-82 SnakeEyes x2", "Matra Type 155 Rocket Pod", "RPL 541 2000 liters Fuel Tank",
+                    "RPL 541 2000 liters Fuel Tank (Empty)" };
+                station2ComboBox.DataSource = station2Stores_M2000C;
+                string[] station3Stores_M2000C = new string[] { "Empty", "BLG-66-AC Belouga", "GBU-12", "Mk-82", "Mk-82 SnakeEye" };
+                station3ComboBox.DataSource = station3Stores_M2000C;
+                string[] station4Stores_M2000C = new string[] { "Empty", "BLG-66-AC Belouga", "Mk-82", "Mk-82 SnakeEye" };
+                station4ComboBox.DataSource = station4Stores_M2000C;
+                string[] station5Stores_M2000C = new string[] { "Empty", "BLG-66-AC Belouga", "GBU-12", "GBU-12 x2", "GBU-16",
+                    "GBU-24", "RPL 522 1300 liters Fuel Tank", "RPL 522 1300 liters Fuel Tank (Empty)" };
+                station5ComboBox.DataSource = station5Stores_M2000C;
+                string[] station6Stores_M2000C = new string[] { "Empty", "BLG-66-AC Belouga", "Mk-82", "Mk-82 SnakeEye" };
+                station6ComboBox.DataSource = station6Stores_M2000C;
+                string[] station7Stores_M2000C = new string[] { "Empty", "BLG-66-AC Belouga", "GBU-12", "Mk-82", "Mk-82 SnakeEye" };
+                station7ComboBox.DataSource = station7Stores_M2000C;
+                string[] station8Stores_M2000C = new string[] { "Empty", "Matra Magic II", "Matra Super 530D", "BLG-66-AC Belouga",
+                    "BLG-66-AC Belouga x2", "Mk-82", "MK-82 x2", "Mk-82 SnakeEye", "MK-82 SnakeEyes x2", "Matra Type 155 Rocket Pod",
+                    "RPL 541 2000 liters Fuel Tank", "RPL 541 2000 liters Fuel Tank (Empty)" };
+                station8ComboBox.DataSource = station8Stores_M2000C;
+                string[] station9Stores_M2000C = new string[] { "Empty", "Matra Magic II", "Matra Type 155 Rocket Pod" };
+                station9ComboBox.DataSource = station9Stores_M2000C;
+                string[] station10Stores_M2000C = new string[] { "Empty", "Eclair"};
+                station10ComboBox.DataSource = station10Stores_M2000C;
             }
+            //next aircraft goes here
+        }
 
             private void GunBar_Scroll(object sender, EventArgs e)
         {
@@ -1092,13 +1199,10 @@ namespace DCS_Loadout_Calculator_Utility
             if (totalTrackBarValueLimiter > 100)
             {
                 totalTrackBar.Value = 100;
-                label_TotalPercent.ForeColor = System.Drawing.Color.Red;//changes the color to red when overweight
-                //myLabel.ForeColor = Color.FromArgb(0, 0, 0);//(R, G, B) (0, 0, 0 = black)// another way of changing the color
             }
             else
             {
                 totalTrackBar.Value = totalTrackBarValueLimiter;
-                label_TotalPercent.ForeColor = System.Drawing.Color.Black;
             }
             //totalTrackBar.Value = ((totalWeightInt*100) / Convert.ToInt32(maxTextBox.Text));
             deltaTextBox.Text = Convert.ToString(totalWeightInt - Convert.ToInt32(maxTextBox.Text));
@@ -1166,6 +1270,11 @@ namespace DCS_Loadout_Calculator_Utility
             {
                 GetStationWeights_A10C();
             }
+            else if (selectAirctaftListBox.SelectedItem == "M2000-C Mirage")
+            {
+                station9ComboBox.Text = station1ComboBox.Text;
+                GetStationWeights_M2000C();
+            }
 
             CalculateWeights();
         }
@@ -1191,6 +1300,22 @@ namespace DCS_Loadout_Calculator_Utility
             else if (selectAirctaftListBox.SelectedItem == "A-10C Warthog")
             {
                 GetStationWeights_A10C();
+            }
+            else if (selectAirctaftListBox.SelectedItem == "M2000-C Mirage")
+            {
+
+                station8ComboBox.Text = station2ComboBox.Text;
+                GetStationWeights_M2000C();
+                if (station2Store == "RPL 541 2000 liters Fuel Tank")//adding ' && selectedAircraft == "F/A-18C Hornet"' does not seem to work
+                {
+                    station2FuelWeight = 3483;
+                    //MessageBox.Show(Convert.ToString(station3FuelWeight));
+                }
+                else
+                {
+                    station2FuelWeight = 0;
+                    //MessageBox.Show(Convert.ToString(station3FuelWeight));
+                }
             }
             CalculateWeights();
         }
@@ -1229,6 +1354,43 @@ namespace DCS_Loadout_Calculator_Utility
             else if (selectAirctaftListBox.SelectedItem == "A-10C Warthog")
             {
                 GetStationWeights_A10C();
+            }
+            else if (selectAirctaftListBox.SelectedItem == "M2000-C Mirage")
+            {
+                /*if (station3ComboBox.Text == "BLG-66-AC Belouga")
+                {
+                    station3ComboBox.Text = "BLG-66-AC Belouga";
+                    station4ComboBox.Text = station3ComboBox.Text;
+                    station6ComboBox.Text = station3ComboBox.Text;
+                    station7ComboBox.Text = station3ComboBox.Text;
+                }
+                else if (station3ComboBox.Text == "GBU-12")//have to double select for some reason
+                {
+                    station3ComboBox.Text = "GBU-12"; 
+                    station7ComboBox.Text = station3ComboBox.Text;
+                    station6ComboBox.Text = "Empty";
+                    station4ComboBox.Text = "Empty";
+                }
+                else if (station3ComboBox.Text == "Mk-82")
+                {
+                    station7ComboBox.Text = station3ComboBox.Text;
+                    station6ComboBox.Text = station3ComboBox.Text;
+                    station4ComboBox.Text = station3ComboBox.Text;
+                }
+                else if (station3ComboBox.Text == "Mk-82 SnakeEye")
+                {
+                    station4ComboBox.Text = station3ComboBox.Text;
+                    station6ComboBox.Text = station3ComboBox.Text;
+                    station7ComboBox.Text = station3ComboBox.Text;
+                }
+                else if (station3ComboBox.Text == "Empty")
+                {
+                    station4ComboBox.Text = "Empty";
+                    station6ComboBox.Text = "Empty";
+                    station7ComboBox.Text = "Empty";
+                }
+                */
+                GetStationWeights_M2000C();
             }
             CalculateWeights();
         }
@@ -1274,6 +1436,34 @@ namespace DCS_Loadout_Calculator_Utility
                     station4FuelWeight = 0;
                 }
             }
+            else if (selectAirctaftListBox.SelectedItem == "M2000-C Mirage")
+            {
+                /*if (station4ComboBox.Text == "BLG-66-AC Belouga")
+                {
+                    station3ComboBox.Text = station4ComboBox.Text;
+                    station6ComboBox.Text = station4ComboBox.Text;
+                    station7ComboBox.Text = station4ComboBox.Text;
+                }
+                else if (station4ComboBox.Text == "Mk-82")//does not work for some reason
+                {
+                    station3ComboBox.Text = station4ComboBox.Text;
+                    station6ComboBox.Text = station4ComboBox.Text;
+                    station7ComboBox.Text = station4ComboBox.Text;
+                }
+                else if (station4ComboBox.Text == "Mk-82 SnakeEye")
+                {
+                    station3ComboBox.Text = station4ComboBox.Text;
+                    station6ComboBox.Text = station4ComboBox.Text;
+                    station7ComboBox.Text = station4ComboBox.Text;
+                }
+                else if (station4ComboBox.Text == "Empty")
+                {
+                    station3ComboBox.Text = station4ComboBox.Text;
+                    station6ComboBox.Text = station4ComboBox.Text;
+                    station7ComboBox.Text = station4ComboBox.Text;
+                }*/
+                GetStationWeights_M2000C();
+            }
             CalculateWeights();
         }
         private void Station5ComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -1311,6 +1501,20 @@ namespace DCS_Loadout_Calculator_Utility
             {
                 GetStationWeights_A10C();
             }
+            else if (selectAirctaftListBox.SelectedItem == "M2000-C Mirage")
+            {
+                GetStationWeights_M2000C();
+                if (station5Store == "RPL 522 1300 liters Fuel Tank")//adding ' && selectedAircraft == "F/A-18C Hornet"' does not seem to work
+                {
+                    station5FuelWeight = 2183;
+                    //MessageBox.Show(Convert.ToString(station3FuelWeight));
+                }
+                else
+                {
+                    station5FuelWeight = 0;
+                    //MessageBox.Show(Convert.ToString(station3FuelWeight));
+                }
+            }
             CalculateWeights();
         }
         private void Station6ComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -1344,6 +1548,35 @@ namespace DCS_Loadout_Calculator_Utility
                 {
                     station6FuelWeight = 0;
                 }
+            }
+            else if (selectAirctaftListBox.SelectedItem == "M2000-C Mirage")
+            {
+                /*if (station6ComboBox.Text == "BLG-66-AC Belouga")
+                {
+                    station3ComboBox.Text = station6ComboBox.Text;
+                    station4ComboBox.Text = station6ComboBox.Text;
+                    station7ComboBox.Text = station6ComboBox.Text;
+                }
+                else if (station6ComboBox.Text == "Mk-82")//does not work for some reason
+                {
+                    station3ComboBox.Text = "Mk-82";
+                    station4ComboBox.Text = "Mk-82";
+                    station7ComboBox.Text = "Mk-82";
+                }
+                else if (station6ComboBox.Text == "Mk-82 SnakeEye")
+                {
+                    station3ComboBox.Text = station6ComboBox.Text;
+                    station4ComboBox.Text = station6ComboBox.Text;
+                    station7ComboBox.Text = station6ComboBox.Text;
+                }
+                else if (station6ComboBox.Text == "Empty")
+                {
+                    station3ComboBox.Text = station6ComboBox.Text;
+                    station4ComboBox.Text = station6ComboBox.Text;
+                    station7ComboBox.Text = station6ComboBox.Text;
+                }*/
+
+                GetStationWeights_M2000C();
             }
             CalculateWeights();
         }
@@ -1381,6 +1614,40 @@ namespace DCS_Loadout_Calculator_Utility
             {
                 GetStationWeights_A10C();
             }
+            else if (selectAirctaftListBox.SelectedItem == "M2000-C Mirage")
+            {
+                /*if (station7ComboBox.Text == "BLG-66-AC Belouga")
+                {
+                    station4ComboBox.Text = station7ComboBox.Text;
+                    station6ComboBox.Text = station7ComboBox.Text;
+                    station3ComboBox.Text = station7ComboBox.Text;
+                }
+                else if (station7ComboBox.Text == "GBU-12")//have to double select for some reason
+                {
+                    station3ComboBox.Text = "GBU-12";
+                    station6ComboBox.Text = "Empty";
+                    station4ComboBox.Text = "Empty";
+                }
+                else if (station7ComboBox.Text == "Mk-82")
+                {
+                    station3ComboBox.Text = station7ComboBox.Text;
+                    station6ComboBox.Text = station7ComboBox.Text;
+                    station4ComboBox.Text = station7ComboBox.Text;
+                }
+                else if (station7ComboBox.Text == "Mk-82 SnakeEye")
+                {
+                    station4ComboBox.Text = station7ComboBox.Text;
+                    station6ComboBox.Text = station7ComboBox.Text;
+                    station3ComboBox.Text = station7ComboBox.Text;
+                }
+                else if (station7ComboBox.Text == "Empty")
+                {
+                    station4ComboBox.Text = "Empty";
+                    station6ComboBox.Text = "Empty";
+                    station3ComboBox.Text = "Empty";
+                }*/
+                GetStationWeights_M2000C();
+            }
             CalculateWeights();          
         }
         private void Station8ComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -1410,6 +1677,21 @@ namespace DCS_Loadout_Calculator_Utility
                     station8FuelWeight = 0;
                 }
             }
+            else if (selectAirctaftListBox.SelectedItem == "M2000-C Mirage")
+            {
+                station2ComboBox.Text = station8ComboBox.Text;
+                GetStationWeights_M2000C();
+                if (station8Store == "RPL 541 2000 liters Fuel Tank")//adding ' && selectedAircraft == "F/A-18C Hornet"' does not seem to work
+                {
+                    station8FuelWeight = 3484;
+                    //MessageBox.Show(Convert.ToString(station3FuelWeight));
+                }
+                else
+                {
+                    station8FuelWeight = 0;
+                    //MessageBox.Show(Convert.ToString(station3FuelWeight));
+                }
+            }
             CalculateWeights();
         }
         private void Station9ComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -1429,6 +1711,11 @@ namespace DCS_Loadout_Calculator_Utility
             {
                 GetStationWeights_A10C();
             }
+            else if (selectAirctaftListBox.SelectedItem == "M2000-C Mirage")
+            {
+                station1ComboBox.Text = station9ComboBox.Text;
+                GetStationWeights_M2000C();
+            }
             CalculateWeights();
         }
         private void Station10ComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -1441,6 +1728,10 @@ namespace DCS_Loadout_Calculator_Utility
             else if (selectAirctaftListBox.SelectedItem == "A-10C Warthog")
             {
                 GetStationWeights_A10C();
+            }
+            else if (selectAirctaftListBox.SelectedItem == "M2000-C Mirage")
+            {
+                GetStationWeights_M2000C();
             }
             CalculateWeights();
         }
@@ -2429,11 +2720,6 @@ namespace DCS_Loadout_Calculator_Utility
             else if (station5ComboBox.SelectedValue.ToString() == "7 2.75' rockets M5 (HE)")
             {
                 return weaponWeight_FA18C_rocketsM5HE[stationNumber - 1];
-            }
-            else if (station5ComboBox.SelectedValue.ToString() == "AN/AAQ-28 LITENING")
-            {
-                return weaponWeight_FA18C_ANAAQ28LITENING[stationNumber - 1];
-                
             }
             else if (station5ComboBox.SelectedValue.ToString() == "FPU-8A Fuel Tank 330 gallons")
             {
@@ -3516,6 +3802,50 @@ namespace DCS_Loadout_Calculator_Utility
             string weapon11weight = A10CWeaponWeightTable[weaponType11, 10];
             station11Weight = Convert.ToInt32(weapon11weight);
       
+            CalculateWeights();
+        }
+        public void GetStationWeights_M2000C()
+        {
+            //int weaponType1 = Array.IndexOf(M2000CWeapons, station1ComboBox.Text); originals this line and next line
+            //string weapon1weight = M2000CWeaponWeightTable[0, weaponType1];//0 is the index for weapon station 1
+            int weaponType1 = Array.IndexOf(M2000CWeapons, station1ComboBox.Text);
+            string weapon1weight = M2000CWeaponWeightTable[weaponType1, 0];//0 is the index for weapon station 1
+            station1Weight = Convert.ToInt32(weapon1weight);
+
+            int weaponType2 = Array.IndexOf(M2000CWeapons, station2ComboBox.Text);
+            //MessageBox.Show(Convert.ToString(weaponType2));
+            //MessageBox.Show(station2ComboBox.Text);
+            string weapon2weight = M2000CWeaponWeightTable[weaponType2, 1];
+
+            station2Weight = Convert.ToInt32(weapon2weight);
+
+            int weaponType3 = Array.IndexOf(M2000CWeapons, station3ComboBox.Text);
+            string weapon3weight = M2000CWeaponWeightTable[weaponType3, 2];
+            station3Weight = Convert.ToInt32(weapon3weight);
+
+            int weaponType4 = Array.IndexOf(M2000CWeapons, station4ComboBox.Text);
+            string weapon4weight = M2000CWeaponWeightTable[weaponType4, 3];
+            station4Weight = Convert.ToInt32(weapon4weight);
+
+            int weaponType5 = Array.IndexOf(M2000CWeapons, station5ComboBox.Text);
+            string weapon5weight = M2000CWeaponWeightTable[weaponType5, 4];
+            station5Weight = Convert.ToInt32(weapon5weight);
+            int weaponType6 = Array.IndexOf(M2000CWeapons, station6ComboBox.Text);
+            string weapon6weight = M2000CWeaponWeightTable[weaponType6, 5];
+            station6Weight = Convert.ToInt32(weapon6weight);
+            int weaponType7 = Array.IndexOf(M2000CWeapons, station7ComboBox.Text);
+            string weapon7weight = M2000CWeaponWeightTable[weaponType7, 6];
+            station7Weight = Convert.ToInt32(weapon7weight);
+            int weaponType8 = Array.IndexOf(M2000CWeapons, station8ComboBox.Text);
+            string weapon8weight = M2000CWeaponWeightTable[weaponType8, 7];
+            station8Weight = Convert.ToInt32(weapon8weight);
+            int weaponType9 = Array.IndexOf(M2000CWeapons, station9ComboBox.Text);
+            string weapon9weight = M2000CWeaponWeightTable[weaponType9, 8];
+            station9Weight = Convert.ToInt32(weapon9weight);
+            int weaponType10 = Array.IndexOf(M2000CWeapons, station10ComboBox.Text);
+            string weapon10weight = M2000CWeaponWeightTable[weaponType10, 9];
+            station10Weight = Convert.ToInt32(weapon10weight);
+           
             CalculateWeights();
         }
 
@@ -5552,10 +5882,6 @@ namespace DCS_Loadout_Calculator_Utility
             else if (station5ComboBox.Text == "7 2.75' rockets M5 (HE)")
             {
                 station5StoreExport = "{BRU33_LAU68_MK5}";
-            }
-            else if (station5ComboBox.Text == "AN/AAQ-28 LITENING")
-            {
-                station5StoreExport = "{A111396E-D3E8-4b9c-8AC9-2432489304D5}";
             }
             else if (station5ComboBox.Text == "FPU-8A Fuel Tank 330 gallons")
             {
