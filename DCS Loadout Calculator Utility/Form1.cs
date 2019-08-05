@@ -660,6 +660,19 @@ namespace DCS_Loadout_Calculator_Utility
                 station11ComboBox.Visible = false;
                 station12ComboBox.Visible = false;
 
+                station1Label.Text = "Station 1:";
+                station2Label.Text = "Station 2:";
+                station3Label.Text = "Station 3:";
+                station4Label.Text = "Station 4:";
+                station5Label.Text = "Station 5:";
+                station6Label.Text = "Station 6:";
+                station7Label.Text = "Station 7:";
+                station8Label.Text = "Station 8:";
+                station9Label.Text = "Station 9:";
+                station10Label.Text = "Station 10:";
+                station11Label.Text = "Station 11:";
+                station12Label.Text = "Station 12:";
+
                 //ini for station store drop down options
                 string[] station1Stores_FA18C = new string[] { "Empty", "AIM-9L", "AIM-9M", "AIM-9X", "CAP-9M", "AN/ASQ-T50 TCTS Pod" };
                 station1ComboBox.DataSource = station1Stores_FA18C;
@@ -776,6 +789,18 @@ namespace DCS_Loadout_Calculator_Utility
                 station11ComboBox.Visible = true;
                 station12ComboBox.Visible = true;
 
+                station1Label.Text = "Station 1:";
+                station2Label.Text = "Station 2:";
+                station3Label.Text = "Station 3:";
+                station4Label.Text = "Station 4:";
+                station5Label.Text = "Station 5:";
+                station6Label.Text = "Station 6:";
+                station7Label.Text = "Station 7:";
+                station8Label.Text = "Station 8:";
+                station9Label.Text = "Station 9:";
+                station10Label.Text = "Station 10:";
+                station11Label.Text = "Station 11:";
+                station12Label.Text = "Station 12:";
 
                 string[] station1Stores_SU33 = new string[] { "Empty", "R-73", "L005 Sorbtsiya ECM pod" };
                 station1ComboBox.DataSource = station1Stores_SU33;
@@ -887,6 +912,19 @@ namespace DCS_Loadout_Calculator_Utility
                 station11ComboBox.Visible = false;
                 station12ComboBox.Visible = false;
 
+                station1Label.Text = "Station 1:";
+                station2Label.Text = "Station 2:";
+                station3Label.Text = "Station 3:";
+                station4Label.Text = "Station 4:";
+                station5Label.Text = "Station 5:";
+                station6Label.Text = "Station 6:";
+                station7Label.Text = "Station 7:";
+                station8Label.Text = "Station 8:";
+                station9Label.Text = "Station 9:";
+                station10Label.Text = "Station 10:";
+                station11Label.Text = "Station 11:";
+                station12Label.Text = "Station 12:";
+
                 string[] station1Stores_BF109K4 = new string[] { "Empty", "SC-250", "SC-500", "Fuel Tank 300 Liters" };
                 station1ComboBox.DataSource = station1Stores_BF109K4;
                 CalculateWeights();
@@ -941,6 +979,19 @@ namespace DCS_Loadout_Calculator_Utility
                 station10ComboBox.Visible = false;
                 station11ComboBox.Visible = false;
                 station12ComboBox.Visible = false;
+
+                station1Label.Text = "Station 1:";
+                station2Label.Text = "Station 2:";
+                station3Label.Text = "Station 3:";
+                station4Label.Text = "Station 4:";
+                station5Label.Text = "Station 5:";
+                station6Label.Text = "Station 6:";
+                station7Label.Text = "Station 7:";
+                station8Label.Text = "Station 8:";
+                station9Label.Text = "Station 9:";
+                station10Label.Text = "Station 10:";
+                station11Label.Text = "Station 11:";
+                station12Label.Text = "Station 12:";
 
 
                 string[] station1Stores_AJS37 = new string[] { "Empty", "RB-24", "RB-24J" };
@@ -1023,6 +1074,19 @@ namespace DCS_Loadout_Calculator_Utility
                 station10ComboBox.Visible = true;
                 station11ComboBox.Visible = true;
                 station12ComboBox.Visible = false;
+
+                station1Label.Text = "Station 1:";
+                station2Label.Text = "Station 2:";
+                station3Label.Text = "Station 3:";
+                station4Label.Text = "Station 4:";
+                station5Label.Text = "Station 5:";
+                station6Label.Text = "Station 6:";
+                station7Label.Text = "Station 7:";
+                station8Label.Text = "Station 8:";
+                station9Label.Text = "Station 9:";
+                station10Label.Text = "Station 10:";
+                station11Label.Text = "Station 11:";
+                station12Label.Text = "Station 12:";
 
 
                 string[] station1Stores_A10C = new string[] { "Empty", "AIM-9L x2", "AIM-9M x2", "CAP-9M x2",
@@ -1203,7 +1267,18 @@ namespace DCS_Loadout_Calculator_Utility
                 station11ComboBox.Visible = false;
                 station12ComboBox.Visible = false;
 
-                
+                station1Label.Text = "Station 1:";
+                station2Label.Text = "Station 2:";
+                station3Label.Text = "Station 3:";
+                station4Label.Text = "Station 4:";
+                station5Label.Text = "Station 5:";
+                station6Label.Text = "Station 6:";
+                station7Label.Text = "Station 7:";
+                station8Label.Text = "Station 8:";
+                station9Label.Text = "Station 9:";
+                station10Label.Text = "Station 10:";
+                station11Label.Text = "Station 11:";
+                station12Label.Text = "Station 12:";
 
                 string[] station1Stores_M2000C = new string[] { "Empty", "Matra Magic II", "Matra Type 155 Rocket Pod" };
                 station1ComboBox.DataSource = station1Stores_M2000C;
@@ -1284,7 +1359,18 @@ namespace DCS_Loadout_Calculator_Utility
                 station11ComboBox.Visible = false;
                 station12ComboBox.Visible = false;
 
-
+                station1Label.Text = "Station 1:";
+                station2Label.Text = "Station 2:";
+                station3Label.Text = "Station 3:";
+                station4Label.Text = "Station 4A:";
+                station5Label.Text = "Station 4B:";
+                station6Label.Text = "Station 5:";
+                station7Label.Text = "Station 6:";
+                station8Label.Text = "Station 7:";
+                station9Label.Text = "Station 9:";
+                station10Label.Text = "Station 10:";
+                station11Label.Text = "Station 11:";
+                station12Label.Text = "Station 12:";
 
                 string[] station1Stores_AV8BNA = new string[] { "Empty", "AIM-9M", "CAP-9M", "BDU-33", "GBU-12", "Mk-20", "Mk-81",
                     "Mk-82", "Mk-82 SnakeEye", "Mk-82AIR", "AGM-122 Sidearm", "AN/ASQ-T50 TCTS Pod" };
