@@ -23,6 +23,8 @@ Weight and Balance implemented for:
 
 -A-4E-C
 
+-Huey
+
 Loadout export enabled for the F18C.
 
 ~Bailey
