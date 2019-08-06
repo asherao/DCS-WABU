@@ -29,9 +29,9 @@ using System.Threading;
  * after av8b:8008
  * 
  * before a-4E:8008
- * After a4e:
+ * After a4e:8368
  * BUGS:
- * -Fix total to go red when overweight
+ * -None!
  */
 
 namespace DCS_Loadout_Calculator_Utility
@@ -1712,7 +1712,7 @@ namespace DCS_Loadout_Calculator_Utility
             {
                 totalTrackBar.Value = totalTrackBarValueLimiter;
             }
-            //if thing is overweight, trun the bumber red
+            //if thing is overweight, turn the total precent red
             deltaTextBox.Text = Convert.ToString(totalWeightInt - Convert.ToInt32(maxTextBox.Text));
             int DeltaWeightInt = totalWeightInt - Convert.ToInt32(maxTextBox.Text);
             if (DeltaWeightInt > 0)
