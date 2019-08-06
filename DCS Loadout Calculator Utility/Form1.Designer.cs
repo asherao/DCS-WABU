@@ -378,6 +378,7 @@
             this.textBox_loadoutName = new System.Windows.Forms.TextBox();
             this.button_clearLoadout = new System.Windows.Forms.Button();
             this.button_radnomTests = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.contextMenuStrip_Station1_FA18C2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.internalFuelTrackBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.totalTrackBar)).BeginInit();
@@ -3454,12 +3455,22 @@
             this.button_radnomTests.UseVisualStyleBackColor = true;
             this.button_radnomTests.Click += new System.EventHandler(this.Button_radnomTests_Click);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(534, 394);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(42, 13);
+            this.label1.TabIndex = 76;
+            this.label1.Text = "~Bailey";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(588, 390);
+            this.ClientSize = new System.Drawing.Size(588, 391);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.button_radnomTests);
             this.Controls.Add(this.button_clearLoadout);
             this.Controls.Add(this.textBox_loadoutName);
@@ -3886,6 +3897,7 @@
         private System.Windows.Forms.ToolStripMenuItem mk83ToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem mk84ToolStripMenuItem1;
         private System.Windows.Forms.Button button_radnomTests;
+        private System.Windows.Forms.Label label1;
     }
 }
 
