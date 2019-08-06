@@ -16,6 +16,7 @@ using System.Threading;
 
 /*TODO
  * 
+ * check 4-4E-C Skyhawk
  * -Program M2000C station 4, 6, and 7 dependences. code line starting at 1234 (postpone bc M2000C logic isnt consistant in DCS)
  * -update f18 in new format
  * -make it so that if a preset loadout is not already in the saved games location, then make one
@@ -25,9 +26,12 @@ using System.Threading;
  * -make the arrays and weapon data more coding friendly
  * 
  * before av8b" 7389
- * after av8b:
+ * after av8b:8008
+ * 
+ * before a-4E:8008
+ * After a4e:
  * BUGS:
- * -None, yay1
+ * -Fix total to go red when overweight
  */
 
 namespace DCS_Loadout_Calculator_Utility
@@ -340,7 +344,8 @@ namespace DCS_Loadout_Calculator_Utility
             {"0","0","0","0","397","0","0","0","0","0"},
             {"0","0","0","0","397","0","0","0","0","0"},
          };
-        //init AV8BNA Mirage weapon arrays
+
+        //init AV8BNA weapon arrays
         string[] AV8BNAStations = new string[] { "station1", "station2", "station3",
             "station4", "station5", "station6", "station7"};
         string[] AV8BNAWeapons = new string[] { "", "Empty", "AIM-9M", "CAP-9M", "BDU-33",
@@ -417,6 +422,110 @@ namespace DCS_Loadout_Calculator_Utility
             {"0","207","207","0","0","207","207","0"},
          };
 
+        //init A-4E-C weapon arrays
+        string[] A4ECStations = new string[] { "station1", "station2", "station3",
+            "station4", "station5"};
+        string[] A4ECWeapons = new string[] { "", "Empty", "AIM-9P", "AIM-9P5", "GAR-8", "AGM-62",
+            "AN-M30A1", "AN-M57A1", "AN-M57A1 x5", "AN-M57A1 x6", "AN-M64", "AN-M65A1", "AN-M66A2",
+            "AN-M81", "AN-M81 x5", "AN-M81 x6", "AN-M88", "AN-M88 x5", "AN-M88 x6", "M117", "Mk-20",
+            "Mk-20 x2", "Mk-20 x3", "Mk-77 Mod 0", "Mk-77 Mod 1", "Mk-77 Mod 1 x2", "Mk-81", "Mk-81 x5",
+            "Mk-81 x6", "Mk-81SE", "Mk-81SE x5", "Mk-81SE x6", "Mk-82", "Mk-82 x2", "Mk-82 x3", "Mk-82 x4",
+            "Mk-82 x6", "Mk-82 SnakeEye", "Mk-82 SnakeEye x2", "Mk-82 SnakeEye x3", "Mk-82 SnakeEye x4",
+            "Mk-82 SnakeEye x6", "Mk-83", "Mk-83 x2", "Mk-83 x3", "Mk-84", "AGM-45A", "AGM-65A", "4 ZUNI MK 71",
+            "4 ZUNI MK 71 x2", "4 ZUNI MK 71 x3", "7 2.75' rockets M257 (Parachute Illumination)",
+            "19 FAAR Mk5 HEAT", "19 FAAR Mk5 HEAT x2", "19 FAAR Mk5 HEAT x3", "19 FFAR M156 WP",
+            "19 FFAR M156 WP x2", "19 FFAR M156 WP x3", "19 FFAR Mk1 HE", "19 FFAR Mk1 HE x2",
+            "19 FFAR Mk1 HE x3", "7 FFAR M156 WP", "7 FFAR M156 WP x2", "7 FFAR M156 WP x3",
+            "7 FFAR Mk1 HE", "7 FFAR Mk1 HE x2", "7 FFAR Mk1 HE x3", "7 FFAR Mk5 HEAT", "7 FFAR Mk5 HEAT x2",
+            "7 FFAR Mk5 HEAT x3", "7 2.75' rockets MK5 (HE) x3", "CBU-1/A", "CBU-1/A x2", "CBU-2/A", "CBU-2/A x2",
+            "CBU-2B/A", "CBU-2B/A x2", "Mk4 HIPEG", "D-704 Refueling Pod", "Fuel Tank 150 Gallons",
+            "Fuel Tank 300 Gallons", "Fuel Tank 400 Gallons" };
+        string[,] A4ECWeaponWeightTable = new string[,]
+         {
+            {"0","0","0","0","0"},
+            {"0","0","0","0","0"},
+            {"0","223","0","223","0"},
+            {"0","223","0","223","0"},
+            {"0","223","0","223","0"},
+            {"0","2399","2399","2399","0"},
+            {"115","115","115","115","115"},
+            {"260","260","260","260","260"},
+            {"0","1519","0","1519","0"},
+            {"0","0","1779","0","0"},
+            {"500","500","500","500","500"},
+            {"0","2698","2698","2698","0"},
+            {"0","0","2141","0","0"},
+            {"260","260","260","260","260"},
+            {"0","1519","0","1519","0"},
+            {"0","0","1779","0","0"},
+            {"216","216","216","216","216"},
+            {"0","1301","0","1301","0"},
+            {"0","0","1517","0","0"},
+            {"0","750","750","750","0"},
+            {"489","489","489","489","489"},
+            {"0","1085","1085","1085","0"},
+            {"0","0","1574","0","0"},
+            {"0","750","750","750","0"},
+            {"507","507","507","507","507"},
+            {"0","0","1120","0","0"},
+            {"260","260","260","260","260"},
+            {"0","1521","0","1521","0"},
+            {"0","0","1781","0","0"},
+            {"249","249","249","249","249"},
+            {"0","1521","0","1521","0"},
+            {"0","0","1781","0","0"},
+            {"531","531","531","531","531"},
+            {"0","1168","0","1168","0"},
+            {"0","0","1700","0","0"},
+            {"0","0","2346","0","0"},
+            {"0","0","3408","0","0"},
+            {"511","531","531","531","511"},
+            {"0","1168","0","1168","0"},
+            {"0","0","1700","0","0"},
+            {"0","0","2346","0","0"},
+            {"0","0","3408","0","0"},
+            {"0","985","985","985","0"},
+            {"0","0","2077","0","0"},
+            {"0","0","3062","0","0"},
+            {"0","1971","1971","1971","0"},
+            {"390","0","0","0","390"},
+            {"0","390","0","390","0"},
+            {"970","970","970","970","970"},
+            {"0","2046","2046","2046","0"},
+            {"0","0","3016","0","0"},
+            {"265","0","0","0","265"},
+            {"631","631","631","631","631"},
+            {"0","1367","1367","1367","0"},
+            {"0","0","1997","0","0"},
+            {"690","690","690","690","960"},
+            {"0","1484","1484","1484","0"},
+            {"0","0","2174","0","0"},
+            {"628","628","628","628","628"},
+            {"0","1362","1362","1362","0"},
+            {"0","0","1991","0","0"},
+            {"265","265","265","265","265"},
+            {"0","635","635","635","0"},
+            {"0","0","899","0","0"},
+            {"243","243","243","243","243"},
+            {"0","591","591","591","0"},
+            {"0","0","833","0","0"},
+            {"243","243","243","243","243"},
+            {"0","591","591","591","0"},
+            {"0","0","836","0","0"},
+            {"0","0","796","0","0"},
+            {"0","1012","0","1012","0"},
+            {"0","1572","0","1572","0"},
+            {"0","758","0","758","0"},
+            {"0","1620","0","1620","0"},
+            {"0","838","0","838","0"},
+            {"0","1779","0","1779","0"},
+            {"0","1349","1349","1349","0"},
+            {"0","0","719","0","0"},
+            {"0","137","137","137","0"},
+            {"0","198","183","198","0"},
+            {"0","0","240","0","0"},
+         };
+        //init next aircraft here===================================================================
         private int station1Weight;
         private int station2Weight;
         private int station3Weight;
@@ -494,7 +603,7 @@ namespace DCS_Loadout_Calculator_Utility
 
             button_radnomTests.Visible = false;
             
-            //makes the list of available aircraft
+            //makes the list of available aircraft=========================================================================================
             List<string> AircraftList = new List<string>();
             AircraftList.Add("F/A-18C Hornet");
             AircraftList.Add("AJS-37 Viggen");
@@ -503,6 +612,7 @@ namespace DCS_Loadout_Calculator_Utility
             AircraftList.Add("A-10C Warthog");
             AircraftList.Add("M2000-C Mirage");
             AircraftList.Add("AV-8B Night Attack V/STOL");
+            AircraftList.Add("A-4E-C Skyhawk");
             AircraftList.Sort();
             selectAirctaftListBox.DataSource = AircraftList;
         }
@@ -1310,7 +1420,7 @@ namespace DCS_Loadout_Calculator_Utility
             if (selectedAircraft == "AV-8B Night Attack V/STOL")
             {
                 //ini for AV8BNA
-                gunTrackBar.Enabled = true;
+                gunTrackBar.Enabled = false;
                 gunTrackBar.Maximum = 0;
                 gunTrackBar.Value = 0;
                 internalFuelTrackBar.Maximum = 7758;
@@ -1423,7 +1533,119 @@ namespace DCS_Loadout_Calculator_Utility
                     "Mk-82", "Mk-82 SnakeEye", "Mk-82AIR", "AGM-122 Sidearm", "AN/ASQ-T50 TCTS Pod" };
                 station8ComboBox.DataSource = station8Stores_AV8BNA;
             }
-            //next aircraft goes here
+            if (selectedAircraft == "A-4E-C Skyhawk")
+            {
+                //ini for A-4E-C Skyhawk
+                gunTrackBar.Enabled = true;
+                gunTrackBar.Maximum = 119;
+                gunTrackBar.Value = 119;
+                internalFuelTrackBar.Maximum = 5440;
+                internalFuelTrackBar.Value = 5440;
+                internalFuelTrackBar.Minimum = 0;
+                int internalFuelWeightInt = internalFuelTrackBar.Value;
+
+                //fuelWeightTextBox.Text = internalFuelTextBox.Value + fuelValue //placeholders
+                emptyTextBox.Text = "11589";
+                int emptyWeightInt = int.Parse(emptyTextBox.Text);
+                weaponsTextBox.Text = Convert.ToString(gunTrackBar.Value); //something+something+moreSomething
+                int weaponsWeightInt = int.Parse(weaponsTextBox.Text);
+                maxTextBox.Text = "24500";
+
+                int gunWeightInt = gunTrackBar.Value;
+                int totalWeightInt = internalFuelWeightInt + emptyWeightInt + gunWeightInt +
+                    station1Weight + station2Weight + station3Weight + station4Weight +
+                    station5Weight + station6Weight + station7Weight + station8Weight +
+                    station9Weight + station10Weight + station11Weight + station12Weight; //+externalFuelWeightInt+ weaponsWeightInt 
+                string totalWeightString = totalWeightInt.ToString();
+                totalTextBox.Text = totalWeightString;
+
+                station1Label.Visible = true;
+                station2Label.Visible = true;
+                station3Label.Visible = true;
+                station4Label.Visible = true;
+                station5Label.Visible = true;
+                station6Label.Visible = false;
+                station7Label.Visible = false;
+                station8Label.Visible = false;
+                station9Label.Visible = false;
+                station10Label.Visible = false;
+                station11Label.Visible = false;
+                station12Label.Visible = false;
+
+                station1ComboBox.Visible = true;
+                station2ComboBox.Visible = true;
+                station3ComboBox.Visible = true;
+                station4ComboBox.Visible = true;
+                station5ComboBox.Visible = true;
+                station6ComboBox.Visible = false;
+                station7ComboBox.Visible = false;
+                station8ComboBox.Visible = false;
+                station9ComboBox.Visible = false;
+                station10ComboBox.Visible = false;
+                station11ComboBox.Visible = false;
+                station12ComboBox.Visible = false;
+
+                station1Label.Text = "Station 1:";
+                station2Label.Text = "Station 2:";
+                station3Label.Text = "Station 3:";
+                station4Label.Text = "Station 4:";
+                station5Label.Text = "Station 5:";
+                station6Label.Text = "Station 6:";
+                station7Label.Text = "Station 7:";
+                station8Label.Text = "Station 8:";
+                station9Label.Text = "Station 9:";
+                station10Label.Text = "Station 10:";
+                station11Label.Text = "Station 11:";
+                station12Label.Text = "Station 12:";
+
+                string[] station1Stores_A4EC = new string[] { "Empty", "AN-M30A1", "AN-M57A1", "AN-M64", "AN-M81", "AN-M88",
+                    "Mk-20", "Mk-77 Mod 1", "Mk-81", "Mk-81SE", "Mk-82", "Mk-82 SnakeEye", "AGM-45A", "4 ZUNI MK 71",
+                    "7 2.75' rockets M257 (Parachute Illumination)", "19 FAAR Mk5 HEAT", "19 FFAR M156 WP", "19 FFAR Mk1 HE",
+                    "7 FFAR M156 WP", "7 FFAR Mk1 HE", "7 FFAR Mk5 HEAT" };
+                station1ComboBox.DataSource = station1Stores_A4EC;
+
+                string[] station2Stores_A4EC = new string[] { "Empty", "AIM-9M", "AIM-9P", "AIM-9P5", "GAR-8", "AGM-62",
+                    "AN-M30A1", "AN-M57A1", "AN-M57A1 x5", "AN-M64", "AN-M65A1", "AN-M81", "AN-M81 x5", "AN-M88",
+                    "AN-M88 x5", "M117", "Mk-20", "Mk-20 x2", "Mk-77 Mod 0", "Mk-77 Mod 1", "Mk-81", "Mk-81 x5",
+                    "Mk-81SE", "Mk-81SE x5", "Mk-82", "Mk-82 x2", "Mk-82 SnakeEye", "Mk-82 SnakeEye x2", "Mk-83",
+                    "Mk-84", "AGM-65A", "4 ZUNI MK 71", "4 ZUNI MK 71 x2", "19 FAAR Mk5 HEAT", "19 FAAR Mk5 HEAT x2",
+                    "19 FFAR M156 WP", "19 FFAR M156 WP x2", "19 FFAR Mk1 HE", "19 FFAR Mk1 HE x2", "7 FFAR M156 WP",
+                    "7 FFAR M156 WP x2", "7 FFAR Mk1 HE", "7 FFAR Mk1 HE x2", "7 FFAR Mk5 HEAT", "7 FFAR Mk5 HEAT x2",
+                    "CBU-1/A", "CBU-1/A x2", "CBU-2/A", "CBU-2/A x2", "CBU-2B/A", "CBU-2B/A x2", "Mk4 HIPEG", "Fuel Tank 150 Gallons",
+                    "Fuel Tank 300 Gallons" };
+                station2ComboBox.DataSource = station2Stores_A4EC;
+
+                string[] station3Stores_A4EC = new string[] { "Empty", "AGM-62", "AN-M30A1", "AN-M57A1", "AN-M57A1 x6", "AN-M64",
+                    "AN-M65A1", "AN-M66A2", "AN-M81", "AN-M81 x6", "AN-M88", "AN-M88 x6", "M117", "Mk-20", "Mk-20 x2", "Mk-20 x3",
+                    "Mk-77 Mod 0", "Mk-77 Mod 1", "Mk-77 Mod 1 x2", "Mk-81", "Mk-81 x6", "Mk-81SE", "Mk-81SE x6", "Mk-82", "Mk-82 x3",
+                    "Mk-82 x4", "Mk-82 x6", "Mk-82 SnakeEye", "Mk-82 SnakeEye x3", "Mk-82 SnakeEye x4", "Mk-82 SnakeEye x6",
+                    "Mk-83", "Mk-83 x2", "Mk-83 x3", "Mk-84", "4 ZUNI MK 71", "4 ZUNI MK 71 x2", "4 ZUNI MK 71 x3", "19 FAAR Mk5 HEAT",
+                    "19 FAAR Mk5 HEAT x2", "19 FAAR Mk5 HEAT x3", "19 FFAR M156 WP", "19 FFAR M156 WP x2", "19 FFAR M156 WP x3",
+                    "19 FFAR Mk1 HE", "19 FFAR Mk1 HE x2", "19 FFAR Mk1 HE x3", "7 FFAR M156 WP", "7 FFAR M156 WP x2",
+                    "7 FFAR M156 WP x3", "7 FFAR Mk1 HE", "7 FFAR Mk1 HE x2", "7 FFAR Mk1 HE x3", "7 FFAR Mk5 HEAT",
+                    "7 FFAR Mk5 HEAT x2", "7 FFAR Mk5 HEAT x3", "7 2.75' rockets MK5 (HE) x3", "Mk4 HIPEG", "D-704 Refueling Pod",
+                    "Fuel Tank 150 Gallons", "Fuel Tank 300 Gallons", "Fuel Tank 400 Gallons" };
+                station3ComboBox.DataSource = station3Stores_A4EC;
+
+                string[] station4Stores_A4EC = new string[] { "Empty", "AIM-9M", "AIM-9P", "AIM-9P5", "GAR-8", "AGM-62",
+                    "AN-M30A1", "AN-M57A1", "AN-M57A1 x5", "AN-M64", "AN-M65A1", "AN-M81", "AN-M81 x5", "AN-M88",
+                    "AN-M88 x5", "M117", "Mk-20", "Mk-20 x2", "Mk-77 Mod 0", "Mk-77 Mod 1", "Mk-81", "Mk-81 x5",
+                    "Mk-81SE", "Mk-81SE x5", "Mk-82", "Mk-82 x2", "Mk-82 SnakeEye", "Mk-82 SnakeEye x2", "Mk-83",
+                    "Mk-84", "AGM-65A", "4 ZUNI MK 71", "4 ZUNI MK 71 x2", "19 FAAR Mk5 HEAT", "19 FAAR Mk5 HEAT x2",
+                    "19 FFAR M156 WP", "19 FFAR M156 WP x2", "19 FFAR Mk1 HE", "19 FFAR Mk1 HE x2", "7 FFAR M156 WP",
+                    "7 FFAR M156 WP x2", "7 FFAR Mk1 HE", "7 FFAR Mk1 HE x2", "7 FFAR Mk5 HEAT", "7 FFAR Mk5 HEAT x2",
+                    "CBU-1/A", "CBU-1/A x2", "CBU-2/A", "CBU-2/A x2", "CBU-2B/A", "CBU-2B/A x2", "Mk4 HIPEG", "Fuel Tank 150 Gallons",
+                    "Fuel Tank 300 Gallons" };
+                station4ComboBox.DataSource = station4Stores_A4EC;
+
+                string[] station5Stores_A4EC = new string[] { "Empty", "AN-M30A1", "AN-M57A1", "AN-M64", "AN-M81", "AN-M88",
+                    "Mk-20", "Mk-77 Mod 1", "Mk-81", "Mk-81SE", "Mk-82", "Mk-82 SnakeEye", "AGM-45A", "4 ZUNI MK 71",
+                    "7 2.75' rockets M257 (Parachute Illumination)", "19 FAAR Mk5 HEAT", "19 FFAR M156 WP", "19 FFAR Mk1 HE",
+                    "7 FFAR M156 WP", "7 FFAR Mk1 HE", "7 FFAR Mk5 HEAT" };
+                station5ComboBox.DataSource = station5Stores_A4EC;
+                
+            }
+            //next aircraft goes here================================================================================================
         }
 
             private void GunBar_Scroll(object sender, EventArgs e)
@@ -1490,8 +1712,22 @@ namespace DCS_Loadout_Calculator_Utility
             {
                 totalTrackBar.Value = totalTrackBarValueLimiter;
             }
-            //totalTrackBar.Value = ((totalWeightInt*100) / Convert.ToInt32(maxTextBox.Text));
+            //if thing is overweight, trun the bumber red
             deltaTextBox.Text = Convert.ToString(totalWeightInt - Convert.ToInt32(maxTextBox.Text));
+            int DeltaWeightInt = totalWeightInt - Convert.ToInt32(maxTextBox.Text);
+            if (DeltaWeightInt > 0)
+            {
+                label_TotalPercent.ForeColor = Color.Red;
+            }
+            else if (DeltaWeightInt <= 0)
+            {
+                label_TotalPercent.ForeColor = Color.Black;
+            }
+
+
+                //totalTrackBar.Value = ((totalWeightInt*100) / Convert.ToInt32(maxTextBox.Text));
+
+                
             //MessageBox.Show(Convert.ToString(stationAllFuelWeight));
             //set the percents labels
             if (gunTrackBar.Maximum == 0)
@@ -1565,6 +1801,10 @@ namespace DCS_Loadout_Calculator_Utility
             {
                 GetStationWeights_AV8BNA();
             }
+            else if (selectAirctaftListBox.SelectedItem == "A-4E-C Skyhawk")
+            {
+                GetStationWeights_A4EC();
+            }
             CalculateWeights();
         }
         private void Station2ComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -1619,6 +1859,26 @@ namespace DCS_Loadout_Calculator_Utility
                     station2FuelWeight = 0;
                     //MessageBox.Show(Convert.ToString(station3FuelWeight));
                 }
+            }
+            else if (selectAirctaftListBox.SelectedItem == "A-4E-C Skyhawk")
+            {
+                GetStationWeights_A4EC();
+                if (station2Store == "Fuel Tank 150 Gallons")//adding ' && selectedAircraft == "F/A-18C Hornet"' does not seem to work
+                {
+                    station2FuelWeight = 1001;
+                    //MessageBox.Show(Convert.ToString(station3FuelWeight));
+                }
+                else if (station2Store == "Fuel Tank 300 Gallons")//adding ' && selectedAircraft == "F/A-18C Hornet"' does not seem to work
+                {
+                    station2FuelWeight = 2003;
+                    //MessageBox.Show(Convert.ToString(station3FuelWeight));
+                }
+                else
+                {
+                    station2FuelWeight = 0;
+                    //MessageBox.Show(Convert.ToString(station3FuelWeight));
+                }
+               
             }
             CalculateWeights();
         }
@@ -1710,6 +1970,35 @@ namespace DCS_Loadout_Calculator_Utility
                     //MessageBox.Show(Convert.ToString(station3FuelWeight));
                 }
             }
+            else if (selectAirctaftListBox.SelectedItem == "A-4E-C Skyhawk")
+            {
+                GetStationWeights_A4EC();
+                if (station3Store == "Fuel Tank 150 Gallons")//adding ' && selectedAircraft == "F/A-18C Hornet"' does not seem to work
+                {
+                    station3FuelWeight = 1001;
+                    //MessageBox.Show(Convert.ToString(station3FuelWeight));
+                }
+                else if (station2Store == "Fuel Tank 300 Gallons")//adding ' && selectedAircraft == "F/A-18C Hornet"' does not seem to work
+                {
+                    station3FuelWeight = 2003;
+                    //MessageBox.Show(Convert.ToString(station3FuelWeight));
+                }
+                else if (station3Store == "Fuel Tank 400 Gallons")//adding ' && selectedAircraft == "F/A-18C Hornet"' does not seem to work
+                {
+                    station3FuelWeight = 2970;
+                    //MessageBox.Show(Convert.ToString(station3FuelWeight));
+                }
+                else if (station3Store == "D-704 Refueling Pod")//adding ' && selectedAircraft == "F/A-18C Hornet"' does not seem to work
+                {
+                    station3FuelWeight = 2003;
+                    //MessageBox.Show(Convert.ToString(station3FuelWeight));
+                }
+                else
+                {
+                    station3FuelWeight = 0;
+                    //MessageBox.Show(Convert.ToString(station3FuelWeight));
+                }
+            }
             CalculateWeights();
         }
         private void Station4ComboBox_SelectedIndexChanged_1(object sender, EventArgs e)
@@ -1787,6 +2076,25 @@ namespace DCS_Loadout_Calculator_Utility
             {
                 GetStationWeights_AV8BNA();
             }
+            else if (selectAirctaftListBox.SelectedItem == "A-4E-C Skyhawk")
+            {
+                GetStationWeights_A4EC();
+                if (station4Store == "Fuel Tank 150 Gallons")//adding ' && selectedAircraft == "F/A-18C Hornet"' does not seem to work
+                {
+                    station4FuelWeight = 1001;
+                    //MessageBox.Show(Convert.ToString(station3FuelWeight));
+                }
+                else if (station4Store == "Fuel Tank 300 Gallons")//adding ' && selectedAircraft == "F/A-18C Hornet"' does not seem to work
+                {
+                    station4FuelWeight = 2003;
+                    //MessageBox.Show(Convert.ToString(station3FuelWeight));
+                }
+                else
+                {
+                    station4FuelWeight = 0;
+                    //MessageBox.Show(Convert.ToString(station3FuelWeight));
+                }
+            }
             CalculateWeights();
         }
         private void Station5ComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -1841,6 +2149,10 @@ namespace DCS_Loadout_Calculator_Utility
             else if (selectAirctaftListBox.SelectedItem == "AV-8B Night Attack V/STOL")
             {
                 GetStationWeights_AV8BNA();
+            }
+            else if (selectAirctaftListBox.SelectedItem == "A-4E-C Skyhawk")
+            {
+                GetStationWeights_A4EC();
             }
             CalculateWeights();
         }
@@ -4463,7 +4775,55 @@ namespace DCS_Loadout_Calculator_Utility
             station8Weight = Convert.ToInt32(weapon8weight);
             CalculateWeights();
         }
+        public void GetStationWeights_A4EC()
+        {
+            //int weaponType1 = Array.IndexOf(A4ECWeapons, station1ComboBox.Text); originals this line and next line
+            //string weapon1weight = A4ECWeaponWeightTable[0, weaponType1];//0 is the index for weapon station 1
+            int weaponType1 = Array.IndexOf(A4ECWeapons, station1ComboBox.Text);
+            if (weaponType1 == -1)
+            {
+                weaponType1 = 0;
+            }
+            string weapon1weight = A4ECWeaponWeightTable[weaponType1, 0];//0 is the index for weapon station 1
+            station1Weight = Convert.ToInt32(weapon1weight);
 
+            int weaponType2 = Array.IndexOf(A4ECWeapons, station2ComboBox.Text);
+            //MessageBox.Show(Convert.ToString(weaponType2));
+            //MessageBox.Show(station2ComboBox.Text);
+            //MessageBox.Show(Convert.ToString(weaponType2));
+            if (weaponType2 == -1)
+            {
+                weaponType2 = 0;
+            }
+            string weapon2weight = A4ECWeaponWeightTable[weaponType2, 1];
+            station2Weight = Convert.ToInt32(weapon2weight);
+
+            int weaponType3 = Array.IndexOf(A4ECWeapons, station3ComboBox.Text);
+            if (weaponType3 == -1)
+            {
+                weaponType3 = 0;
+            }
+            string weapon3weight = A4ECWeaponWeightTable[weaponType3, 2];
+            station3Weight = Convert.ToInt32(weapon3weight);
+
+            int weaponType4 = Array.IndexOf(A4ECWeapons, station4ComboBox.Text);
+            if (weaponType4 == -1)
+            {
+                weaponType4 = 0;
+            }
+            string weapon4weight = A4ECWeaponWeightTable[weaponType4, 3];
+            station4Weight = Convert.ToInt32(weapon4weight);
+
+            int weaponType5 = Array.IndexOf(A4ECWeapons, station5ComboBox.Text);
+            if (weaponType5 == -1)
+            {
+                weaponType5 = 0;
+            }
+            string weapon5weight = A4ECWeaponWeightTable[weaponType5, 4];
+            station5Weight = Convert.ToInt32(weapon5weight);
+
+            CalculateWeights();
+        }
         private void Button_exportLoadout_Click(object sender, EventArgs e)
         {
             if (textBox_loadoutName.Text == "")
