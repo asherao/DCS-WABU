@@ -7,6 +7,8 @@ Weight and Balance implemented for:
 
 -A10C
 
+-F-14B
+
 -F18C
 
 -Bf 109
@@ -20,8 +22,6 @@ Weight and Balance implemented for:
 -AV-8B Harrier
 
 -A-4E-C
-
--More planned
 
 Loadout export enabled for the F18C.
 ~Bailey
