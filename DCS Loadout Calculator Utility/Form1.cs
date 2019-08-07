@@ -15,6 +15,8 @@ using System.Runtime.InteropServices;
 using System.Threading;
 
 /*TODO
+ * impleent the "balance" part of weight and balance for all except f18
+ * 
  * -Program M2000C station 4, 6, and 7 dependences. code line starting at 1234 (postpone bc M2000C logic isnt consistant in DCS)
  * -update f18 in new format
  * -make it so that if a preset loadout is not already in the saved games location, then make one
@@ -683,6 +685,33 @@ namespace DCS_Loadout_Calculator_Utility
         private int stationAllFuelWeight;
         private int totalFuelWeight;
 
+        double station1Moment;
+        double station2Moment;
+        double station3Moment;
+        double station4Moment;
+        double station5Moment;
+        double station6Moment;
+        double station7Moment;
+        double station8Moment;
+        double station9Moment;
+        double station10Moment;
+        double station11Moment;
+        double station12Moment;
+
+        double station1PylonLocation;
+        double station2PylonLocation;
+        double station3PylonLocation;
+        double station4PylonLocation;
+        double station5PylonLocation;
+        double station6PylonLocation;
+        double station7PylonLocation;
+        double station8PylonLocation;
+        double station9PylonLocation;
+        double station10PylonLocation;
+        double station11PylonLocation;
+        double station12PylonLocation;
+
+        double totalMoment;
 
         string userNamedExport = "123 Custom Loadout";//implement a box the suer can type in to name the export
         string station1StoreExport = "Station-1-ID-Placeholder";
@@ -839,6 +868,19 @@ namespace DCS_Loadout_Calculator_Utility
                 station7Label.ContextMenuStrip = contextMenuStrip_Station7_FA18C3;
                 station8Label.ContextMenuStrip = contextMenuStrip_Station8_FA18C3;
                 station9Label.ContextMenuStrip = contextMenuStrip_Station9_FA18C3;
+
+                station1PylonLocation = -18.959974;
+                station2PylonLocation = -11.05315;
+                station3PylonLocation = -7.2572178;
+                station4PylonLocation = -3.4251969;
+                station5PylonLocation = 0;
+                station6PylonLocation = 3.4251969;
+                station7PylonLocation = 7.2572178;
+                station8PylonLocation = 11.05315;
+                station9PylonLocation = 18.959974;
+                station10PylonLocation = 0;
+                station11PylonLocation = 0;
+                station12PylonLocation = 0;
 
                 gunTrackBar.Enabled = true;
                 gunTrackBar.Maximum = 445;
@@ -2152,7 +2194,26 @@ namespace DCS_Loadout_Calculator_Utility
             label_InternalFuelPercent.Text = Convert.ToString((internalFuelTrackBar.Value * 100) / internalFuelTrackBar.Maximum) + "%";
             label_TotalPercent.Text = Convert.ToString(totalTrackBarValueLimiter) +"%";
 
+            //here is the "balance" part of weight and balance
+            station1Moment = station1Weight*station1PylonLocation;
+            station2Moment = station2Weight * station2PylonLocation;
+            station3Moment = station3Weight * station3PylonLocation;
+            station4Moment = station4Weight * station4PylonLocation;
+            station5Moment = station5Weight * station5PylonLocation;
+            station6Moment = station6Weight * station6PylonLocation;
+            station7Moment = station7Weight * station7PylonLocation;
+            station8Moment = station8Weight * station8PylonLocation;
+            station9Moment = station9Weight * station9PylonLocation;
+            station10Moment = station10Weight * station10PylonLocation;
+            station11Moment = station11Weight * station11PylonLocation;
+            station12Moment = station12Weight * station12PylonLocation;
 
+            
+            totalMoment = (station1Moment + station2Moment + station3Moment + station4Moment
+                + station5Moment + station6Moment + station7Moment + station8Moment + station9Moment
+                + station10Moment + station11Moment + station12Moment)/1000;
+            totalMoment = Math.Round(totalMoment, 2);
+            textBox_balanceText.Text = totalMoment.ToString();
         }
 
         private void Total2Label_Click(object sender, EventArgs e)

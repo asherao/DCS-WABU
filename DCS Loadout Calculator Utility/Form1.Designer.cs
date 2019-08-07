@@ -379,6 +379,8 @@
             this.button_clearLoadout = new System.Windows.Forms.Button();
             this.button_radnomTests = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.textBox_balanceText = new System.Windows.Forms.TextBox();
+            this.label_Moment = new System.Windows.Forms.Label();
             this.contextMenuStrip_Station1_FA18C2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.internalFuelTrackBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.totalTrackBar)).BeginInit();
@@ -415,7 +417,7 @@
             "Su-33"});
             this.selectAirctaftListBox.Location = new System.Drawing.Point(5, 25);
             this.selectAirctaftListBox.Name = "selectAirctaftListBox";
-            this.selectAirctaftListBox.Size = new System.Drawing.Size(180, 69);
+            this.selectAirctaftListBox.Size = new System.Drawing.Size(180, 56);
             this.selectAirctaftListBox.Sorted = true;
             this.selectAirctaftListBox.TabIndex = 1;
             this.selectAirctaftListBox.SelectedIndexChanged += new System.EventHandler(this.SelectAirctaftListBox_SelectedIndexChanged);
@@ -950,7 +952,7 @@
             // internalFuelTrackBar
             // 
             this.internalFuelTrackBar.BackColor = System.Drawing.SystemColors.Control;
-            this.internalFuelTrackBar.Location = new System.Drawing.Point(67, 227);
+            this.internalFuelTrackBar.Location = new System.Drawing.Point(67, 208);
             this.internalFuelTrackBar.Maximum = 1;
             this.internalFuelTrackBar.Name = "internalFuelTrackBar";
             this.internalFuelTrackBar.Size = new System.Drawing.Size(125, 45);
@@ -963,7 +965,7 @@
             // fuelWeightLabel
             // 
             this.fuelWeightLabel.AutoSize = true;
-            this.fuelWeightLabel.Location = new System.Drawing.Point(5, 220);
+            this.fuelWeightLabel.Location = new System.Drawing.Point(5, 201);
             this.fuelWeightLabel.Name = "fuelWeightLabel";
             this.fuelWeightLabel.Size = new System.Drawing.Size(64, 13);
             this.fuelWeightLabel.TabIndex = 40;
@@ -973,7 +975,7 @@
             // emptyLabel
             // 
             this.emptyLabel.AutoSize = true;
-            this.emptyLabel.Location = new System.Drawing.Point(5, 143);
+            this.emptyLabel.Location = new System.Drawing.Point(5, 124);
             this.emptyLabel.Name = "emptyLabel";
             this.emptyLabel.Size = new System.Drawing.Size(73, 13);
             this.emptyLabel.TabIndex = 41;
@@ -983,7 +985,7 @@
             // weaponsLabel
             // 
             this.weaponsLabel.AutoSize = true;
-            this.weaponsLabel.Location = new System.Drawing.Point(5, 259);
+            this.weaponsLabel.Location = new System.Drawing.Point(5, 240);
             this.weaponsLabel.Name = "weaponsLabel";
             this.weaponsLabel.Size = new System.Drawing.Size(53, 13);
             this.weaponsLabel.TabIndex = 42;
@@ -993,7 +995,7 @@
             // MaxLabel
             // 
             this.MaxLabel.AutoSize = true;
-            this.MaxLabel.Location = new System.Drawing.Point(5, 173);
+            this.MaxLabel.Location = new System.Drawing.Point(5, 154);
             this.MaxLabel.Name = "MaxLabel";
             this.MaxLabel.Size = new System.Drawing.Size(64, 13);
             this.MaxLabel.TabIndex = 43;
@@ -1003,7 +1005,7 @@
             // totalTrackBar
             // 
             this.totalTrackBar.Enabled = false;
-            this.totalTrackBar.Location = new System.Drawing.Point(68, 326);
+            this.totalTrackBar.Location = new System.Drawing.Point(68, 307);
             this.totalTrackBar.Maximum = 100;
             this.totalTrackBar.Name = "totalTrackBar";
             this.totalTrackBar.Size = new System.Drawing.Size(125, 45);
@@ -1013,7 +1015,7 @@
             // 
             // gunTrackBar
             // 
-            this.gunTrackBar.Location = new System.Drawing.Point(67, 184);
+            this.gunTrackBar.Location = new System.Drawing.Point(67, 165);
             this.gunTrackBar.Maximum = 1;
             this.gunTrackBar.Name = "gunTrackBar";
             this.gunTrackBar.Size = new System.Drawing.Size(125, 45);
@@ -1026,7 +1028,7 @@
             // gunLabel
             // 
             this.gunLabel.AutoSize = true;
-            this.gunLabel.Location = new System.Drawing.Point(5, 196);
+            this.gunLabel.Location = new System.Drawing.Point(5, 177);
             this.gunLabel.Name = "gunLabel";
             this.gunLabel.Size = new System.Drawing.Size(66, 13);
             this.gunLabel.TabIndex = 46;
@@ -1035,7 +1037,7 @@
             // 
             // fuelWeightTextBox
             // 
-            this.fuelWeightTextBox.Location = new System.Drawing.Point(80, 217);
+            this.fuelWeightTextBox.Location = new System.Drawing.Point(80, 198);
             this.fuelWeightTextBox.Name = "fuelWeightTextBox";
             this.fuelWeightTextBox.ReadOnly = true;
             this.fuelWeightTextBox.Size = new System.Drawing.Size(100, 20);
@@ -1044,7 +1046,7 @@
             // 
             // emptyTextBox
             // 
-            this.emptyTextBox.Location = new System.Drawing.Point(80, 142);
+            this.emptyTextBox.Location = new System.Drawing.Point(80, 123);
             this.emptyTextBox.Name = "emptyTextBox";
             this.emptyTextBox.ReadOnly = true;
             this.emptyTextBox.Size = new System.Drawing.Size(100, 20);
@@ -1053,7 +1055,7 @@
             // 
             // weaponsTextBox
             // 
-            this.weaponsTextBox.Location = new System.Drawing.Point(80, 257);
+            this.weaponsTextBox.Location = new System.Drawing.Point(80, 238);
             this.weaponsTextBox.Name = "weaponsTextBox";
             this.weaponsTextBox.ReadOnly = true;
             this.weaponsTextBox.Size = new System.Drawing.Size(100, 20);
@@ -1062,7 +1064,7 @@
             // 
             // maxTextBox
             // 
-            this.maxTextBox.Location = new System.Drawing.Point(80, 172);
+            this.maxTextBox.Location = new System.Drawing.Point(80, 153);
             this.maxTextBox.Name = "maxTextBox";
             this.maxTextBox.ReadOnly = true;
             this.maxTextBox.Size = new System.Drawing.Size(100, 20);
@@ -1072,7 +1074,7 @@
             // total2Label
             // 
             this.total2Label.AutoSize = true;
-            this.total2Label.Location = new System.Drawing.Point(5, 319);
+            this.total2Label.Location = new System.Drawing.Point(5, 300);
             this.total2Label.Name = "total2Label";
             this.total2Label.Size = new System.Drawing.Size(31, 13);
             this.total2Label.TabIndex = 52;
@@ -1081,7 +1083,7 @@
             // 
             // totalTextBox
             // 
-            this.totalTextBox.Location = new System.Drawing.Point(80, 316);
+            this.totalTextBox.Location = new System.Drawing.Point(80, 297);
             this.totalTextBox.Name = "totalTextBox";
             this.totalTextBox.ReadOnly = true;
             this.totalTextBox.Size = new System.Drawing.Size(100, 20);
@@ -1090,7 +1092,7 @@
             // 
             // deltaTextBox
             // 
-            this.deltaTextBox.Location = new System.Drawing.Point(80, 286);
+            this.deltaTextBox.Location = new System.Drawing.Point(80, 267);
             this.deltaTextBox.Name = "deltaTextBox";
             this.deltaTextBox.ReadOnly = true;
             this.deltaTextBox.Size = new System.Drawing.Size(100, 20);
@@ -1100,7 +1102,7 @@
             // deltaLabel
             // 
             this.deltaLabel.AutoSize = true;
-            this.deltaLabel.Location = new System.Drawing.Point(5, 289);
+            this.deltaLabel.Location = new System.Drawing.Point(5, 270);
             this.deltaLabel.Name = "deltaLabel";
             this.deltaLabel.Size = new System.Drawing.Size(32, 13);
             this.deltaLabel.TabIndex = 54;
@@ -3370,7 +3372,7 @@
             // label_InternalFuelPercent
             // 
             this.label_InternalFuelPercent.AutoSize = true;
-            this.label_InternalFuelPercent.Location = new System.Drawing.Point(186, 239);
+            this.label_InternalFuelPercent.Location = new System.Drawing.Point(186, 220);
             this.label_InternalFuelPercent.Name = "label_InternalFuelPercent";
             this.label_InternalFuelPercent.Size = new System.Drawing.Size(15, 13);
             this.label_InternalFuelPercent.TabIndex = 67;
@@ -3380,7 +3382,7 @@
             // label_GunPercent
             // 
             this.label_GunPercent.AutoSize = true;
-            this.label_GunPercent.Location = new System.Drawing.Point(186, 199);
+            this.label_GunPercent.Location = new System.Drawing.Point(186, 180);
             this.label_GunPercent.Name = "label_GunPercent";
             this.label_GunPercent.Size = new System.Drawing.Size(15, 13);
             this.label_GunPercent.TabIndex = 68;
@@ -3390,7 +3392,7 @@
             // label_TotalPercent
             // 
             this.label_TotalPercent.AutoSize = true;
-            this.label_TotalPercent.Location = new System.Drawing.Point(186, 339);
+            this.label_TotalPercent.Location = new System.Drawing.Point(186, 320);
             this.label_TotalPercent.Name = "label_TotalPercent";
             this.label_TotalPercent.Size = new System.Drawing.Size(15, 13);
             this.label_TotalPercent.TabIndex = 69;
@@ -3409,7 +3411,7 @@
             // 
             // button_setDcsLocation
             // 
-            this.button_setDcsLocation.Location = new System.Drawing.Point(5, 105);
+            this.button_setDcsLocation.Location = new System.Drawing.Point(5, 90);
             this.button_setDcsLocation.Name = "button_setDcsLocation";
             this.button_setDcsLocation.Size = new System.Drawing.Size(180, 23);
             this.button_setDcsLocation.TabIndex = 71;
@@ -3447,7 +3449,7 @@
             // 
             // button_radnomTests
             // 
-            this.button_radnomTests.Location = new System.Drawing.Point(10, 397);
+            this.button_radnomTests.Location = new System.Drawing.Point(406, 423);
             this.button_radnomTests.Name = "button_radnomTests";
             this.button_radnomTests.Size = new System.Drawing.Size(175, 23);
             this.button_radnomTests.TabIndex = 75;
@@ -3464,12 +3466,31 @@
             this.label1.TabIndex = 76;
             this.label1.Text = "~Bailey";
             // 
+            // textBox_balanceText
+            // 
+            this.textBox_balanceText.Location = new System.Drawing.Point(80, 336);
+            this.textBox_balanceText.Name = "textBox_balanceText";
+            this.textBox_balanceText.ReadOnly = true;
+            this.textBox_balanceText.Size = new System.Drawing.Size(100, 20);
+            this.textBox_balanceText.TabIndex = 77;
+            // 
+            // label_Moment
+            // 
+            this.label_Moment.AutoSize = true;
+            this.label_Moment.Location = new System.Drawing.Point(5, 340);
+            this.label_Moment.Name = "label_Moment";
+            this.label_Moment.Size = new System.Drawing.Size(74, 13);
+            this.label_Moment.TabIndex = 78;
+            this.label_Moment.Text = "Moment/1000";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(588, 391);
+            this.Controls.Add(this.label_Moment);
+            this.Controls.Add(this.textBox_balanceText);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button_radnomTests);
             this.Controls.Add(this.button_clearLoadout);
@@ -3898,6 +3919,8 @@
         private System.Windows.Forms.ToolStripMenuItem mk84ToolStripMenuItem1;
         private System.Windows.Forms.Button button_radnomTests;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox textBox_balanceText;
+        private System.Windows.Forms.Label label_Moment;
     }
 }
 
