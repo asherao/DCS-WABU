@@ -102,6 +102,7 @@ namespace DCS_Loadout_Calculator_Utility
         public static int[] weaponWeight_FA18C_rocketsM151HE = new int[] {0,816,816,0,0,0,816,816,0,0,0,0};
         public static int[] weaponWeight_FA18C_rocketsMK151HE = new int[] {0,428,428,0,0,0,428,428,0,0,0,0};
         public static int[] weaponWeight_FA18C_rocketsM5HE = new int[] {0,401,0,0,0,0,0,401,0,0,0,0};
+        public static int[] weaponWeight_FA18C_ANAAQ28LITENING = new int[] {0,0,0,0,661,0,0,0,0,0,0,0};
         public static int[] weaponWeight_FA18C_FPU8AFuelTank330gallons = new int[] { 0, 0, 291, 0, 291, 0, 291, 0, 0, 0, 0, 0 };
 
 
@@ -823,11 +824,15 @@ namespace DCS_Loadout_Calculator_Utility
             {
                 textBox_loadoutName.Enabled = true;
                 button_exportLoadout.Enabled = true;
+                label_Moment.Visible = true;
+                textBox_balanceText.Visible = true;
             }
             else
             {
                 textBox_loadoutName.Enabled = false;
                 button_exportLoadout.Enabled = false;
+                label_Moment.Visible = false;
+                textBox_balanceText.Visible = false;
             }
 
             //when the user click the aircraft they want, the aircraft variable is set and the gui is changed to match the number of available stores for the aircraft
@@ -970,7 +975,7 @@ namespace DCS_Loadout_Calculator_Utility
                 station4ComboBox.DataSource = station4Stores_FA18C;
                 string[] station5Stores_FA18C = new string[] { "Empty","CBU-99 x2", "Mk-20 Rockeye x2",
                     "Mk-82 x2", "Mk-82 SnakeEye x2", "Mk-82Y x2", "CBU-99", "Mk-20", "Mk-82", "Mk-82 SnakeEye",
-                    "Mk-82Y", "Mk-83", "Mk-84","FPU-8A Fuel Tank 330 gallons" };
+                    "Mk-82Y", "Mk-83", "Mk-84","AN/AAQ-28 LITENING","FPU-8A Fuel Tank 330 gallons" };
                 station5ComboBox.DataSource = station5Stores_FA18C;
                 string[] station6Stores_FA18C = new string[] { "Empty", "AIM-120B", "AIM-120C", "AIM-7M", "AIM-7F", "AIM-7MH" };
                 station6ComboBox.DataSource = station6Stores_FA18C;
@@ -4028,6 +4033,10 @@ namespace DCS_Loadout_Calculator_Utility
             else if (station5ComboBox.SelectedValue.ToString() == "7 2.75' rockets M5 (HE)")
             {
                 return weaponWeight_FA18C_rocketsM5HE[stationNumber - 1];
+            }
+            else if (station5ComboBox.SelectedValue.ToString() == "AN/AAQ-28 LITENING")
+            {
+                return weaponWeight_FA18C_ANAAQ28LITENING[stationNumber - 1];
             }
             else if (station5ComboBox.SelectedValue.ToString() == "FPU-8A Fuel Tank 330 gallons")
             {
@@ -7734,6 +7743,10 @@ namespace DCS_Loadout_Calculator_Utility
             else if (station5ComboBox.Text == "7 2.75' rockets M5 (HE)")
             {
                 station5StoreExport = "{BRU33_LAU68_MK5}";
+            }
+            else if (station5ComboBox.Text == "AN/AAQ-28 LITENING")
+            {
+                station5StoreExport = "{A111396E-D3E8-4b9c-8AC9-2432489304D5}";
             }
             else if (station5ComboBox.Text == "FPU-8A Fuel Tank 330 gallons")
             {
