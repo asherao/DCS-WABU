@@ -15,7 +15,6 @@ using System.Runtime.InteropServices;
 using System.Threading;
 
 /*TODO
- *
  * -Program M2000C station 4, 6, and 7 dependences. code line starting at 1234 (postpone bc M2000C logic isnt consistant in DCS)
  * -update f18 in new format
  * -make it so that if a preset loadout is not already in the saved games location, then make one
@@ -32,6 +31,8 @@ using System.Threading;
  * after f14: 8689
  * nefore huey 8689
  * after huey 8883
+ * before f15:8885
+ * after f15: 1984
  * BUGS:
  * -None!
  */
@@ -106,7 +107,6 @@ namespace DCS_Loadout_Calculator_Utility
         string[] SU33Stations = new string[] { "station1", "station2", "station3", "station4",
             "station5", "station6","station7", "station8", "station9", "station10", "station11",
             "station12"};
-
         string[] SU33Weapons = new string[] {"", "Empty", "L005 Sorbtsiya ECM pod", "R-73", "R-27ER", "R-27ET",
             "R-27R", "R-27T", "BetAB-500", "FAB-250", "FAB-500 M62", "KMGU-2 - 96 AO-2.5RT",
             "KMGU-2 - 96 PTAB-2.5KO", "MER 6*3 FAB-250", "MER 6*4 FAB-250", "MER*6 FAB-100",
@@ -116,7 +116,6 @@ namespace DCS_Loadout_Calculator_Utility
             "B-13L - 5 S-13 OF", "B-8M1 - 20 S-8KOM", "B-8M1 - 20 S-8OFP2", "B-8M1 - 20 S-8TsM",
             "S-25 OFM"};//added "Empty" to the beginning to catch the empty csae
                         //aslso added "" to catch the empty string case when the user switches aircraft
-
         string[,] SU33WeaponWeightTable = new string[,]
         {
             {"0","0","0","0","0","0","0","0","0","0","0","0" },//this is the "" row
@@ -153,6 +152,7 @@ namespace DCS_Loadout_Calculator_Utility
             {"0","0","794","794","0","0","0","0","794","794","0","0"},
             {"0","0","1091","1091","0","0","0","0","1091","1091","0","0"},
         };
+
         //init Bf 109 K-4 Messerschmitt weapon arrays
         string[] BF109K4Stations = new string[] { "station1"};
         string[] BF109K4Weapons = new string[] { "", "Empty", "SC-250", "SC-500", "Fuel Tank 300 Liters" };
@@ -227,7 +227,6 @@ namespace DCS_Loadout_Calculator_Utility
             "7 2.75' rockets M274 (Practice smoke) LAU-68 x3", "7 2.75' rockets MK5 (HE) LAU-68 x3",
             "7 2.75' rockets MK61 (Practice) LAU-68 x3", "7 2.75' rockets Mk1 (Practice) LAU-68 x3",
             "7 2.75' rockets WTU1B (Practice) LAU-68 x3", "Fuel Tank FT600" };
-
         string[,] A10CWeaponWeightTable = new string[,]
          {
             {"0","0","0","0","0","0","0","0","0","0","0"},
@@ -527,6 +526,7 @@ namespace DCS_Loadout_Calculator_Utility
             {"0","198","183","198","0"},
             {"0","0","240","0","0"},
          };
+
         //init F14B weapon arrays
         string[] F14BStations = new string[] {"station1", "station2", "station3",
             "station4", "station5", "station6", "station7", "station8", "station7", "station10"};
@@ -583,6 +583,7 @@ namespace DCS_Loadout_Calculator_Utility
             {"0","0","110","0","0","0","0","110","0","0"},
             {"0","0","110","0","0","0","0","110","0","0"},
          };
+
         //init HUEY weapon arrays
         string[] HUEYStations = new string[] {"station1", "station2", "station3",
             "station4", "station5", "station6"};
@@ -610,6 +611,34 @@ namespace DCS_Loadout_Calculator_Utility
             {"0","247","0","0","247","0"},
             {"0","247","0","0","247","0"},
          };
+
+        //init F15C weapon arrays
+        string[] F15CStations = new string[] {"station1", "station2", "station3",
+            "station4", "station5", "station6", "station7", "station8", "station9",
+            "station10", "station11"};
+        string[] F15CWeapons = new string[] { "", "Empty", "AIM-120B", "AIM-120C",
+            "AIM-9L", "AIM-9M", "AIM-9P", "AIM-9P5", "AIM-7E", "AIM-7F", "AIM-7M",
+            "AIM-7MH", "Fuel Tank 610 gal", "AN/ASQ-T50 TCTS Pod" };
+        string[,] F15CWeaponWeightTable = new string[,]
+         {
+            {"0","0","0","0","0","0","0","0","0","0","0"},
+            {"0","0","0","0","0","0","0","0","0","0","0"},
+            {"348","0","348","348","348","0","348","348","348","0","348"},
+            {"356","0","356","356","356","0","356","356","356","0","356"},
+
+            {"189","0","189","0","0","0","0","0","189","0","189"},
+            {"191","0","191","0","0","0","0","0","191","0","191"},
+            {"189","0","189","0","0","0","0","0","189","0","189"},
+            {"189","0","189","0","0","0","0","0","189","0","189"},
+
+            {"0","0","0","507","507","0","507","507","0","0","0"},
+            {"0","0","0","507","507","0","507","507","0","0","0"},
+            {"0","0","0","507","507","0","507","507","0","0","0"},
+            {"0","0","0","507","507","0","507","507","0","0","0"},
+            {"0","110","0","0","0","110","0","0","0","110","0"},
+            {"139","0","0","0","0","0","0","0","0","0","139"},
+         };
+
         //init next aircraft here===================================================================
 
         private int station1Weight;
@@ -701,7 +730,9 @@ namespace DCS_Loadout_Calculator_Utility
             AircraftList.Add("A-4E-C Skyhawk");
             AircraftList.Add("F-14B Tomcat");
             AircraftList.Add("UH-1H Huey");
+            AircraftList.Add("F-15C Eagle");
             AircraftList.Sort();
+           
             selectAirctaftListBox.DataSource = AircraftList;
         }
 
@@ -1925,6 +1956,105 @@ namespace DCS_Loadout_Calculator_Utility
                 string[] station6Stores_HUEY = new string[] { "Empty", "M134 Minigun Right"};
                 station6ComboBox.DataSource = station6Stores_HUEY;
             }
+            if (selectedAircraft == "F-15C Eagle")
+            {
+                //ini for F14
+                gunTrackBar.Enabled = true;
+                gunTrackBar.Maximum = 723;
+                gunTrackBar.Value = 723;
+                internalFuelTrackBar.Maximum = 13455;
+                internalFuelTrackBar.Value = 13455;
+                internalFuelTrackBar.Minimum = 0;
+                int internalFuelWeightInt = internalFuelTrackBar.Value;
+
+                //fuelWeightTextBox.Text = internalFuelTextBox.Value + fuelValue //placeholders
+                emptyTextBox.Text = "29498";
+                int emptyWeightInt = int.Parse(emptyTextBox.Text);
+                weaponsTextBox.Text = Convert.ToString(gunTrackBar.Value); //something+something+moreSomething
+                int weaponsWeightInt = int.Parse(weaponsTextBox.Text);
+                maxTextBox.Text = "68002";
+
+                int gunWeightInt = gunTrackBar.Value;
+                int totalWeightInt = internalFuelWeightInt + emptyWeightInt + gunWeightInt +
+                    station1Weight + station2Weight + station3Weight + station4Weight +
+                    station5Weight + station6Weight + station7Weight + station8Weight +
+                    station9Weight + station10Weight + station11Weight + station12Weight; //+externalFuelWeightInt+ weaponsWeightInt 
+                string totalWeightString = totalWeightInt.ToString();
+                totalTextBox.Text = totalWeightString;
+
+                station1Label.Visible = true;
+                station2Label.Visible = true;
+                station3Label.Visible = true;
+                station4Label.Visible = true;
+                station5Label.Visible = true;
+                station6Label.Visible = true;
+                station7Label.Visible = true;
+                station8Label.Visible = true;
+                station9Label.Visible = true;
+                station10Label.Visible = true;
+                station11Label.Visible = true;
+                station12Label.Visible = false;
+
+                station1ComboBox.Visible = true;
+                station2ComboBox.Visible = true;
+                station3ComboBox.Visible = true;
+                station4ComboBox.Visible = true;
+                station5ComboBox.Visible = true;
+                station6ComboBox.Visible = true;
+                station7ComboBox.Visible = true;
+                station8ComboBox.Visible = true;
+                station9ComboBox.Visible = true;
+                station10ComboBox.Visible = true;
+                station11ComboBox.Visible = true;
+                station12ComboBox.Visible = false;
+
+                station1Label.Text = "Station 1:";
+                station2Label.Text = "Station 2:";
+                station3Label.Text = "Station 3:";
+                station4Label.Text = "Station 4:";
+                station5Label.Text = "Station 5:";
+                station6Label.Text = "Station 6:";
+                station7Label.Text = "Station 7:";
+                station8Label.Text = "Station 8:";
+                station9Label.Text = "Station 9:";
+                station10Label.Text = "Station 10:";
+                station11Label.Text = "Station 11:";
+                station12Label.Text = "Station 12:";
+
+                string[] station1Stores_F15C = new string[] { "Empty", "AIM-120B", "AIM-120C", "AIM-9L", "AIM-9M", "AIM-9P",
+                    "AIM-9P5", "AN/ASQ-T50 TCTS Pod" };
+                station1ComboBox.DataSource = station1Stores_F15C;
+                string[] station2Stores_F15C = new string[] { "Empty", "Fuel Tank 610 gal" };
+                station2ComboBox.DataSource = station2Stores_F15C;
+                string[] station3Stores_F15C = new string[] { "Empty", "AIM-120B", "AIM-120C", "AIM-9L", "AIM-9M", "AIM-9P", "AIM-9P5" };
+                station3ComboBox.DataSource = station3Stores_F15C;
+
+                string[] station4Stores_F15C = new string[] { "Empty", "AIM-120B", "AIM-120C", "AIM-7E", "AIM-7F", "AIM-7M", "AIM-7MH" };
+                station4ComboBox.DataSource = station4Stores_F15C;
+
+                string[] station5Stores_F15C = new string[] { "Empty", "AIM-120B", "AIM-120C", "AIM-7E", "AIM-7F", "AIM-7M", "AIM-7MH" };
+                station5ComboBox.DataSource = station5Stores_F15C;
+
+                string[] station6Stores_F15C = new string[] { "Empty", "Fuel Tank 610 gal" };
+                station6ComboBox.DataSource = station6Stores_F15C;
+
+                string[] station7Stores_F15C = new string[] { "Empty", "AIM-120B", "AIM-120C", "AIM-7E", "AIM-7F", "AIM-7M", "AIM-7MH" };
+                station7ComboBox.DataSource = station7Stores_F15C;
+
+                string[] station8Stores_F15C = new string[] { "Empty", "AIM-120B", "AIM-120C", "AIM-7E", "AIM-7F", "AIM-7M", "AIM-7MH" };
+                station8ComboBox.DataSource = station8Stores_F15C;
+
+                string[] station9Stores_F15C = new string[] { "Empty", "AIM-120B", "AIM-120C", "AIM-9L", "AIM-9M", "AIM-9P", "AIM-9P5" };
+                station9ComboBox.DataSource = station9Stores_F15C;
+
+                string[] station10Stores_F15C = new string[] { "Empty", "Fuel Tank 610 gal" };
+                station10ComboBox.DataSource = station10Stores_F15C;
+
+                string[] station11Stores_F15C = new string[] { "Empty", "AIM-120B", "AIM-120C", "AIM-9L", "AIM-9M", "AIM-9P",
+                    "AIM-9P5", "AN/ASQ-T50 TCTS Pod" };
+                station11ComboBox.DataSource = station11Stores_F15C;
+            }
+
             //next aircraft goes here=====================================================================================
         }
 
@@ -2093,6 +2223,10 @@ namespace DCS_Loadout_Calculator_Utility
             {
                 GetStationWeights_HUEY();
             }
+            else if (selectAirctaftListBox.SelectedItem == "F-15C Eagle")
+            {
+                GetStationWeights_F15C();
+            }
             CalculateWeights();
         }
         private void Station2ComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -2174,6 +2308,20 @@ namespace DCS_Loadout_Calculator_Utility
             else if (selectAirctaftListBox.SelectedItem == "UH-1H Huey")
             {
                 GetStationWeights_HUEY();
+            }
+            else if (selectAirctaftListBox.SelectedItem == "F-15C Eagle")
+            {
+                GetStationWeights_F15C();
+                if (station2Store == "Fuel Tank 610 gal")//adding ' && selectedAircraft == "F/A-18C Hornet"' does not seem to work
+                {
+                    station2FuelWeight = 4072;
+                    //MessageBox.Show(Convert.ToString(station3FuelWeight));
+                }
+                else
+                {
+                    station2FuelWeight = 0;
+                    //MessageBox.Show(Convert.ToString(station3FuelWeight));
+                }
             }
             CalculateWeights();
         }
@@ -2316,6 +2464,10 @@ namespace DCS_Loadout_Calculator_Utility
             {
                 GetStationWeights_HUEY();
             }
+            else if (selectAirctaftListBox.SelectedItem == "F-15C Eagle")
+            {
+                GetStationWeights_F15C();
+            }
             CalculateWeights();
         }
         private void Station4ComboBox_SelectedIndexChanged_1(object sender, EventArgs e)
@@ -2420,6 +2572,10 @@ namespace DCS_Loadout_Calculator_Utility
             {
                 GetStationWeights_HUEY();
             }
+            else if (selectAirctaftListBox.SelectedItem == "F-15C Eagle")
+            {
+                GetStationWeights_F15C();
+            }
             CalculateWeights();
         }
         private void Station5ComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -2486,6 +2642,10 @@ namespace DCS_Loadout_Calculator_Utility
             else if (selectAirctaftListBox.SelectedItem == "UH-1H Huey")
             {
                 GetStationWeights_HUEY();
+            }
+            else if (selectAirctaftListBox.SelectedItem == "F-15C Eagle")
+            {
+                GetStationWeights_F15C();
             }
             CalculateWeights();
         }
@@ -2571,6 +2731,20 @@ namespace DCS_Loadout_Calculator_Utility
             else if (selectAirctaftListBox.SelectedItem == "UH-1H Huey")
             {
                 GetStationWeights_HUEY();
+            }
+            else if (selectAirctaftListBox.SelectedItem == "F-15C Eagle")
+            {
+                GetStationWeights_F15C();
+                if (station6Store == "Fuel Tank 610 gal")//adding ' && selectedAircraft == "F/A-18C Hornet"' does not seem to work
+                {
+                    station6FuelWeight = 4072;
+                    //MessageBox.Show(Convert.ToString(station3FuelWeight));
+                }
+                else
+                {
+                    station6FuelWeight = 0;
+                    //MessageBox.Show(Convert.ToString(station3FuelWeight));
+                }
             }
             CalculateWeights();
         }
@@ -2663,6 +2837,10 @@ namespace DCS_Loadout_Calculator_Utility
             {
                 GetStationWeights_F14B();
             }
+            else if (selectAirctaftListBox.SelectedItem == "F-15C Eagle")
+            {
+                GetStationWeights_F15C();
+            }
             CalculateWeights();          
         }
         private void Station8ComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -2729,6 +2907,10 @@ namespace DCS_Loadout_Calculator_Utility
                     //MessageBox.Show(Convert.ToString(station3FuelWeight));
                 }
             }
+            else if (selectAirctaftListBox.SelectedItem == "F-15C Eagle")
+            {
+                GetStationWeights_F15C();
+            }
             CalculateWeights();
         }
         private void Station9ComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -2757,6 +2939,10 @@ namespace DCS_Loadout_Calculator_Utility
             {
                 GetStationWeights_F14B();
             }
+            else if (selectAirctaftListBox.SelectedItem == "F-15C Eagle")
+            {
+                GetStationWeights_F15C();
+            }
             CalculateWeights();
         }
         private void Station10ComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -2778,6 +2964,20 @@ namespace DCS_Loadout_Calculator_Utility
             {
                 GetStationWeights_F14B();
             }
+            else if (selectAirctaftListBox.SelectedItem == "F-15C Eagle")
+            {
+                GetStationWeights_F15C();
+                if (station10Store == "Fuel Tank 610 gal")//adding ' && selectedAircraft == "F/A-18C Hornet"' does not seem to work
+                {
+                    station10FuelWeight = 4072;
+                    //MessageBox.Show(Convert.ToString(station3FuelWeight));
+                }
+                else
+                {
+                    station10FuelWeight = 0;
+                    //MessageBox.Show(Convert.ToString(station3FuelWeight));
+                }
+            }
             CalculateWeights();
         }
         private void Station11ComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -2790,6 +2990,10 @@ namespace DCS_Loadout_Calculator_Utility
             else if (selectAirctaftListBox.SelectedItem == "A-10C Warthog")
             {
                 GetStationWeights_A10C();
+            }
+            else if (selectAirctaftListBox.SelectedItem == "F-15C Eagle")
+            {
+                GetStationWeights_F15C();
             }
             CalculateWeights();
         }
@@ -5336,6 +5540,102 @@ namespace DCS_Loadout_Calculator_Utility
             }
             string weapon6weight = HUEYWeaponWeightTable[weaponType6, 5];
             station6Weight = Convert.ToInt32(weapon6weight);
+
+            CalculateWeights();
+        }
+        public void GetStationWeights_F15C()
+        {
+            //int weaponType1 = Array.IndexOf(F15CWeapons, station1ComboBox.Text); originals this line and next line
+            //string weapon1weight = F15CWeaponWeightTable[0, weaponType1];//0 is the index for weapon station 1
+            int weaponType1 = Array.IndexOf(F15CWeapons, station1ComboBox.Text);
+            if (weaponType1 == -1)
+            {
+                weaponType1 = 0;
+            }
+            string weapon1weight = F15CWeaponWeightTable[weaponType1, 0];//0 is the index for weapon station 1
+            station1Weight = Convert.ToInt32(weapon1weight);
+
+            int weaponType2 = Array.IndexOf(F15CWeapons, station2ComboBox.Text);
+            //MessageBox.Show(Convert.ToString(weaponType2));
+            //MessageBox.Show(station2ComboBox.Text);
+            if (weaponType2 == -1)
+            {
+                weaponType2 = 0;
+            }
+            string weapon2weight = F15CWeaponWeightTable[weaponType2, 1];
+            station2Weight = Convert.ToInt32(weapon2weight);
+
+            int weaponType3 = Array.IndexOf(F15CWeapons, station3ComboBox.Text);
+            if (weaponType3 == -1)
+            {
+                weaponType3 = 0;
+            }
+            string weapon3weight = F15CWeaponWeightTable[weaponType3, 2];
+            station3Weight = Convert.ToInt32(weapon3weight);
+
+            int weaponType4 = Array.IndexOf(F15CWeapons, station4ComboBox.Text);
+            if (weaponType4 == -1)
+            {
+                weaponType4 = 0;
+            }
+            string weapon4weight = F15CWeaponWeightTable[weaponType4, 3];
+            station4Weight = Convert.ToInt32(weapon4weight);
+
+            int weaponType5 = Array.IndexOf(F15CWeapons, station5ComboBox.Text);
+            if (weaponType5 == -1)
+            {
+                weaponType5 = 0;
+            }
+            string weapon5weight = F15CWeaponWeightTable[weaponType5, 4];
+            station5Weight = Convert.ToInt32(weapon5weight);
+
+            int weaponType6 = Array.IndexOf(F15CWeapons, station6ComboBox.Text);
+            if (weaponType6 == -1)
+            {
+                weaponType6 = 0;
+            }
+            string weapon6weight = F15CWeaponWeightTable[weaponType6, 5];
+            station6Weight = Convert.ToInt32(weapon6weight);
+
+            int weaponType7 = Array.IndexOf(F15CWeapons, station7ComboBox.Text);
+            if (weaponType7 == -1)
+            {
+                weaponType7 = 0;
+            }
+            string weapon7weight = F15CWeaponWeightTable[weaponType7, 6];
+            station7Weight = Convert.ToInt32(weapon7weight);
+
+            int weaponType8 = Array.IndexOf(F15CWeapons, station8ComboBox.Text);
+            if (weaponType8 == -1)
+            {
+                weaponType8 = 0;
+            }
+            string weapon8weight = F15CWeaponWeightTable[weaponType8, 7];
+            station8Weight = Convert.ToInt32(weapon8weight);
+
+            int weaponType9 = Array.IndexOf(F15CWeapons, station9ComboBox.Text);
+            if (weaponType9 == -1)
+            {
+                weaponType9 = 0;
+            }
+            string weapon9weight = F15CWeaponWeightTable[weaponType9, 8];
+            station9Weight = Convert.ToInt32(weapon9weight);
+
+            int weaponType10 = Array.IndexOf(F15CWeapons, station10ComboBox.Text);
+            if (weaponType10 == -1)
+            {
+                weaponType10 = 0;
+            }
+            string weapon10weight = F15CWeaponWeightTable[weaponType10, 9];
+            station10Weight = Convert.ToInt32(weapon10weight);
+
+            int weaponType11 = Array.IndexOf(F15CWeapons, station11ComboBox.Text);
+            if (weaponType11 == -1)
+            {
+                weaponType11 = 0;
+            }
+            string weapon11weight = F15CWeaponWeightTable[weaponType11, 10];
+            station11Weight = Convert.ToInt32(weapon11weight);
 
             CalculateWeights();
         }
