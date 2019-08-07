@@ -9,6 +9,8 @@ Weight and Balance implemented for:
 
 -F-14B
 
+-F15C
+
 -F18C
 
 -Bf 109
