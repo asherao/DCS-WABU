@@ -2200,18 +2200,18 @@ namespace DCS_Loadout_Calculator_Utility
             label_TotalPercent.Text = Convert.ToString(totalTrackBarValueLimiter) +"%";
 
             //here is the "balance" part of weight and balance
-            station1Moment = station1Weight*station1PylonLocation;
-            station2Moment = station2Weight * station2PylonLocation;
-            station3Moment = station3Weight * station3PylonLocation;
-            station4Moment = station4Weight * station4PylonLocation;
-            station5Moment = station5Weight * station5PylonLocation;
-            station6Moment = station6Weight * station6PylonLocation;
-            station7Moment = station7Weight * station7PylonLocation;
-            station8Moment = station8Weight * station8PylonLocation;
-            station9Moment = station9Weight * station9PylonLocation;
-            station10Moment = station10Weight * station10PylonLocation;
-            station11Moment = station11Weight * station11PylonLocation;
-            station12Moment = station12Weight * station12PylonLocation;
+            station1Moment = (station1Weight+station1FuelWeight) * station1PylonLocation;
+            station2Moment = (station2Weight + station2FuelWeight) * station2PylonLocation;
+            station3Moment = (station3Weight + station3FuelWeight) * station3PylonLocation;
+            station4Moment = (station4Weight + station4FuelWeight) * station4PylonLocation;
+            station5Moment = (station5Weight + station5FuelWeight) * station5PylonLocation;
+            station6Moment = (station6Weight + station6FuelWeight) * station6PylonLocation;
+            station7Moment = (station7Weight + station7FuelWeight) * station7PylonLocation;
+            station8Moment = (station8Weight + station8FuelWeight) * station8PylonLocation;
+            station9Moment = (station9Weight + station9FuelWeight) * station9PylonLocation;
+            station10Moment = (station10Weight + station10FuelWeight) * station10PylonLocation;
+            station11Moment = (station11Weight + station11FuelWeight) * station11PylonLocation;
+            station12Moment = (station12Weight + station12FuelWeight) * station12PylonLocation;
 
             
             totalMoment = (station1Moment + station2Moment + station3Moment + station4Moment
