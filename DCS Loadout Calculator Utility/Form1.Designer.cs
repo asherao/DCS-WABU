@@ -381,6 +381,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.textBox_balanceText = new System.Windows.Forms.TextBox();
             this.label_Moment = new System.Windows.Forms.Label();
+            this.trackBar_Moment = new System.Windows.Forms.TrackBar();
             this.contextMenuStrip_Station1_FA18C2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.internalFuelTrackBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.totalTrackBar)).BeginInit();
@@ -395,6 +396,7 @@
             this.contextMenuStrip_Station7_FA18C3.SuspendLayout();
             this.contextMenuStrip_Station8_FA18C3.SuspendLayout();
             this.contextMenuStrip_Station9_FA18C3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar_Moment)).BeginInit();
             this.SuspendLayout();
             // 
             // selectAircraftLabel
@@ -3439,9 +3441,9 @@
             // 
             // button_clearLoadout
             // 
-            this.button_clearLoadout.Location = new System.Drawing.Point(5, 366);
+            this.button_clearLoadout.Location = new System.Drawing.Point(5, 365);
             this.button_clearLoadout.Name = "button_clearLoadout";
-            this.button_clearLoadout.Size = new System.Drawing.Size(175, 23);
+            this.button_clearLoadout.Size = new System.Drawing.Size(196, 23);
             this.button_clearLoadout.TabIndex = 74;
             this.button_clearLoadout.Text = "Clear Loadout";
             this.button_clearLoadout.UseVisualStyleBackColor = true;
@@ -3473,6 +3475,7 @@
             this.textBox_balanceText.ReadOnly = true;
             this.textBox_balanceText.Size = new System.Drawing.Size(100, 20);
             this.textBox_balanceText.TabIndex = 77;
+            this.textBox_balanceText.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label_Moment
             // 
@@ -3482,6 +3485,15 @@
             this.label_Moment.Size = new System.Drawing.Size(74, 13);
             this.label_Moment.TabIndex = 78;
             this.label_Moment.Text = "Moment/1000";
+            // 
+            // trackBar_Moment
+            // 
+            this.trackBar_Moment.Enabled = false;
+            this.trackBar_Moment.Location = new System.Drawing.Point(67, 347);
+            this.trackBar_Moment.Name = "trackBar_Moment";
+            this.trackBar_Moment.Size = new System.Drawing.Size(124, 45);
+            this.trackBar_Moment.TabIndex = 79;
+            this.trackBar_Moment.TickStyle = System.Windows.Forms.TickStyle.TopLeft;
             // 
             // Form1
             // 
@@ -3543,6 +3555,7 @@
             this.Controls.Add(this.station1Label);
             this.Controls.Add(this.selectAirctaftListBox);
             this.Controls.Add(this.selectAircraftLabel);
+            this.Controls.Add(this.trackBar_Moment);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "Form1";
@@ -3563,6 +3576,7 @@
             this.contextMenuStrip_Station7_FA18C3.ResumeLayout(false);
             this.contextMenuStrip_Station8_FA18C3.ResumeLayout(false);
             this.contextMenuStrip_Station9_FA18C3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.trackBar_Moment)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -3921,6 +3935,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBox_balanceText;
         private System.Windows.Forms.Label label_Moment;
+        private System.Windows.Forms.TrackBar trackBar_Moment;
     }
 }
 

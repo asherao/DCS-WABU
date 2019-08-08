@@ -15,7 +15,7 @@ using System.Runtime.InteropServices;
 using System.Threading;
 
 /*TODO
- * impleent the "balance" part of weight and balance for all except f18
+ * 
  * 
  * -Program M2000C station 4, 6, and 7 dependences. code line starting at 1234 (postpone bc M2000C logic isnt consistant in DCS)
  * -update f18 in new format
@@ -826,6 +826,71 @@ namespace DCS_Loadout_Calculator_Utility
                 button_exportLoadout.Enabled = true;
                 label_Moment.Visible = true;
                 textBox_balanceText.Visible = true;
+                trackBar_Moment.Visible = true;
+            }
+            else if (selectAirctaftListBox.SelectedItem == "Su-33 Flanker D")
+            {
+                textBox_loadoutName.Enabled = false;
+                button_exportLoadout.Enabled = false;
+                label_Moment.Visible = true;
+                textBox_balanceText.Visible = true;
+                trackBar_Moment.Visible = true;
+            }
+            else if (selectAirctaftListBox.SelectedItem == "AJS-37 Viggen")
+            {
+                textBox_loadoutName.Enabled = false;
+                button_exportLoadout.Enabled = false;
+                label_Moment.Visible = true;
+                textBox_balanceText.Visible = true;
+                trackBar_Moment.Visible = true;
+            }
+            else if (selectAirctaftListBox.SelectedItem == "A-10C Warthog")
+            {
+                textBox_loadoutName.Enabled = false;
+                button_exportLoadout.Enabled = false;
+                label_Moment.Visible = true;
+                textBox_balanceText.Visible = true;
+                trackBar_Moment.Visible = true;
+            }
+            else if (selectAirctaftListBox.SelectedItem == "M2000-C Mirage")
+            {
+                textBox_loadoutName.Enabled = false;
+                button_exportLoadout.Enabled = false;
+                label_Moment.Visible = false;//m2000C carries paired munitions
+                textBox_balanceText.Visible = false;
+                trackBar_Moment.Visible = false;
+            }
+            else if (selectAirctaftListBox.SelectedItem == "AV-8B Night Attack V/STOL")
+            {
+                textBox_loadoutName.Enabled = false;
+                button_exportLoadout.Enabled = false;
+                label_Moment.Visible = true;
+                textBox_balanceText.Visible = true;
+                trackBar_Moment.Visible = true;
+            }
+            else if (selectAirctaftListBox.SelectedItem == "A-4E-C Skyhawk")
+            {
+                textBox_loadoutName.Enabled = false;
+                button_exportLoadout.Enabled = false;
+                label_Moment.Visible = true;
+                textBox_balanceText.Visible = true;
+                trackBar_Moment.Visible = true;
+            }
+            else if (selectAirctaftListBox.SelectedItem == "F-14B Tomcat")
+            {
+                textBox_loadoutName.Enabled = false;
+                button_exportLoadout.Enabled = false;
+                label_Moment.Visible = true;
+                textBox_balanceText.Visible = true;
+                trackBar_Moment.Visible = true;
+            }
+            else if (selectAirctaftListBox.SelectedItem == "F-15C Eagle")
+            {
+                textBox_loadoutName.Enabled = false;
+                button_exportLoadout.Enabled = false;
+                label_Moment.Visible = true;
+                textBox_balanceText.Visible = true;
+                trackBar_Moment.Visible = true;
             }
             else
             {
@@ -833,7 +898,9 @@ namespace DCS_Loadout_Calculator_Utility
                 button_exportLoadout.Enabled = false;
                 label_Moment.Visible = false;
                 textBox_balanceText.Visible = false;
+                trackBar_Moment.Visible = false;
             }
+         
 
             //when the user click the aircraft they want, the aircraft variable is set and the gui is changed to match the number of available stores for the aircraft
             string selectedAircraft = selectAirctaftListBox.GetItemText(selectAirctaftListBox.SelectedItem);
@@ -874,6 +941,7 @@ namespace DCS_Loadout_Calculator_Utility
                 station8Label.ContextMenuStrip = contextMenuStrip_Station8_FA18C3;
                 station9Label.ContextMenuStrip = contextMenuStrip_Station9_FA18C3;
 
+                //in feet
                 station1PylonLocation = -18.959974;
                 station2PylonLocation = -11.05315;
                 station3PylonLocation = -7.2572178;
@@ -909,6 +977,10 @@ namespace DCS_Loadout_Calculator_Utility
                     station9Weight + station10Weight + station11Weight + station12Weight; //+externalFuelWeightInt+ weaponsWeightInt 
                 string totalWeightString = totalWeightInt.ToString();
                 totalTextBox.Text = totalWeightString;
+
+                trackBar_Moment.Minimum = -53;
+                trackBar_Moment.Maximum = 53;
+                
 
                 station1Label.Visible = true;
                 station2Label.Visible = true;
@@ -1039,6 +1111,23 @@ namespace DCS_Loadout_Calculator_Utility
                 string totalWeightString = totalWeightInt.ToString();
                 totalTextBox.Text = totalWeightString;
 
+                trackBar_Moment.Minimum = -75;//1000 is temporaty
+                trackBar_Moment.Maximum = 75;
+
+                //in feet
+                station1PylonLocation = -23.88451444;
+                station2PylonLocation = -20.23622047;
+                station3PylonLocation = -14.84251969;
+                station4PylonLocation = -10.67257218;
+                station5PylonLocation = -3.910761155;
+                station6PylonLocation = 0;
+                station7PylonLocation = 0;
+                station8PylonLocation = 3.910761155;
+                station9PylonLocation = 10.67257218;
+                station10PylonLocation = 14.84251969;
+                station11PylonLocation = 20.23622047;
+                station12PylonLocation = 23.88451444;
+
                 station1Label.Visible = true;
                 station2Label.Visible = true;
                 station3Label.Visible = true;
@@ -1162,6 +1251,25 @@ namespace DCS_Loadout_Calculator_Utility
                 string totalWeightString = totalWeightInt.ToString();
                 totalTextBox.Text = totalWeightString;
 
+                
+                //in feet
+                station1PylonLocation = 0;
+                station2PylonLocation = 0;
+                station3PylonLocation = 0;
+                station4PylonLocation = 0;
+                station5PylonLocation = 0;
+                station6PylonLocation = 0;
+                station7PylonLocation = 0;
+                station8PylonLocation = 0;
+                station9PylonLocation = 0;
+                station10PylonLocation = 0;
+                station11PylonLocation = 0;
+                station12PylonLocation = 0;
+
+                trackBar_Moment.Minimum = -1;//1000 is temporaty
+                trackBar_Moment.Maximum = 1;
+
+
                 station1Label.Visible = true;
                 station2Label.Visible = false;
                 station3Label.Visible = false;
@@ -1229,6 +1337,23 @@ namespace DCS_Loadout_Calculator_Utility
                     station9Weight + station10Weight + station11Weight + station12Weight; //+externalFuelWeightInt+ weaponsWeightInt 
                 string totalWeightString = totalWeightInt.ToString();
                 totalTextBox.Text = totalWeightString;
+
+                //in feet
+                station1PylonLocation = -12.95931759;
+                station2PylonLocation = -9.658792651;
+                station3PylonLocation = -2.831364829;
+                station4PylonLocation = 0;
+                station5PylonLocation = 2.831364829;
+                station6PylonLocation = 9.658792651;
+                station7PylonLocation = 12.95931759;
+                station8PylonLocation = 0;
+                station9PylonLocation = 0;
+                station10PylonLocation = 0;
+                station11PylonLocation = 0;
+                station12PylonLocation = 0;
+
+                trackBar_Moment.Minimum = -21;//1000 is temporaty
+                trackBar_Moment.Maximum = 21;
 
                 station1Label.Visible = true;
                 station2Label.Visible = true;
@@ -1324,6 +1449,23 @@ namespace DCS_Loadout_Calculator_Utility
                     station9Weight + station10Weight + station11Weight + station12Weight; //+externalFuelWeightInt+ weaponsWeightInt 
                 string totalWeightString = totalWeightInt.ToString();
                 totalTextBox.Text = totalWeightString;
+
+                //in feet
+                station1PylonLocation = -20.88254593;
+                station2PylonLocation = -17.74278215;
+                station3PylonLocation = -13.17257218;
+                station4PylonLocation = -6.079396325;
+                station5PylonLocation = -1.925853018;
+                station6PylonLocation = 0;
+                station7PylonLocation = 1.925853018;
+                station8PylonLocation = 6.079396325;
+                station9PylonLocation = 13.17257218;
+                station10PylonLocation = 17.74278215;
+                station11PylonLocation = 20.88254593;
+                station12PylonLocation = 0;
+
+                trackBar_Moment.Minimum = -102;//1000 is temporaty
+                trackBar_Moment.Maximum = 102;
 
                 station1Label.Visible = true;
                 station2Label.Visible = true;
@@ -1517,6 +1659,23 @@ namespace DCS_Loadout_Calculator_Utility
                 string totalWeightString = totalWeightInt.ToString();
                 totalTextBox.Text = totalWeightString;
 
+                //in feet
+                station1PylonLocation = -10.86286089;
+                station2PylonLocation = -7.654199475;
+                station3PylonLocation = -2.555774278;
+                station4PylonLocation = -3.543307087;
+                station5PylonLocation = 0;
+                station6PylonLocation = 3.543307087;
+                station7PylonLocation = 2.555774278;
+                station8PylonLocation = 7.654199475;
+                station9PylonLocation = 10.86286089;
+                station10PylonLocation = 0;
+                station11PylonLocation = 0;
+                station12PylonLocation = 0;
+
+                trackBar_Moment.Minimum = -102;//1000 is temporaty
+                trackBar_Moment.Maximum = 102;
+
                 station1Label.Visible = true;
                 station2Label.Visible = true;
                 station3Label.Visible = true;
@@ -1608,6 +1767,23 @@ namespace DCS_Loadout_Calculator_Utility
                     station9Weight + station10Weight + station11Weight + station12Weight; //+externalFuelWeightInt+ weaponsWeightInt 
                 string totalWeightString = totalWeightInt.ToString();
                 totalTextBox.Text = totalWeightString;
+
+                //in feet
+                station1PylonLocation = -13.04133858;
+                station2PylonLocation = -10.42979003;
+                station3PylonLocation = -6.095800525;
+                station4PylonLocation = 0;
+                station5PylonLocation = 0;
+                station6PylonLocation = 6.095800525;
+                station7PylonLocation = 10.42979003;
+                station8PylonLocation = 13.04133858;
+                station9PylonLocation = 0;
+                station10PylonLocation = 0;
+                station11PylonLocation = 0;
+                station12PylonLocation = 0;
+
+                trackBar_Moment.Minimum = -49;//1000 is temporaty
+                trackBar_Moment.Maximum = 49;
 
                 station1Label.Visible = true;
                 station2Label.Visible = true;
@@ -1725,6 +1901,23 @@ namespace DCS_Loadout_Calculator_Utility
                 string totalWeightString = totalWeightInt.ToString();
                 totalTextBox.Text = totalWeightString;
 
+                //in feet
+                station1PylonLocation = -9.333989501;
+                station2PylonLocation = -6.230314961;
+                station3PylonLocation = 0;
+                station4PylonLocation = 6.230314961;
+                station5PylonLocation = 9.333989501;
+                station6PylonLocation = 0;
+                station7PylonLocation = 0;
+                station8PylonLocation = 0;
+                station9PylonLocation = 0;
+                station10PylonLocation = 0;
+                station11PylonLocation = 0;
+                station12PylonLocation = 0;
+
+                trackBar_Moment.Minimum = -26;//1000 is temporaty
+                trackBar_Moment.Maximum = 26;
+
                 station1Label.Visible = true;
                 station2Label.Visible = true;
                 station3Label.Visible = true;
@@ -1836,6 +2029,23 @@ namespace DCS_Loadout_Calculator_Utility
                     station9Weight + station10Weight + station11Weight + station12Weight; //+externalFuelWeightInt+ weaponsWeightInt 
                 string totalWeightString = totalWeightInt.ToString();
                 totalTextBox.Text = totalWeightString;
+
+                //in feet
+                station1PylonLocation = -11.30672572;
+                station2PylonLocation = -10.26902887;
+                station3PylonLocation = -4.878608924;
+                station4PylonLocation = -1.706036745;
+                station5PylonLocation = -1.706036745;
+                station6PylonLocation = 1.614173228;
+                station7PylonLocation = 1.614173228;
+                station8PylonLocation = 4.878608924;
+                station9PylonLocation = 10.25262467;
+                station10PylonLocation = 11.30672572;
+                station11PylonLocation = 0;
+                station12PylonLocation = 0;
+
+                trackBar_Moment.Minimum = -46;//1000 is temporaty
+                trackBar_Moment.Maximum = 46;
 
                 station1Label.Visible = true;
                 station2Label.Visible = true;
@@ -2029,6 +2239,23 @@ namespace DCS_Loadout_Calculator_Utility
                 string totalWeightString = totalWeightInt.ToString();
                 totalTextBox.Text = totalWeightString;
 
+                //in feet
+                station1PylonLocation = -10.90879265;
+                station2PylonLocation = -9.658792651;
+                station3PylonLocation = -8.408792651;
+                station4PylonLocation = -5.068897638;
+                station5PylonLocation = -4.822834646;
+                station6PylonLocation = 0;
+                station7PylonLocation = 4.822834646;
+                station8PylonLocation = 5.068897638;
+                station9PylonLocation = 8.408792651;
+                station10PylonLocation = 9.658792651;
+                station11PylonLocation = 10.90879265;
+                station12PylonLocation = 0;
+
+                trackBar_Moment.Minimum = -53;//1000 is temporaty
+                trackBar_Moment.Maximum = 53;
+
                 station1Label.Visible = true;
                 station2Label.Visible = true;
                 station3Label.Visible = true;
@@ -2219,6 +2446,7 @@ namespace DCS_Loadout_Calculator_Utility
                 + station10Moment + station11Moment + station12Moment)/1000;
             totalMoment = Math.Round(totalMoment, 2);
             textBox_balanceText.Text = totalMoment.ToString();
+            trackBar_Moment.Value = Convert.ToInt32(totalMoment);
         }
 
         private void Total2Label_Click(object sender, EventArgs e)
