@@ -27,6 +27,5 @@ Weight and Balance implemented for:
 
 -Huey
 
-Loadout export and Moment Calculation enabled for the F18C.
-
+Loadout export enabled for the F18C. Moment Calculation for everyone!
 ~Bailey
