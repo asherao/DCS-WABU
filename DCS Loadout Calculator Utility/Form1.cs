@@ -539,7 +539,7 @@ namespace DCS_Loadout_Calculator_Utility
             "Mk-81 x4", "Mk-82", "Mk-82 x2", "Mk-82 x3", "Mk-82 x4", "Mk-82 AIR", "Mk-82 AIR x2", "Mk-82 AIR x3",
             "Mk-82 AIR x4", "Mk-82 SnakeEye", "Mk-82 SnakeEye x2", "Mk-82 Snake3ye x3", "Mk-82 SnakeEye x4",
             "Mk-83", "Mk-83 x3", "Mk-84", "SUU-25 * 8 LUU-2", "SUU-25 * 8 LUU-2 x2", "4 ZUNI MK 71", "4 ZUNI MK 71 x2",
-            "Fuel tank 300 gal", "Fuel tank 300 gal (empty)" };
+            "Fuel tank 300 gal", "Fuel tank 300 gal (empty)", "LANTIRN Targeting Pod" };
         string[,] F14BWeaponWeightTable = new string[,]
          {
              {"0","0","0","0","0","0","0","0","0","0"},
@@ -585,6 +585,7 @@ namespace DCS_Loadout_Calculator_Utility
             {"0","2348","0","2348","0","0","0","0","2348","0"},
             {"0","0","110","0","0","0","0","110","0","0"},
             {"0","0","110","0","0","0","0","110","0","0"},
+            {"0","0","0","0","0","0","0","0","754","0"},
          };
 
         //init HUEY weapon arrays
@@ -1957,24 +1958,24 @@ namespace DCS_Loadout_Calculator_Utility
                 station11Label.Text = "Station 11:";
                 station12Label.Text = "Station 12:";
 
-                string[] station1Stores_F14B = new string[] { "Empty", "AN-M30A1", "AN-M57A1", "AN-M64", "AN-M81", "AN-M88",
+                string[] station1Stores_A4EC = new string[] { "Empty", "AN-M30A1", "AN-M57A1", "AN-M64", "AN-M81", "AN-M88",
                     "Mk-20", "Mk-77 Mod 1", "Mk-81", "Mk-81SE", "Mk-82", "Mk-82 SnakeEye", "AGM-45A", "4 ZUNI MK 71",
                     "7 2.75' rockets M257 (Parachute Illumination)", "19 FAAR Mk5 HEAT", "19 FFAR M156 WP", "19 FFAR Mk1 HE",
                     "7 FFAR M156 WP", "7 FFAR Mk1 HE", "7 FFAR Mk5 HEAT" };
-                station1ComboBox.DataSource = station1Stores_F14B;
+                station1ComboBox.DataSource = station1Stores_A4EC;
 
-                string[] station2Stores_F14B = new string[] { "Empty", "AIM-9M", "AIM-9P", "AIM-9P5", "GAR-8", "AGM-62",
+                string[] station2Stores_A4EC = new string[] { "Empty", "AIM-9M", "AIM-9P", "AIM-9P5", "GAR-8", "AGM-62",
                     "AN-M30A1", "AN-M57A1", "AN-M57A1 x5", "AN-M64", "AN-M65A1", "AN-M81", "AN-M81 x5", "AN-M88",
                     "AN-M88 x5", "M117", "Mk-20", "Mk-20 x2", "Mk-77 Mod 0", "Mk-77 Mod 1", "Mk-81", "Mk-81 x5",
                     "Mk-81SE", "Mk-81SE x5", "Mk-82", "Mk-82 x2", "Mk-82 SnakeEye", "Mk-82 SnakeEye x2", "Mk-83",
                     "Mk-84", "AGM-65A", "4 ZUNI MK 71", "4 ZUNI MK 71 x2", "19 FAAR Mk5 HEAT", "19 FAAR Mk5 HEAT x2",
                     "19 FFAR M156 WP", "19 FFAR M156 WP x2", "19 FFAR Mk1 HE", "19 FFAR Mk1 HE x2", "7 FFAR M156 WP",
                     "7 FFAR M156 WP x2", "7 FFAR Mk1 HE", "7 FFAR Mk1 HE x2", "7 FFAR Mk5 HEAT", "7 FFAR Mk5 HEAT x2",
-                    "CBU-1/A", "CBU-1/A x2", "CBU-2/A", "CBU-2/A x2", "CBU-2B/A", "CBU-2B/A x2", "Mk4 HIPEG", "Fuel Tank 150 Gallons",
-                    "Fuel Tank 300 Gallons" };
-                station2ComboBox.DataSource = station2Stores_F14B;
+                    "CBU-1/A", "CBU-1/A x2", "CBU-2/A", "CBU-2/A x2", "CBU-2B/A", "CBU-2B/A x2", "Mk4 HIPEG",
+                    "Fuel Tank 150 Gallons", "Fuel Tank 300 Gallons" };
+                station2ComboBox.DataSource = station2Stores_A4EC;
 
-                string[] station3Stores_F14B = new string[] { "Empty", "AGM-62", "AN-M30A1", "AN-M57A1", "AN-M57A1 x6", "AN-M64",
+                string[] station3Stores_A4EC = new string[] { "Empty", "AGM-62", "AN-M30A1", "AN-M57A1", "AN-M57A1 x6", "AN-M64",
                     "AN-M65A1", "AN-M66A2", "AN-M81", "AN-M81 x6", "AN-M88", "AN-M88 x6", "M117", "Mk-20", "Mk-20 x2", "Mk-20 x3",
                     "Mk-77 Mod 0", "Mk-77 Mod 1", "Mk-77 Mod 1 x2", "Mk-81", "Mk-81 x6", "Mk-81SE", "Mk-81SE x6", "Mk-82", "Mk-82 x3",
                     "Mk-82 x4", "Mk-82 x6", "Mk-82 SnakeEye", "Mk-82 SnakeEye x3", "Mk-82 SnakeEye x4", "Mk-82 SnakeEye x6",
@@ -1984,9 +1985,9 @@ namespace DCS_Loadout_Calculator_Utility
                     "7 FFAR M156 WP x3", "7 FFAR Mk1 HE", "7 FFAR Mk1 HE x2", "7 FFAR Mk1 HE x3", "7 FFAR Mk5 HEAT",
                     "7 FFAR Mk5 HEAT x2", "7 FFAR Mk5 HEAT x3", "7 2.75' rockets MK5 (HE) x3", "Mk4 HIPEG", "D-704 Refueling Pod",
                     "Fuel Tank 150 Gallons", "Fuel Tank 300 Gallons", "Fuel Tank 400 Gallons" };
-                station3ComboBox.DataSource = station3Stores_F14B;
+                station3ComboBox.DataSource = station3Stores_A4EC;
 
-                string[] station4Stores_F14B = new string[] { "Empty", "AIM-9M", "AIM-9P", "AIM-9P5", "GAR-8", "AGM-62",
+                string[] station4Stores_A4EC = new string[] { "Empty", "AIM-9M", "AIM-9P", "AIM-9P5", "GAR-8", "AGM-62",
                     "AN-M30A1", "AN-M57A1", "AN-M57A1 x5", "AN-M64", "AN-M65A1", "AN-M81", "AN-M81 x5", "AN-M88",
                     "AN-M88 x5", "M117", "Mk-20", "Mk-20 x2", "Mk-77 Mod 0", "Mk-77 Mod 1", "Mk-81", "Mk-81 x5",
                     "Mk-81SE", "Mk-81SE x5", "Mk-82", "Mk-82 x2", "Mk-82 SnakeEye", "Mk-82 SnakeEye x2", "Mk-83",
@@ -1995,13 +1996,13 @@ namespace DCS_Loadout_Calculator_Utility
                     "7 FFAR M156 WP x2", "7 FFAR Mk1 HE", "7 FFAR Mk1 HE x2", "7 FFAR Mk5 HEAT", "7 FFAR Mk5 HEAT x2",
                     "CBU-1/A", "CBU-1/A x2", "CBU-2/A", "CBU-2/A x2", "CBU-2B/A", "CBU-2B/A x2", "Mk4 HIPEG", "Fuel Tank 150 Gallons",
                     "Fuel Tank 300 Gallons" };
-                station4ComboBox.DataSource = station4Stores_F14B;
+                station4ComboBox.DataSource = station4Stores_A4EC;
 
-                string[] station5Stores_F14B = new string[] { "Empty", "AN-M30A1", "AN-M57A1", "AN-M64", "AN-M81", "AN-M88",
+                string[] station5Stores_A4EC = new string[] { "Empty", "AN-M30A1", "AN-M57A1", "AN-M64", "AN-M81", "AN-M88",
                     "Mk-20", "Mk-77 Mod 1", "Mk-81", "Mk-81SE", "Mk-82", "Mk-82 SnakeEye", "AGM-45A", "4 ZUNI MK 71",
                     "7 2.75' rockets M257 (Parachute Illumination)", "19 FAAR Mk5 HEAT", "19 FFAR M156 WP", "19 FFAR Mk1 HE",
                     "7 FFAR M156 WP", "7 FFAR Mk1 HE", "7 FFAR Mk5 HEAT" };
-                station5ComboBox.DataSource = station5Stores_F14B;
+                station5ComboBox.DataSource = station5Stores_A4EC;
                 
             }
             if (selectedAircraft == "F-14B Tomcat")
@@ -2122,7 +2123,7 @@ namespace DCS_Loadout_Calculator_Utility
 
                 string[] station9Stores_F14B = new string[] { "Empty", "AIM-9L", "AIM-9M", "AIM-7M", "AIM-54A-Mk47", "AIM-54A-Mk60",
                     "AIM-54C-Mk47", "BDU-33 x3", "MK-20 x2", "Mk-81 x2", "Mk-82 x2", "Mk-82 AIR x2", "Mk-82 SnakeEye x2", "Mk-84",
-                    "4 ZUNI MK 71 x2" };
+                    "4 ZUNI MK 71 x2", "LANTIRN Targeting Pod" };
                 station9ComboBox.DataSource = station9Stores_F14B;
 
                 string[] station10Stores_F14B = new string[] { "Empty", "AIM-9L", "AIM-9M", "AN/ASQ-T50 Pod" };
