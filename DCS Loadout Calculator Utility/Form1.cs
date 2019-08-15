@@ -61,7 +61,7 @@ namespace DCS_Loadout_Calculator_Utility
         public static int[] weaponWeight_FA18C_AIM9L = new int[] { 190, 408, 0, 0, 0, 0, 0, 408, 190, 0, 0, 0 };
         public static int[] weaponWeight_FA18C_AIM9M = new int[] { 192, 410, 0, 0, 0, 0, 0, 410, 192, 0, 0, 0 };
         public static int[] weaponWeight_FA18C_AIM9X = new int[] { 185, 406, 0, 0, 0, 0, 0, 406, 185, 0, 0, 0 };
-        public static int[] weaponWeight_FA18C_CAP9M = new int[] { 190, 408, 0, 0, 0, 0, 0, 408, 190, 0, 0, 0 };
+        public static int[] weaponWeight_FA18C_CAP9M = new int[] { 189, 408, 0, 0, 0, 0, 0, 408, 189, 0, 0, 0 };
         public static int[] weaponWeight_FA18C_ANASQT50TCTS = new int[] { 139, 0, 0, 0, 0, 0, 0, 0, 139, 0, 0, 0 };
         //A2G
         public static int[] weaponWeight_FA18C_CBU99x2 = new int[] { 0, 1153, 1153, 0, 1153, 0, 1153, 1153, 0, 0, 0, 0 };
@@ -89,6 +89,7 @@ namespace DCS_Loadout_Calculator_Utility
         public static int[] weaponWeight_FA18C_Mk84 = new int[] { 0, 1971, 1971, 0, 1971, 0, 1971, 1971, 0, 0, 0, 0 };
         public static int[] weaponWeight_FA18C_AGM154A = new int[] { 0, 1069, 1069, 0, 0, 0, 1069, 1069, 0, 0, 0, 0 };
         public static int[] weaponWeight_FA18C_AGM154C = new int[] { 0, 1067, 1067, 0, 0, 0, 1067, 1067, 0, 0, 0, 0 };
+        public static int[] weaponWeight_FA18C_AGM84D = new int[] { 0, 1190, 1190, 0, 0, 0, 1190, 1190, 0, 0, 0, 0 };
         public static int[] weaponWeight_FA18C_AGM88 = new int[] { 0, 796, 796, 0, 0, 0, 796, 796, 0, 0, 0, 0 };
         public static int[] weaponWeight_FA18C_AGM154Ax2 = new int[] { 0, 2249, 2249, 0, 0, 0, 2249, 2249, 0, 0, 0, 0 };
         public static int[] weaponWeight_FA18C_AGM154Cx2 = new int[] { 0, 2244, 2244, 0, 0, 0, 2244, 2244, 0, 0, 0, 0 };
@@ -1030,7 +1031,7 @@ namespace DCS_Loadout_Calculator_Utility
                     "AIM-9L", "AIM-9M", "AIM-9X", "CAP-9M", "CBU-99 x2", "GBU-12 x2", "Mk-20 Rockeye x2", "Mk-82 x2",
                     "Mk-82 SnakeEye x2", "Mk-82Y x2", "Mk-83 x2", "BDU-33 x6", "GBU-38 x2", "CBU-99", "GBU-10",
                     "GBU-12", "GBU-16", "GBU-31", "GBU-31(V)3/B", "GBU-38", "Mk-20", "Mk-82", "Mk-82 SnakeEye",
-                    "Mk-82Y", "Mk-83", "Mk-84", "AGM-154A", "AGM-154C", "AGM-88", "AGM-154A x2", "AGM-154C x2",
+                    "Mk-82Y", "Mk-83", "Mk-84", "AGM-154A", "AGM-154C","AGM-84D", "AGM-88C", "AGM-154A x2", "AGM-154C x2",
                     "AGM-65E", "AGM-65F", "4 ZUNI MK 71 x2", "19 2.75' rockets M151 HE x2",
                     "7 2.75' rockets MK151 (HE) x2", "7 2.75' rockets M5 (HE) x2", "4 ZUNI MK 71",
                     "19 2.75' rockets M151 HE", "7 2.75' rockets MK151 (HE)", "7 2.75' rockets M5 (HE)" };
@@ -1039,7 +1040,7 @@ namespace DCS_Loadout_Calculator_Utility
                     "AIM-120C", "AIM-7M", "AIM-7F", "AIM-7MH", "CBU-99 x2", "GBU-12 x2", "Mk-20 Rockeye x2",
                     "Mk-82 x2", "Mk-82 SnakeEye x2", "Mk-82Y x2", "Mk-83 x2", "BDU-33 x6", "GBU-38 x2", "CBU-99",
                     "GBU-10", "GBU-12", "GBU-16", "GBU-31", "GBU-31(V)3/B", "GBU-38", "Mk-20", "Mk-82", "Mk-82 SnakeEye",
-                    "Mk-82Y", "Mk-83", "Mk-84", "AGM-154A", "AGM-154C", "AGM-88", "AGM-154A x2", "AGM-154C x2", "AGM-65E",
+                    "Mk-82Y", "Mk-83", "Mk-84", "AGM-154A", "AGM-154C","AGM-84D", "AGM-88C", "AGM-154A x2", "AGM-154C x2", "AGM-65E",
                     "AGM-65F", "4 ZUNI MK 71 x2", "19 2.75' rockets M151 HE x2", "7 2.75' rockets MK151 (HE) x2",
                     "4 ZUNI MK 71", "19 2.75' rockets M151 HE", "7 2.75' rockets MK151 (HE)",
                     "FPU-8A Fuel Tank 330 gallons" };
@@ -1056,7 +1057,7 @@ namespace DCS_Loadout_Calculator_Utility
                     "AIM-120C", "AIM-7M", "AIM-7F", "AIM-7MH", "CBU-99 x2", "GBU-12 x2", "Mk-20 Rockeye x2",
                     "Mk-82 x2", "Mk-82 SnakeEye x2", "Mk-82Y x2", "Mk-83 x2", "BDU-33 x6", "GBU-38 x2", "CBU-99",
                     "GBU-10", "GBU-12", "GBU-16", "GBU-31", "GBU-31(V)3/B", "GBU-38", "Mk-20", "Mk-82", "Mk-82 SnakeEye",
-                    "Mk-82Y", "Mk-83", "Mk-84", "AGM-154A", "AGM-154C", "AGM-88", "AGM-154A x2", "AGM-154C x2", "AGM-65E",
+                    "Mk-82Y", "Mk-83", "Mk-84", "AGM-154A", "AGM-154C","AGM-84D", "AGM-88C", "AGM-154A x2", "AGM-154C x2", "AGM-65E",
                     "AGM-65F", "4 ZUNI MK 71 x2", "19 2.75' rockets M151 HE x2", "7 2.75' rockets MK151 (HE) x2",
                     "4 ZUNI MK 71", "19 2.75' rockets M151 HE", "7 2.75' rockets MK151 (HE)",
                     "FPU-8A Fuel Tank 330 gallons" };
@@ -1066,7 +1067,7 @@ namespace DCS_Loadout_Calculator_Utility
                     "AIM-9L", "AIM-9M", "AIM-9X", "CAP-9M", "CBU-99 x2", "GBU-12 x2", "Mk-20 Rockeye x2", "Mk-82 x2",
                     "Mk-82 SnakeEye x2", "Mk-82Y x2", "Mk-83 x2", "BDU-33 x6", "GBU-38 x2", "CBU-99", "GBU-10",
                     "GBU-12", "GBU-16", "GBU-31", "GBU-31(V)3/B", "GBU-38", "Mk-20", "Mk-82", "Mk-82 SnakeEye",
-                    "Mk-82Y", "Mk-83", "Mk-84", "AGM-154A", "AGM-154C", "AGM-88", "AGM-154A x2", "AGM-154C x2",
+                    "Mk-82Y", "Mk-83", "Mk-84", "AGM-154A", "AGM-154C","AGM-84D", "AGM-88C", "AGM-154A x2", "AGM-154C x2",
                     "AGM-65E", "AGM-65F", "4 ZUNI MK 71 x2", "19 2.75' rockets M151 HE x2",
                     "7 2.75' rockets MK151 (HE) x2", "7 2.75' rockets M5 (HE) x2", "4 ZUNI MK 71",
                     "19 2.75' rockets M151 HE", "7 2.75' rockets MK151 (HE)", "7 2.75' rockets M5 (HE)" };
@@ -3512,7 +3513,11 @@ namespace DCS_Loadout_Calculator_Utility
             {
                 return weaponWeight_FA18C_AGM154C[stationNumber - 1];
             }
-            else if (station2ComboBox.SelectedValue.ToString() == "AGM-88")
+            else if (station2ComboBox.SelectedValue.ToString() == "AGM-84D")
+            {
+                return weaponWeight_FA18C_AGM84D[stationNumber - 1];
+            }
+            else if (station2ComboBox.SelectedValue.ToString() == "AGM-88C")
             {
                 return weaponWeight_FA18C_AGM88[stationNumber - 1];
             }
@@ -3745,7 +3750,11 @@ namespace DCS_Loadout_Calculator_Utility
             {
                 return weaponWeight_FA18C_AGM154C[stationNumber - 1];
             }
-            else if (station3ComboBox.SelectedValue.ToString() == "AGM-88")
+            else if (station3ComboBox.SelectedValue.ToString() == "AGM-84D")
+            {
+                return weaponWeight_FA18C_AGM84D[stationNumber - 1];
+            }
+            else if (station3ComboBox.SelectedValue.ToString() == "AGM-88C")
             {
                 return weaponWeight_FA18C_AGM88[stationNumber - 1];
             }
@@ -3978,7 +3987,7 @@ namespace DCS_Loadout_Calculator_Utility
             {
                 return weaponWeight_FA18C_AGM154C[stationNumber - 1];
             }
-            else if (station4ComboBox.SelectedValue.ToString() == "AGM-88")
+            else if (station4ComboBox.SelectedValue.ToString() == "AGM-88C")
             {
                 return weaponWeight_FA18C_AGM88[stationNumber - 1];
             }
@@ -4211,7 +4220,11 @@ namespace DCS_Loadout_Calculator_Utility
             {
                 return weaponWeight_FA18C_AGM154C[stationNumber - 1];
             }
-            else if (station5ComboBox.SelectedValue.ToString() == "AGM-88")
+            else if (station5ComboBox.SelectedValue.ToString() == "AGM-84D")
+            {
+                return weaponWeight_FA18C_AGM84D[stationNumber - 1];
+            }
+            else if (station5ComboBox.SelectedValue.ToString() == "AGM-88C")
             {
                 return weaponWeight_FA18C_AGM88[stationNumber - 1];
             }
@@ -4448,7 +4461,7 @@ namespace DCS_Loadout_Calculator_Utility
             {
                 return weaponWeight_FA18C_AGM154C[stationNumber - 1];
             }
-            else if (station6ComboBox.SelectedValue.ToString() == "AGM-88")
+            else if (station6ComboBox.SelectedValue.ToString() == "AGM-88C")
             {
                 return weaponWeight_FA18C_AGM88[stationNumber - 1];
             }
@@ -4681,7 +4694,11 @@ namespace DCS_Loadout_Calculator_Utility
             {
                 return weaponWeight_FA18C_AGM154C[stationNumber - 1];
             }
-            else if (station7ComboBox.SelectedValue.ToString() == "AGM-88")
+            else if (station7ComboBox.SelectedValue.ToString() == "AGM-84D")
+            {
+                return weaponWeight_FA18C_AGM84D[stationNumber - 1];
+            }
+            else if (station7ComboBox.SelectedValue.ToString() == "AGM-88C")
             {
                 return weaponWeight_FA18C_AGM88[stationNumber - 1];
             }
@@ -4914,7 +4931,11 @@ namespace DCS_Loadout_Calculator_Utility
             {
                 return weaponWeight_FA18C_AGM154C[stationNumber - 1];
             }
-            else if (station8ComboBox.SelectedValue.ToString() == "AGM-88")
+            else if (station8ComboBox.SelectedValue.ToString() == "AGM-84D")
+            {
+                return weaponWeight_FA18C_AGM84D[stationNumber - 1];
+            }
+            else if (station8ComboBox.SelectedValue.ToString() == "AGM-88C")
             {
                 return weaponWeight_FA18C_AGM88[stationNumber - 1];
             }
@@ -5151,7 +5172,7 @@ namespace DCS_Loadout_Calculator_Utility
             {
                 return weaponWeight_FA18C_AGM154C[stationNumber - 1];
             }
-            else if (station9ComboBox.SelectedValue.ToString() == "AGM-88")
+            else if (station9ComboBox.SelectedValue.ToString() == "AGM-88C")
             {
                 return weaponWeight_FA18C_AGM88[stationNumber - 1];
             }
@@ -6137,7 +6158,7 @@ namespace DCS_Loadout_Calculator_Utility
             {
                 station1StoreExport = "stationid";
             }
-            else if (station1ComboBox.Text == "AGM-88")
+            else if (station1ComboBox.Text == "AGM-88C")
             {
                 station1StoreExport = "stationid";
             }
@@ -6360,7 +6381,7 @@ namespace DCS_Loadout_Calculator_Utility
             {
                 station9StoreExport = "stationid";
             }
-            else if (station9ComboBox.Text == "AGM-88")
+            else if (station9ComboBox.Text == "AGM-88C")
             {
                 station9StoreExport = "stationid";
             }
@@ -6583,7 +6604,11 @@ namespace DCS_Loadout_Calculator_Utility
             {
                 station2StoreExport = "{9BCC2A2B-5708-4860-B1F1-053A18442067}";//?
             }
-            else if (station2ComboBox.Text == "AGM-88")
+            else if (station2ComboBox.Text == "AGM-84D")
+            {
+                station2StoreExport = "{AGM_84D}";
+            }
+            else if (station2ComboBox.Text == "AGM-88C")
             {
                 station2StoreExport = "{B06DD79A-F21E-4EB9-BD9D-AB3844618C93}";
             }
@@ -6806,7 +6831,11 @@ namespace DCS_Loadout_Calculator_Utility
             {
                 station8StoreExport = "{9BCC2A2B-5708-4860-B1F1-053A18442067}";//?
             }
-            else if (station8ComboBox.Text == "AGM-88")
+            else if (station8ComboBox.Text == "AGM-84D")
+            {
+                station8StoreExport = "{AGM_84D}";
+            }
+            else if (station8ComboBox.Text == "AGM-88C")
             {
                 station8StoreExport = "{B06DD79A-F21E-4EB9-BD9D-AB3844618C93}";
             }
@@ -7029,7 +7058,11 @@ namespace DCS_Loadout_Calculator_Utility
             {
                 station3StoreExport = "{9BCC2A2B-5708-4860-B1F1-053A18442067}";//?
             }
-            else if (station3ComboBox.Text == "AGM-88")
+            else if (station3ComboBox.Text == "AGM-84D")
+            {
+                station3StoreExport = "{AGM_84D}";
+            }
+            else if (station3ComboBox.Text == "AGM-88C")
             {
                 station3StoreExport = "{B06DD79A-F21E-4EB9-BD9D-AB3844618C93}";
             }
@@ -7252,7 +7285,11 @@ namespace DCS_Loadout_Calculator_Utility
             {
                 station7StoreExport = "{9BCC2A2B-5708-4860-B1F1-053A18442067}";//?
             }
-            else if (station7ComboBox.Text == "AGM-88")
+            else if (station7ComboBox.Text == "AGM-84D")
+            {
+                station7StoreExport = "{AGM_84D}";
+            }
+            else if (station7ComboBox.Text == "AGM-88C")
             {
                 station7StoreExport = "{B06DD79A-F21E-4EB9-BD9D-AB3844618C93}";
             }
@@ -7475,7 +7512,7 @@ namespace DCS_Loadout_Calculator_Utility
             {
                 station4StoreExport = "{9BCC2A2B-5708-4860-B1F1-053A18442067}";//?
             }
-            else if (station4ComboBox.Text == "AGM-88")
+            else if (station4ComboBox.Text == "AGM-88C")
             {
                 station4StoreExport = "{B06DD79A-F21E-4EB9-BD9D-AB3844618C93}";
             }
@@ -7698,7 +7735,7 @@ namespace DCS_Loadout_Calculator_Utility
             {
                 station6StoreExport = "{9BCC2A2B-5708-4860-B1F1-053A18442067}";//?
             }
-            else if (station6ComboBox.Text == "AGM-88")
+            else if (station6ComboBox.Text == "AGM-88C")
             {
                 station6StoreExport = "{B06DD79A-F21E-4EB9-BD9D-AB3844618C93}";
             }
@@ -7921,7 +7958,7 @@ namespace DCS_Loadout_Calculator_Utility
             {
                 station5StoreExport = "{9BCC2A2B-5708-4860-B1F1-053A18442067}";//?
             }
-            else if (station5ComboBox.Text == "AGM-88")
+            else if (station5ComboBox.Text == "AGM-88C")
             {
                 station5StoreExport = "{B06DD79A-F21E-4EB9-BD9D-AB3844618C93}";
             }
@@ -8482,7 +8519,7 @@ namespace DCS_Loadout_Calculator_Utility
 
         private void AGM88ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            station2ComboBox.Text = "AGM-88";
+            station2ComboBox.Text = "AGM-88C";
         }
 
         private void AGM154AX2ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -8712,7 +8749,7 @@ namespace DCS_Loadout_Calculator_Utility
 
         private void ToolStripMenuItem64_Click(object sender, EventArgs e)
         {
-            station3ComboBox.Text = "AGM-88";
+            station3ComboBox.Text = "AGM-88C";
         }
 
         private void ToolStripMenuItem65_Click(object sender, EventArgs e)
@@ -9046,7 +9083,7 @@ namespace DCS_Loadout_Calculator_Utility
 
         private void ToolStripMenuItem122_Click(object sender, EventArgs e)
         {
-            station7ComboBox.Text = "AGM-88";
+            station7ComboBox.Text = "AGM-88C";
         }
 
         private void ToolStripMenuItem123_Click(object sender, EventArgs e)
@@ -9371,7 +9408,7 @@ namespace DCS_Loadout_Calculator_Utility
 
         private void ToolStripMenuItem179_Click(object sender, EventArgs e)
         {
-            station8ComboBox.Text = "AGM-88";
+            station8ComboBox.Text = "AGM-88C";
         }
 
         private void ToolStripMenuItem182_Click(object sender, EventArgs e)
