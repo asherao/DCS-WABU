@@ -4,7 +4,7 @@ If you have any ideas you'd like to see in the app, let me know!
 Have fun!
 
 ~Bailey
-16APR2020
+14APR2020
 ED Forums: Bailey
 Discord PM: Bailey#6230
 Bailey's VoiceAttack Discord: https://discord.gg/PbYgC5e
@@ -22,5 +22,3 @@ v1.8.2
 v2
 -Added F-16C
 -Added version notes
-v2.1
--Added DCS v2.5.45915 F18C weapons and tpod 
