@@ -27,6 +27,10 @@ using System.Threading;
  * -Updated F-16C
  * -Updated F-18C
  * -Updated A-10C (A-10C2)
+ * v3.1
+ * -Updated AV-8BNA
+ * v3.2
+ * -Fixed the sticky fuel bug (thanks Halcyon!) 
  * 
  */
 
@@ -40,14 +44,14 @@ using System.Threading;
  * -document, document, document
  * -make the arrays and weapon data more coding friendly
  * 
- * before av8b" 7389
- * after av8b:8008
- * before a-4E:8008
- * After a4e:8368
+ * before av8b: 7389
+ * after av8b: 8008
+ * before a-4E: 8008
+ * After a4e: 8368
  * before f14: 8368
  * after f14: 8689
- * nefore huey 8689
- * after huey 8883
+ * nefore huey: 8689
+ * after huey: 8883
  * before f15:8885
  * after f15: 1984
  * before f16: 9524 14APR 2020
@@ -55,6 +59,7 @@ using System.Threading;
  * before f18: 9896 16 APR 2020
  * after f18: 10429 16APR 2020
  * after v3: 10300 14NOV2020
+ * after v3.1: 10322
  * 
  * BUGS:
  * -None!(tm)
@@ -242,7 +247,7 @@ namespace DCS_Loadout_Calculator_Utility
         string[] A10CWeapons = new string[] { "", "Empty", "AIM-9L x2", "AIM-9M x2", "CAP-9M x2", "AIM-9L",
             "AIM-9M", "CAP-9M", "BDU-33 x3", "BDU-50HD", "BDU-50LD", "BDU-50LGB", "CBU-87", "CBU-97", "CBU-103",
             "CBU-105", "GBU-10", "GBU-12 x3", "GBU-12", "GBU-31", "GBU-31(V)3/B", "GBU-38", "Mk-82 x3", "Mk-82",
-            "Mk-82AIR x3", "Mk-82AIR", "Mk-84", "SUU-25 * 8 LUU-2 x3", "SUU-25 * 8LUU-2", "AGM-65D", "AGM-65G",
+            "Mk-82AIR x3", "Mk-82AIR", "Mk-84", "SUU-25 * 8 LUU-2 x3", "SUU-25 * 8LUU-2", "AGM-65D", "AGM-65F",
             "AGM-65H", "AGM-65K", "CATM-65K", "TGM-65D", "TGM-65G", "TGM-65H", "AGM-65D x1", "AGM-65D x2",
             "AGM-65D x3", "AGM-65H x1", "AGM-65H x2", "AGM-65H x3", "ALQ-131", "ALQ-184", "AN/AAQ-28 LITENING",
             "AN/ASQ-T50 TCTS Pod", "BRU-42LS", "LAU-105", "MXU-648 Travel Pod", "7 2.75' rockets M151 (HE) LAU-131",
@@ -400,7 +405,7 @@ namespace DCS_Loadout_Calculator_Utility
             "Mk-20 Rockeye x2", "Mk-20 Rockeye x3", "Mk-81", "Mk-81 x3", "Mk-82", "Mk-82 x2",
             "Mk-82 x3", "Mk-82 SnakeEye", "Mk-82 SnakeEye x2", "Mk-82 SnakeEye x3", "Mk-82AIR",
             "Mk-82AIR x2", "Mk-82AIR x3", "Mk-83", "Mk-83 x2", "Mk-83 x3", "SUU-25 * 8 LUU-2",
-            "SUU-25 * 8 LUU-2 x3", "AGM-122 Sidearm", "AGM-65E", "AGM-65G", "TGM-65G", "4 Zuni MK 71",
+            "SUU-25 * 8 LUU-2 x3", "AGM-122 Sidearm", "AGM-65E", "AGM-65F", "4 Zuni MK 71",
             "19 FFAR M156 WP", "19 FFAR Mk1 HE", "19 FFAR Mk5 HEAT", "7 2.75' rockets M151 (HE) x3",
             "7 2.75' rockets M156 (WP) x3", "7 2.75' rockets M257 (Parachute Illumination)",
             "7 2.75' rockets M257 (Parachute Illumination) x3", "7 2.75' rockets M274 (Practice Smoke)",
@@ -408,12 +413,15 @@ namespace DCS_Loadout_Calculator_Utility
             "7 2.75' rockets WTU1B (Practice)", "7 2.75' rockets WTU1B (Practice) x3",
             "7 FFAR M156 WP", "7 FFAR Mk1 HE", "7 FFAR Mk5 HEAT", "AN/ALQ-164 DECM Pod",
             "AN/AAQ-28 LITENING", "AN/ASQ-T50 TCTS Pod", "GAU 12 Gunpod", "AERO 1D 300 Gallons Fuel Tank",
-            "AERO 1D 300 Gallons Fuel Tank (Empty)" };
+            "AERO 1D 300 Gallons Fuel Tank (Empty)",
+            "Smokewinder","GBU-32", "GBU-38", "GBU-38 x2", "GBU-38 x3", "GBU-54(V)1/B", 
+            "GBU-54(V)1/B x2", "GBU-54(V)1/B x3"};
+
         string[,] AV8BNAWeaponWeightTable = new string[,]
          {
-            {"0","0","0","0","0","0","0","0"},
-            {"0","0","0","0","0","0","0","0"},
-            {"192","225","0","0","0","0","225","192"},
+            {"0","0","0","0","0","0","0","0"},//nothing
+            {"0","0","0","0","0","0","0","0"},//empty
+            {"192","225","0","0","0","0","225","192"},//aim9m
             {"190","0","0","0","0","0","0","190"},
             {"24","24","24","0","0","24","24","24"},
             {"0","216","216","0","0","216","216","0"},
@@ -441,10 +449,9 @@ namespace DCS_Loadout_Calculator_Utility
             {"0","0","3089","0","0","3089","0","0"},
             {"0","287","0","0","0","0","287","0"},
             {"0","1080","0","0","0","0","1080","0"},
-            {"203","0","0","0","0","0","0","203"},
-            {"0","0","761","0","0","761","0","0"},
-            {"0","0","794","0","0","794","0","0"},
-            {"0","0","794","0","0","794","0","0"},
+            {"203","236","0","0","0","0","236","203"},//Sidearm
+            {"0","761","761","0","0","761","761","0"},//AGM-65E
+            {"0","794","794","0","0","794","794","0"},//AGM-65F
             {"0","0","970","0","0","970","0","0"},
             {"0","0","690","0","0","690","0","0"},
             {"0","0","628","0","0","628","0","0"},
@@ -467,6 +474,16 @@ namespace DCS_Loadout_Calculator_Utility
             {"0","0","0","1314","0","0","0","0"},
             {"0","207","207","0","0","207","207","0"},
             {"0","207","207","0","0","207","207","0"},
+
+            {"441","441","0","0","0","0","441","441"},//smokewinder
+            {"0","1030","1030","0","0","1030","1030","0"},//gbu32
+            {"0","531","531","0","0","531","531","0"},//gbu38
+            {"0","1345","1345","0","0","1345","1345","0"},//gbu38 x2
+            {"0","1951","0","0","0","0","1951","0"},//gbu38 x3
+            {"0","558","558","0","0","558","558","0"},//gbu54
+            {"0","1248","1248","0","0","1248","1248","0"},//gbu54 x2
+            {"0","1806","0","0","0","0","1806","0"},//gbu54 x3
+
          };
 
         //init A-4E-C weapon arrays
@@ -697,7 +714,7 @@ namespace DCS_Loadout_Calculator_Utility
             "CBU-87 x3", "CBU-97 x3", "Mk-82 x3", "Mk-82 SnakeEye x3", "Mk-82 AIR x3",
             "MK151 HE", "MK156 WP", "MK5 HEAT", "MK61 WP", "WTU-1/B WP",
             "Fuel tank 300 gal", "Fuel tank 370 gal", "AN/AAQ-28 LITENING", "AN/ASQ-T50 Pod" ,
-            "AGM-88C", "AGM-65D", "AGM-65D x1", "AGM-65D x2", "AGM-65D x3", "AGM-65G", 
+            "AGM-88C", "AGM-65D", "AGM-65D x1", "AGM-65D x2", "AGM-65D x3", "AGM-65F", 
             "AGM-65H", "AGM-65H x1", "AGM-65H x2", "AGM-65H x3", "AGM-65K", "MXU-648 Travel Pod"};
 
         string[,] F16CWeaponWeightTable = new string[,]
@@ -746,7 +763,7 @@ namespace DCS_Loadout_Calculator_Utility
             {"0","0","1235","0","0","0","0","0","1235","0","0"},//AGM-65D x1
             {"0","0","1715","0","0","0","0","0","1715","0","0"},//AGM-65D x2
             {"0","0","2196","0","0","0","0","0","2196","0","0"},//AGM-65D x3
-            {"0","0","1082","0","0","0","0","0","1082","0","0"},//AGM-65G
+            {"0","0","1082","0","0","0","0","0","1082","0","0"},//AGM-65F
             {"0","0","877","0","0","0","0","0","877","0","0"},//AGM-65H
             {"0","0","1213","0","0","0","0","0","1213","0","0"},//AGM-65H x1
             {"0","0","1671","0","0","0","0","0","1671","0","0"},//AGM-65H x2
@@ -1740,7 +1757,7 @@ namespace DCS_Loadout_Calculator_Utility
                 station2ComboBox.DataSource = station2Stores_A10C;
                 string[] station3Stores_A10C = new string[] { "Empty", "BDU-33 x3", "BDU-50HD", "BDU-50LD", "BDU-50LGB", "CBU-103",
                     "CBU-105", "GBU-10", "GBU-12 x3", "GBU-12", "GBU-31", "GBU-31(V)3/B", "GBU-38","GBU-54(V)1/B", "Mk-82 x3", "Mk-82", "Mk-82AIR x3",
-                    "Mk-82AIR", "Mk-84", "SUU-25 * 8 LUU-2 x3", "SUU-25 * 8LUU-2", "AGM-65D", "AGM-65G", "AGM-65H", "AGM-65K",
+                    "Mk-82AIR", "Mk-84", "SUU-25 * 8 LUU-2 x3", "SUU-25 * 8LUU-2", "AGM-65D", "AGM-65F", "AGM-65H", "AGM-65K",
                     "CATM-65K", "TGM-65D", "TGM-65G", "TGM-65H", "AGM-65D x1", "AGM-65D x2", "AGM-65D x3", "AGM-65H x1", "AGM-65H x2",
                     "AGM-65H x3","AGM-65L", "BRU-42LS", "MXU-648 Travel Pod","7 2.75' Hydra Laser Guided Rkts M151 HE APKWS",
                     "7 2.75' Hydra Laser Guided Rkts M282 MPP APKWS", "7 2.75' Hydra Laser Guided Rkts M151 HE APKWS x3",
@@ -1819,7 +1836,7 @@ namespace DCS_Loadout_Calculator_Utility
                 station8ComboBox.DataSource = station8Stores_A10C;
                 string[] station9Stores_A10C = new string[] { "Empty", "BDU-33 x3", "BDU-50HD", "BDU-50LD", "BDU-50LGB", "CBU-103",
                     "CBU-105", "GBU-10", "GBU-12 x3", "GBU-12", "GBU-31", "GBU-31(V)3/B", "GBU-38","GBU-54(V)1/B", "Mk-82 x3", "Mk-82", "Mk-82AIR x3",
-                    "Mk-82AIR", "Mk-84", "SUU-25 * 8 LUU-2 x3", "SUU-25 * 8LUU-2", "AGM-65D", "AGM-65G", "AGM-65H", "AGM-65K",
+                    "Mk-82AIR", "Mk-84", "SUU-25 * 8 LUU-2 x3", "SUU-25 * 8LUU-2", "AGM-65D", "AGM-65F", "AGM-65H", "AGM-65K",
                     "CATM-65K", "TGM-65D", "TGM-65G", "TGM-65H", "AGM-65D x1", "AGM-65D x2", "AGM-65D x3", "AGM-65H x1", "AGM-65H x2",
                     "AGM-65H x3","AGM-65L", "BRU-42LS", "MXU-648 Travel Pod",
                     "7 2.75' Hydra Laser Guided Rkts M151 HE APKWS","7 2.75' Hydra Laser Guided Rkts M282 MPP APKWS",
@@ -2050,21 +2067,25 @@ namespace DCS_Loadout_Calculator_Utility
                 station11Label.Text = "Station 11:";
                 station12Label.Text = "Station 12:";
 
-                string[] station1Stores_AV8BNA = new string[] { "Empty", "AIM-9M", "CAP-9M", "BDU-33", "GBU-12", "Mk-20", "Mk-81",
-                    "Mk-82", "Mk-82 SnakeEye", "Mk-82AIR", "AGM-122 Sidearm", "AN/ASQ-T50 TCTS Pod" };
+                string[] station1Stores_AV8BNA = new string[] { "Empty", "AIM-9M", "CAP-9M", "BDU-33", "Mk-20", "Mk-81",
+                    "Mk-82", "Mk-82 SnakeEye", "Mk-82AIR", "GBU-12", "AGM-122 Sidearm", "AN/ASQ-T50 TCTS Pod", "Smokewinder" };
                 station1ComboBox.DataSource = station1Stores_AV8BNA;
 
-                string[] station2Stores_AV8BNA = new string[] { "Empty", "AIM-9M", "BDU-33", "BDU-33 x3", "GBU-12", "GBU-12 x2",
-                    "GBU-12 x3", "GBU-16", "Mk-20", "Mk-20 Rockeye x2", "Mk-81", "Mk-81 x3", "Mk-82", "Mk-82 x2", "Mk-82 x3",
+                string[] station2Stores_AV8BNA = new string[] { "Empty", "AIM-9M", "BDU-33", "BDU-33 x3", 
+                    "Mk-20", "Mk-20 Rockeye x2", "Mk-81", "Mk-81 x3", "Mk-82", "Mk-82 x2", "Mk-82 x3",
                     "Mk-82 SnakeEye", "Mk-82 SnakeEye x2", "Mk-82 SnakeEye x3", "Mk-82AIR", "Mk-82AIR x2", "Mk-82AIR x3", "Mk-83",
-                    "SUU-25 * 8 LUU-2", "SUU-25 * 8 LUU-2 x3", "AERO 1D 300 Gallons Fuel Tank",
-                    "AERO 1D 300 Gallons Fuel Tank (Empty)" };
+                    "GBU-12", "GBU-12 x2", "GBU-12 x3", "GBU-16",
+                    "GBU-32","GBU-38 x2","GBU-38 x3","GBU-54(V)1/B","GBU-54(V)1/B x2","GBU-54(V)1/B x3",
+                    "AGM-65E", "AGM-65F","AGM-122 Sidearm", "SUU-25 * 8 LUU-2", "SUU-25 * 8 LUU-2 x3", "AERO 1D 300 Gallons Fuel Tank",
+                    "AERO 1D 300 Gallons Fuel Tank (Empty)", "Smokewinder" };
                 station2ComboBox.DataSource = station2Stores_AV8BNA;
 
-                string[] station3Stores_AV8BNA = new string[] { "Empty", "BDU-33", "BDU-33 x3", "GBU-12", "GBU-12 x2", "GBU-12 x3",
-                    "GBU-16", "GBU-16 x2", "Mk-20", "Mk-20 Rockeye x2", "Mk-20 Rockeye x3", "Mk-81", "Mk-81 x3", "Mk-82", "Mk-82 x2",
+                string[] station3Stores_AV8BNA = new string[] { "Empty", "BDU-33", "BDU-33 x3", 
+                    "Mk-20", "Mk-20 Rockeye x2", "Mk-20 Rockeye x3", "Mk-81", "Mk-81 x3", "Mk-82", "Mk-82 x2",
                     "Mk-82 x3", "Mk-82 SnakeEye", "Mk-82 SnakeEye x2", "Mk-82 SnakeEye x3", "Mk-82AIR", "Mk-82AIR x2", "Mk-82AIR x3",
-                    "Mk-83", "Mk-83 x2", "Mk-83 x3", "AGM-65E", "AGM-65G", "TGM-65G", "4 Zuni MK 71", "19 FFAR M156 WP", "19 FFAR Mk1 HE",
+                    "Mk-83", "Mk-83 x2", "Mk-83 x3", "GBU-12", "GBU-12 x2", "GBU-12 x3",
+                    "GBU-16", "GBU-16 x2", "GBU-32","GBU-38 x2","GBU-54(V)1/B","GBU-54(V)1/B x2",
+                    "AGM-65E", "AGM-65F", "4 Zuni MK 71", "19 FFAR M156 WP", "19 FFAR Mk1 HE",
                     "19 FFAR Mk5 HEAT", "7 2.75' rockets M151 (HE) x3", "7 2.75' rockets M156 (WP) x3",
                     "7 2.75' rockets M257 (Parachute Illumination)", "7 2.75' rockets M257 (Parachute Illumination) x3",
                     "7 2.75' rockets M274 (Practice Smoke)", "7 2.75' rockets M274 (Practice Smoke) x3", "7 2.75' rockets MK5 (HE) x3",
@@ -2078,10 +2099,12 @@ namespace DCS_Loadout_Calculator_Utility
                 string[] station5Stores_AV8BNA = new string[] { "Empty", "AN/ALQ-164 DECM Pod", "AN/AAQ-28 LITENING" };
 
                 station5ComboBox.DataSource = station5Stores_AV8BNA;
-                string[] station6Stores_AV8BNA = new string[] { "Empty", "BDU-33", "BDU-33 x3", "GBU-12", "GBU-12 x2", "GBU-12 x3",
-                    "GBU-16", "GBU-16 x2", "Mk-20", "Mk-20 Rockeye x2", "Mk-20 Rockeye x3", "Mk-81", "Mk-81 x3", "Mk-82", "Mk-82 x2",
+                string[] station6Stores_AV8BNA = new string[] { "Empty", "BDU-33", "BDU-33 x3", 
+                    "Mk-20", "Mk-20 Rockeye x2", "Mk-20 Rockeye x3", "Mk-81", "Mk-81 x3", "Mk-82", "Mk-82 x2",
                     "Mk-82 x3", "Mk-82 SnakeEye", "Mk-82 SnakeEye x2", "Mk-82 SnakeEye x3", "Mk-82AIR", "Mk-82AIR x2", "Mk-82AIR x3",
-                    "Mk-83", "Mk-83 x2", "Mk-83 x3", "AGM-65E", "AGM-65G", "TGM-65G", "4 Zuni MK 71", "19 FFAR M156 WP", "19 FFAR Mk1 HE",
+                    "Mk-83", "Mk-83 x2", "Mk-83 x3","GBU-12", "GBU-12 x2", "GBU-12 x3",
+                    "GBU-16", "GBU-16 x2", "GBU-32","GBU-38 x2","GBU-54(V)1/B","GBU-54(V)1/B x2",
+                    "AGM-65E", "AGM-65F", "4 Zuni MK 71", "19 FFAR M156 WP", "19 FFAR Mk1 HE",
                     "19 FFAR Mk5 HEAT", "7 2.75' rockets M151 (HE) x3", "7 2.75' rockets M156 (WP) x3",
                     "7 2.75' rockets M257 (Parachute Illumination)", "7 2.75' rockets M257 (Parachute Illumination) x3",
                     "7 2.75' rockets M274 (Practice Smoke)", "7 2.75' rockets M274 (Practice Smoke) x3", "7 2.75' rockets MK5 (HE) x3",
@@ -2090,15 +2113,17 @@ namespace DCS_Loadout_Calculator_Utility
                     "AERO 1D 300 Gallons Fuel Tank (Empty)" };
                 station6ComboBox.DataSource = station6Stores_AV8BNA;
 
-                string[] station7Stores_AV8BNA = new string[] { "Empty", "AIM-9M", "BDU-33", "BDU-33 x3", "GBU-12", "GBU-12 x2",
-                    "GBU-12 x3", "GBU-16", "Mk-20", "Mk-20 Rockeye x2", "Mk-81", "Mk-81 x3", "Mk-82", "Mk-82 x2", "Mk-82 x3",
+                string[] station7Stores_AV8BNA = new string[] { "Empty", "AIM-9M", "BDU-33", "BDU-33 x3", 
+                    "Mk-20", "Mk-20 Rockeye x2", "Mk-81", "Mk-81 x3", "Mk-82", "Mk-82 x2", "Mk-82 x3",
                     "Mk-82 SnakeEye", "Mk-82 SnakeEye x2", "Mk-82 SnakeEye x3", "Mk-82AIR", "Mk-82AIR x2", "Mk-82AIR x3", "Mk-83",
-                    "SUU-25 * 8 LUU-2", "SUU-25 * 8 LUU-2 x3", "AERO 1D 300 Gallons Fuel Tank",
-                    "AERO 1D 300 Gallons Fuel Tank (Empty)" };
+                    "GBU-12", "GBU-12 x2", "GBU-12 x3", "GBU-16",
+                    "GBU-32","GBU-38 x2","GBU-38 x3","GBU-54(V)1/B","GBU-54(V)1/B x2","GBU-54(V)1/B x3",
+                    "AGM-65E", "AGM-65F","AGM-122 Sidearm", "SUU-25 * 8 LUU-2", "SUU-25 * 8 LUU-2 x3", "AERO 1D 300 Gallons Fuel Tank",
+                    "AERO 1D 300 Gallons Fuel Tank (Empty)", "Smokewinder" };
                 station7ComboBox.DataSource = station7Stores_AV8BNA;
 
-                string[] station8Stores_AV8BNA = new string[] { "Empty", "AIM-9M", "CAP-9M", "BDU-33", "GBU-12", "Mk-20", "Mk-81",
-                    "Mk-82", "Mk-82 SnakeEye", "Mk-82AIR", "AGM-122 Sidearm", "AN/ASQ-T50 TCTS Pod" };
+                string[] station8Stores_AV8BNA = new string[] { "Empty", "AIM-9M", "CAP-9M", "BDU-33", "Mk-20", "Mk-81",
+                    "Mk-82", "Mk-82 SnakeEye", "Mk-82AIR", "GBU-12", "AGM-122 Sidearm", "AN/ASQ-T50 TCTS Pod", "Smokewinder" };
                 station8ComboBox.DataSource = station8Stores_AV8BNA;
             }
             if (selectedAircraft == "A-4E-C Skyhawk")
@@ -2642,7 +2667,7 @@ namespace DCS_Loadout_Calculator_Utility
                 string[] station2Stores_F16C = new string[] { "Empty", "Pylon", "AIM-120B", "AIM-120C", "AIM-9L", "AIM-9M", "AIM-9X", "CAP-9M", "AN/ASQ-T50 Pod" };
                 station2ComboBox.DataSource = station2Stores_F16C;
 
-                string[] station3Stores_F16C = new string[] { "Empty", "Pylon", "AIM-120B", "AIM-120C", "AIM-9L", "AIM-9M", "AIM-9X", "CAP-9M", "AN/ASQ-T50 Pod", "CBU-87", "CBU-97", "GBU-10", "GBU-12", "Mk-82", "Mk-82 SnakeEye", "Mk-82 AIR", "Mk-84", "CBU-87 x2", "CBU-97 x2", "GBU-12 x2", "Mk-82 x2", "Mk-82 SnakeEye x2", "Mk-82 AIR x2", "BDU-33 x3", "Mk-82 x3", "Mk-82 SnakeEye x3", "Mk-82 AIR x3", "AGM-88C", "AGM-65D", "AGM-65D x1", "AGM-65D x2", "AGM-65D x3", "AGM-65G", "AGM-65H", "AGM-65H x1", "AGM-65H x2", "AGM-65H x3", "AGM-65K", "MK151 HE", "MK156 WP", "MK5 HEAT", "MK61 WP", "WTU-1/B WP",  "MXU-648 Travel Pod" };
+                string[] station3Stores_F16C = new string[] { "Empty", "Pylon", "AIM-120B", "AIM-120C", "AIM-9L", "AIM-9M", "AIM-9X", "CAP-9M", "AN/ASQ-T50 Pod", "CBU-87", "CBU-97", "GBU-10", "GBU-12", "Mk-82", "Mk-82 SnakeEye", "Mk-82 AIR", "Mk-84", "CBU-87 x2", "CBU-97 x2", "GBU-12 x2", "Mk-82 x2", "Mk-82 SnakeEye x2", "Mk-82 AIR x2", "BDU-33 x3", "Mk-82 x3", "Mk-82 SnakeEye x3", "Mk-82 AIR x3", "AGM-88C", "AGM-65D", "AGM-65D x1", "AGM-65D x2", "AGM-65D x3", "AGM-65F", "AGM-65H", "AGM-65H x1", "AGM-65H x2", "AGM-65H x3", "AGM-65K", "MK151 HE", "MK156 WP", "MK5 HEAT", "MK61 WP", "WTU-1/B WP",  "MXU-648 Travel Pod" };
                 station3ComboBox.DataSource = station3Stores_F16C;
 
                 string[] station4Stores_F16C = new string[] { "Empty", "Pylon", "CBU-87", "CBU-97", "GBU-10", "GBU-12", "Mk-82", "Mk-82 SnakeEye", "Mk-82 AIR", "Mk-84", "CBU-87 x2", "CBU-97 x2", "Mk-82 x2", "Mk-82 SnakeEye x2", "Mk-82 AIR x2", "BDU-33 x3", "CBU-87 x3", "CBU-97 x3", "Mk-82 x3", "Mk-82 SnakeEye x3", "Mk-82 AIR x3", "AGM-88C", "MK151 HE", "MK156 WP", "MK5 HEAT", "MK61 WP", "WTU-1/B WP", "Fuel tank 370 gal",  "MXU-648 Travel Pod" };
@@ -2660,7 +2685,7 @@ namespace DCS_Loadout_Calculator_Utility
                 string[] station8Stores_F16C = new string[] { "Empty", "Pylon", "CBU-87", "CBU-97", "GBU-10", "GBU-12", "Mk-82", "Mk-82 SnakeEye", "Mk-82 AIR", "Mk-84", "CBU-87 x2", "CBU-97 x2", "Mk-82 x2", "Mk-82 SnakeEye x2", "Mk-82 AIR x2", "BDU-33 x3", "CBU-87 x3", "CBU-97 x3", "Mk-82 x3", "Mk-82 SnakeEye x3", "Mk-82 AIR x3", "AGM-88C", "MK151 HE", "MK156 WP", "MK5 HEAT", "MK61 WP", "WTU-1/B WP", "Fuel tank 370 gal","MXU-648 Travel Pod"};
                 station8ComboBox.DataSource = station8Stores_F16C;
 
-                string[] station9Stores_F16C = new string[] { "Empty", "Pylon", "AIM-120B", "AIM-120C", "AIM-9L", "AIM-9M", "AIM-9X", "CAP-9M", "AN/ASQ-T50 Pod", "CBU-87", "CBU-97", "GBU-10", "GBU-12", "Mk-82", "Mk-82 SnakeEye", "Mk-82 AIR", "Mk-84", "CBU-87 x2", "CBU-97 x2", "GBU-12 x2", "Mk-82 x2", "Mk-82 SnakeEye x2", "Mk-82 AIR x2", "BDU-33 x3", "Mk-82 x3", "Mk-82 SnakeEye x3", "Mk-82 AIR x3", "AGM-88C", "AGM-65D", "AGM-65D x1", "AGM-65D x2", "AGM-65D x3", "AGM-65G", "AGM-65H", "AGM-65H x1", "AGM-65H x2", "AGM-65H x3", "AGM-65K", "MK151 HE", "MK156 WP", "MK5 HEAT", "MK61 WP", "WTU-1/B WP",  "MXU-648 Travel Pod" };
+                string[] station9Stores_F16C = new string[] { "Empty", "Pylon", "AIM-120B", "AIM-120C", "AIM-9L", "AIM-9M", "AIM-9X", "CAP-9M", "AN/ASQ-T50 Pod", "CBU-87", "CBU-97", "GBU-10", "GBU-12", "Mk-82", "Mk-82 SnakeEye", "Mk-82 AIR", "Mk-84", "CBU-87 x2", "CBU-97 x2", "GBU-12 x2", "Mk-82 x2", "Mk-82 SnakeEye x2", "Mk-82 AIR x2", "BDU-33 x3", "Mk-82 x3", "Mk-82 SnakeEye x3", "Mk-82 AIR x3", "AGM-88C", "AGM-65D", "AGM-65D x1", "AGM-65D x2", "AGM-65D x3", "AGM-65F", "AGM-65H", "AGM-65H x1", "AGM-65H x2", "AGM-65H x3", "AGM-65K", "MK151 HE", "MK156 WP", "MK5 HEAT", "MK61 WP", "WTU-1/B WP",  "MXU-648 Travel Pod" };
                 station9ComboBox.DataSource = station9Stores_F16C;
 
                 string[] station10Stores_F16C = new string[] { "Empty", "Pylon", "AIM-120B", "AIM-120C", "AIM-9L", "AIM-9M", "AIM-9X", "CAP-9M", "AN/ASQ-T50 Pod" };
@@ -8918,6 +8943,27 @@ namespace DCS_Loadout_Calculator_Utility
         }
         public void clearLoadout()
         {
+            //making the station fuel weights all zero to fix the following bug.
+            /*
+             * "If you add a fuel tank to an aircraft, and then switch to another aircraft, 
+             * all the stations will show "EMPTY" but the added fuel will carry over and be 
+             * added to the default internal fuel. Pressing the CLEAR LOADOUT button before 
+             * switching to another aircraft seems to prevent this."
+             */
+
+            station1FuelWeight = 0;
+            station2FuelWeight = 0;
+            station3FuelWeight = 0;
+            station4FuelWeight = 0;
+            station5FuelWeight = 0;
+            station6FuelWeight = 0;
+            station7FuelWeight = 0;
+            station8FuelWeight = 0;
+            station9FuelWeight = 0;
+            station10FuelWeight = 0;
+            station11FuelWeight = 0;
+            station12FuelWeight = 0;
+            stationAllFuelWeight = 0;
 
 
             station1ComboBox.Text = "Empty";
@@ -8933,7 +8979,7 @@ namespace DCS_Loadout_Calculator_Utility
             station11ComboBox.Text = "Empty";
             station12ComboBox.Text = "Empty";
             Thread.Sleep(100);//this sometimes prevents that error that comes up when switching aircraft
-
+            
         }
 
         private void Button_setDcsLocation_Click(object sender, EventArgs e)

@@ -3559,7 +3559,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "Form1";
-            this.Text = "DCS WABU (Weight and Balance Utility) v3.0 by Bailey";
+            this.Text = "DCS WABU (Weight and Balance Utility) v3.1 by Bailey";
             this.TransparencyKey = System.Drawing.Color.Maroon;
             this.Load += new System.EventHandler(this.Form1_Load);
             this.contextMenuStrip_Station1_FA18C2.ResumeLayout(false);
