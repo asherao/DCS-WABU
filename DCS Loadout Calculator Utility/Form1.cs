@@ -8,7 +8,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Globalization;
-
 using System.IO;
 using System.Reflection;
 using System.Runtime.InteropServices;
@@ -24,6 +23,10 @@ using System.Threading;
  * -Added version notes
  * v2.1
  * -Added DCS v2.5.45915 F18C weapons and tpod  
+ * v3.0
+ * -Updated F-16C
+ * -Updated F-18C
+ * -Updated A-10C (A-10C2)
  * 
  */
 
@@ -51,6 +54,7 @@ using System.Threading;
  * after f16: 9892 14 APR 2020
  * before f18: 9896 16 APR 2020
  * after f18: 10429 16APR 2020
+ * after v3: 10300 14NOV2020
  * 
  * BUGS:
  * -None!(tm)
@@ -73,7 +77,7 @@ namespace DCS_Loadout_Calculator_Utility
 {
     public partial class Form1 : Form
     {
-        //Initilize F18 Weapon Arrays
+        //Initilize F18 Weapon Arrays OLD!!!!!!!!!!!!!!
         //A2A
         public static int[] weaponWeight_FA18C_AIM120Bx2 = new int[] { 0, 1016, 1016, 0, 0, 0, 1016, 1016, 0, 0, 0, 0 };
         public static int[] weaponWeight_FA18C_AIM120Cx2 = new int[] { 0, 1032, 1032, 0, 0, 0, 1032, 1032, 0, 0, 0, 0 };
@@ -257,7 +261,11 @@ namespace DCS_Loadout_Calculator_Utility
             "7 2.75' rockets M156 (WP) LAU-68 x3", "7 2.75' rockets M257 (Parachute Illumination) LAU-68 x3",
             "7 2.75' rockets M274 (Practice smoke) LAU-68 x3", "7 2.75' rockets MK5 (HE) LAU-68 x3",
             "7 2.75' rockets MK61 (Practice) LAU-68 x3", "7 2.75' rockets Mk1 (Practice) LAU-68 x3",
-            "7 2.75' rockets WTU1B (Practice) LAU-68 x3", "Fuel Tank FT600" };
+            "7 2.75' rockets WTU1B (Practice) LAU-68 x3", "Fuel Tank FT600", 
+            "Smokewinder", 
+            "7 2.75' Hydra Laser Guided Rkts M151 HE APKWS", "7 2.75' Hydra Laser Guided Rkts M282 MPP APKWS", 
+            "7 2.75' Hydra Laser Guided Rkts M151 HE APKWS x3", "7 2.75' Hydra Laser Guided Rkts M282 MPP APKWS x3", 
+            "AGM-65L", "GBU-54(V)1/B"};
         string[,] A10CWeaponWeightTable = new string[,]
          {
             {"0","0","0","0","0","0","0","0","0","0","0"},
@@ -343,6 +351,13 @@ namespace DCS_Loadout_Calculator_Utility
             {"0","0","809","809","0","0","0","809","809","0","0"},
             {"0","0","869","869","0","0","0","869","869","0","0"},
             {"0","0","0","243","0","243","0","243","0","0","0"},
+            {"441","0","0","0","0","0","0","0","0","0","441"},//Smokewinder
+            {"0","298","298","298","0","0","0","298","298","298","0"},//7 2.75' Hydra Laser Guided Rkts M151 HE APKWS
+            {"0","328","328","328","0","0","0","328","328","328","0"},//7 2.75' Hydra Laser Guided Rkts M282 MPP APKWS
+            {"0","0","1001","1001","0","0","0","1001","1001","0","0"},//7 2.75' Hydra Laser Guided Rkts M151 HE APKWS x3
+            {"0","0","1093","1093","0","0","0","1093","1093","0","0"},//7 2.75' Hydra Laser Guided Rkts M282 MPP APKWS x3
+            {"0","0","774","0","0","0","0","0","774","0","0"},//AGM-65L
+            {"0","0","558","558","558","0","558","558","558","0","0"},//GBU-54(V)1/B
          };
 
         //init M2000C Mirage weapon arrays
@@ -755,70 +770,74 @@ namespace DCS_Loadout_Calculator_Utility
             "Mk-82Y", "Mk-83", "Mk-84", "4 ZUNI MK 71 x2", "19 Mk151 HE x2", "7 M151 HE x2", 
             "7 MK5 HE x2", "4 ZUNI MK 71", "19 Mk151 HE", "7 M151 HE", "7 MK5 HE", 
             "FPU-8A Fuel Tank 330 gallons", "AN/ASQ-T50 TCTS Pod", "AAW-13 DATALINK POD", 
-            "AN/AAQ-28 LITENING" };
+            "AN/AAQ-28 LITENING","AGM-84E" };
         string[,] F18CWeaponWeightTable = new string[,]
          {
             {"0","0","0","0","0","0","0","0","0"},
             {"0","0","0","0","0","0","0","0","0"},
             {"0","0","0","0","0","0","0","0","0"},
-{"0","1016","1016","0","0","0","1016","1016","0"},
-{"0","1032","1032","0","0","0","1032","1032","0"},
-{"0","697","0","0","0","0","0","697","0"},
-{"0","701","0","0","0","0","0","701","0"},
-{"0","692","0","0","0","0","0","692","0"},
-{"0","697","0","0","0","0","0","697","0"},
-{"0","467","467","348","0","348","467","467","0"},
-{"0","476","476","357","0","357","476","476","0"},
-{"0","626","626","507","0","507","626","626","0"},
-{"0","626","626","507","0","507","626","626","0"},
-{"0","626","626","507","0","507","626","626","0"},
-{"190","884","0","0","0","0","0","884","190"},
-{"192","886","0","0","0","0","0","886","192"},
-{"185","882","0","0","0","0","0","882","185"},
-{"190","884","0","0","0","0","0","884","190"},
-{"0","1069","1069","0","0","0","1069","1069","0"},
-{"0","1067","1067","0","0","0","1067","1067","0"},
-{"0","1190","1190","0","0","0","1190","1190","0"},
-{"0","796","796","0","0","0","796","796","0"},
-{"0","2249","2249","0","0","0","2249","2249","0"},
-{"0","2244","2244","0","0","0","2244","2244","0"},
-{"0","761","761","0","0","0","761","761","0"},
-{"0","794","794","0","0","0","794","794","0"},
-{"0","2339","0","0","0","0","0","2339","0"},
-{"0","1153","1153","0","1153","0","1153","1153","0"},
-{"0","1387","1387","0","0","0","1387","1387","0"},
-{"0","1153","1153","0","1153","0","1153","1153","0"},
-{"0","1237","1237","0","1237","0","1237","1237","0"},
-{"0","1197","1197","0","1197","0","1197","1197","0"},
-{"0","1197","1197","0","1197","0","1197","1197","0"},
-{"0","2145","2145","0","0","0","2145","2145","0"},
-{"0","432","432","0","0","0","432","432","0"},
-{"0","1237","1237","0","0","0","1237","1237","0"},
-{"0","489","489","0","489","0","489","489","0"},
-{"0","2562","2562","0","0","0","2562","2562","0"},
-{"0","606","606","0","0","0","606","606","0"},
-{"0","1243","1243","0","0","0","1243","1243","0"},
-{"0","1971","1971","0","0","0","1971","1971","0"},
-{"0","2163","2163","0","0","0","2163","2163","0"},
-{"0","531","531","0","0","0","531","531","0"},
-{"0","489","489","0","489","0","489","489","0"},
-{"0","531","531","0","531","0","531","531","0"},
-{"0","511","511","0","511","0","511","511","0"},
-{"0","511","511","0","511","0","511","511","0"},
-{"0","985","985","0","985","0","985","985","0"},
-{"0","1971","1971","0","1971","0","1971","1971","0"},
-{"0","2114","2114","0","0","0","2114","2114","0"},
-{"0","1455","1455","0","0","0","1455","1455","0"},
-{"0","679","679","0","0","0","679","679","0"},
-{"0","628","628","0","0","0","628","628","0"},
-{"0","1144","1144","0","0","0","1144","1144","0"},
-{"0","816","816","0","0","0","816","816","0"},
-{"0","428","428","0","0","0","428","428","0"},
-{"0","401","401","0","0","0","401","401","0"},
-{"0","0","291","0","291","0","291","0","0"},
-{"139","0","0","0","0","0","0","0","139"},
-{"0","772","0","0","441","0","0","772","0"},
-{"0","0","0","661","661","0","0","0","0"},
+            {"0","1016","1016","0","0","0","1016","1016","0"},
+            {"0","1032","1032","0","0","0","1032","1032","0"},
+            {"0","697","0","0","0","0","0","697","0"},
+            {"0","701","0","0","0","0","0","701","0"},
+            {"0","692","0","0","0","0","0","692","0"},
+            {"0","697","0","0","0","0","0","697","0"},
+            {"0","467","467","348","0","348","467","467","0"},
+            {"0","476","476","357","0","357","476","476","0"},
+            {"0","626","626","507","0","507","626","626","0"},
+            {"0","626","626","507","0","507","626","626","0"},
+            {"0","626","626","507","0","507","626","626","0"},
+            {"190","884","0","0","0","0","0","884","190"},
+            {"192","886","0","0","0","0","0","886","192"},
+            {"185","882","0","0","0","0","0","882","185"},
+            {"190","884","0","0","0","0","0","884","190"},
+            {"0","1069","1069","0","0","0","1069","1069","0"},
+            {"0","1067","1067","0","0","0","1067","1067","0"},
+            {"0","1190","1190","0","0","0","1190","1190","0"},
+            {"0","796","796","0","0","0","796","796","0"},
+            {"0","2249","2249","0","0","0","2249","2249","0"},
+            {"0","2244","2244","0","0","0","2244","2244","0"},
+            {"0","761","761","0","0","0","761","761","0"},
+            {"0","794","794","0","0","0","794","794","0"},
+            {"0","2339","0","0","0","0","0","2339","0"},
+            {"0","1153","1153","0","1153","0","1153","1153","0"},
+            {"0","1387","1387","0","0","0","1387","1387","0"},
+            {"0","1153","1153","0","1153","0","1153","1153","0"},
+            {"0","1237","1237","0","1237","0","1237","1237","0"},
+            {"0","1197","1197","0","1197","0","1197","1197","0"},
+            {"0","1197","1197","0","1197","0","1197","1197","0"},
+            {"0","2145","2145","0","0","0","2145","2145","0"},
+            {"0","432","432","0","0","0","432","432","0"},
+            {"0","1237","1237","0","0","0","1237","1237","0"},
+            {"0","489","489","0","489","0","489","489","0"},
+            {"0","2562","2562","0","0","0","2562","2562","0"},
+            {"0","606","606","0","0","0","606","606","0"},
+            {"0","1243","1243","0","0","0","1243","1243","0"},
+            {"0","1971","1971","0","0","0","1971","1971","0"},
+            {"0","2163","2163","0","0","0","2163","2163","0"},
+            {"0","531","531","0","0","0","531","531","0"},
+            {"0","489","489","0","489","0","489","489","0"},
+            {"0","531","531","0","531","0","531","531","0"},
+            {"0","511","511","0","511","0","511","511","0"},
+            {"0","511","511","0","511","0","511","511","0"},
+            {"0","985","985","0","985","0","985","985","0"},
+            {"0","1971","1971","0","1971","0","1971","1971","0"},
+            {"0","2114","2114","0","0","0","2114","2114","0"},
+            {"0","1455","1455","0","0","0","1455","1455","0"},
+            {"0","679","679","0","0","0","679","679","0"},
+            {"0","628","628","0","0","0","628","628","0"},
+            {"0","1144","1144","0","0","0","1144","1144","0"},
+            {"0","816","816","0","0","0","816","816","0"},
+            {"0","428","428","0","0","0","428","428","0"},
+            {"0","401","401","0","0","0","401","401","0"},
+            {"0","0","291","0","291","0","291","0","0"},
+            {"139","0","0","0","0","0","0","0","139"},
+            {"0","441","441","0","441","0","441","441","0"},//AAW-13 DATALINK POD
+            {"0","0","0","661","661","0","0","0","0"},
+            {"0","1385","1385","0","0","0","1385","1385","0"},//AGM-84E
+
+
+
          };
 
 
@@ -1705,10 +1724,11 @@ namespace DCS_Loadout_Calculator_Utility
 
                 string[] station1Stores_A10C = new string[] { "Empty", "AIM-9L x2", "AIM-9M x2", "CAP-9M x2",
                     "AIM-9L", "AIM-9M", "CAP-9M", "BDU-50HD", "BDU-50LD", "BDU-50LGB", "CBU-87", "CBU-97",
-                    "GBU-12", "Mk-82", "Mk-82AIR", "ALQ-131", "ALQ-184", "AN/ASQ-T50 TCTS Pod", "LAU-105" };
+                    "GBU-12", "Mk-82", "Mk-82AIR", "ALQ-131", "ALQ-184", "AN/ASQ-T50 TCTS Pod", "LAU-105","Smokewinder" };
                 station1ComboBox.DataSource = station1Stores_A10C;
                 string[] station2Stores_A10C = new string[] { "Empty", "BDU-50HD", "BDU-50LD", "BDU-50LGB", "CBU-87",
                     "CBU-97", "GBU-12", "Mk-82", "Mk-82AIR", "SUU-25 * 8LUU-2", "AN/AAQ-28 LITENING",
+                    "7 2.75' Hydra Laser Guided Rkts M151 HE APKWS","7 2.75' Hydra Laser Guided Rkts M282 MPP APKWS",
                     "7 2.75' rockets M151 (HE) LAU-131", "7 2.75' rockets M156 (WP) LAU-131",
                     "7 2.75' rockets M257 (Parachute Illumination) LAU-131", "7 2.75' rockets M274 (Practice smoke) LAU-131",
                     "7 2.75' rockets MK5 (HE) LAU-131", "7 2.75' rockets MK61 (Practice) LAU-131",
@@ -1719,10 +1739,12 @@ namespace DCS_Loadout_Calculator_Utility
                     "7 2.75' rockets Mk1 (Practice) LAU-68", "7 2.75' rockets WTU1B (Practice) LAU-68" };
                 station2ComboBox.DataSource = station2Stores_A10C;
                 string[] station3Stores_A10C = new string[] { "Empty", "BDU-33 x3", "BDU-50HD", "BDU-50LD", "BDU-50LGB", "CBU-103",
-                    "CBU-105", "GBU-10", "GBU-12 x3", "GBU-12", "GBU-31", "GBU-31(V)3/B", "GBU-38", "Mk-82 x3", "Mk-82", "Mk-82AIR x3",
+                    "CBU-105", "GBU-10", "GBU-12 x3", "GBU-12", "GBU-31", "GBU-31(V)3/B", "GBU-38","GBU-54(V)1/B", "Mk-82 x3", "Mk-82", "Mk-82AIR x3",
                     "Mk-82AIR", "Mk-84", "SUU-25 * 8 LUU-2 x3", "SUU-25 * 8LUU-2", "AGM-65D", "AGM-65G", "AGM-65H", "AGM-65K",
                     "CATM-65K", "TGM-65D", "TGM-65G", "TGM-65H", "AGM-65D x1", "AGM-65D x2", "AGM-65D x3", "AGM-65H x1", "AGM-65H x2",
-                    "AGM-65H x3", "BRU-42LS", "MXU-648 Travel Pod", "7 2.75' rockets M151 (HE) LAU-131",
+                    "AGM-65H x3","AGM-65L", "BRU-42LS", "MXU-648 Travel Pod","7 2.75' Hydra Laser Guided Rkts M151 HE APKWS",
+                    "7 2.75' Hydra Laser Guided Rkts M282 MPP APKWS", "7 2.75' Hydra Laser Guided Rkts M151 HE APKWS x3",
+                    "7 2.75' Hydra Laser Guided Rkts M282 MPP APKWS x3","7 2.75' rockets M151 (HE) LAU-131",
                     "7 2.75' rockets M156 (WP) LAU-131", "7 2.75' rockets M257 (Parachute Illumination) LAU-131",
                     "7 2.75' rockets M274 (Practice smoke) LAU-131", "7 2.75' rockets MK5 (HE) LAU-131",
                     "7 2.75' rockets MK61 (Practice) LAU-131", "7 2.75' rockets Mk1 (Practice) LAU-131",
@@ -1741,8 +1763,10 @@ namespace DCS_Loadout_Calculator_Utility
                     "7 2.75' rockets WTU1B (Practice) LAU-68 x3" };
                 station3ComboBox.DataSource = station3Stores_A10C;
                 string[] station4Stores_A10C = new string[] { "Empty", "BDU-33 x3", "BDU-50HD", "BDU-50LD", "BDU-50LGB", "CBU-87",
-                    "CBU-97", "CBU-103", "CBU-105", "GBU-10", "GBU-12 x3", "GBU-12", "GBU-31", "GBU-31(V)3/B", "GBU-38", "Mk-82 x3",
-                    "Mk-82", "Mk-82AIR x3", "Mk-82AIR", "Mk-84", "BRU-42LS", "MXU-648 Travel Pod", "7 2.75' rockets M151 (HE) LAU-131",
+                    "CBU-97", "CBU-103", "CBU-105", "GBU-10", "GBU-12 x3", "GBU-12", "GBU-31", "GBU-31(V)3/B", "GBU-38","GBU-54(V)1/B", "Mk-82 x3",
+                    "Mk-82", "Mk-82AIR x3", "Mk-82AIR", "Mk-84", "BRU-42LS", "MXU-648 Travel Pod",
+                    "7 2.75' Hydra Laser Guided Rkts M151 HE APKWS","7 2.75' Hydra Laser Guided Rkts M282 MPP APKWS",
+                    "7 2.75' Hydra Laser Guided Rkts M151 HE APKWS x3","7 2.75' Hydra Laser Guided Rkts M282 MPP APKWS x3", "7 2.75' rockets M151 (HE) LAU-131",
                     "7 2.75' rockets M156 (WP) LAU-131", "7 2.75' rockets M257 (Parachute Illumination) LAU-131",
                     "7 2.75' rockets M274 (Practice smoke) LAU-131", "7 2.75' rockets MK5 (HE) LAU-131",
                     "7 2.75' rockets MK61 (Practice) LAU-131", "7 2.75' rockets Mk1 (Practice) LAU-131",
@@ -1761,19 +1785,21 @@ namespace DCS_Loadout_Calculator_Utility
                     "7 2.75' rockets WTU1B (Practice) LAU-68 x3", "Fuel Tank FT600" };
                 station4ComboBox.DataSource = station4Stores_A10C;
                 string[] station5Stores_A10C = new string[] { "Empty", "BDU-33 x3", "BDU-50HD", "BDU-50LD", "BDU-50LGB", "CBU-87",
-                    "CBU-97", "CBU-103", "CBU-105", "GBU-10", "GBU-12", "GBU-31", "GBU-31(V)3/B", "GBU-38", "Mk-82 x3", "Mk-82",
+                    "CBU-97", "CBU-103", "CBU-105", "GBU-10", "GBU-12", "GBU-31", "GBU-31(V)3/B", "GBU-38","GBU-54(V)1/B", "Mk-82 x3", "Mk-82",
                     "Mk-82AIR x3", "Mk-82AIR", "Mk-84", "BRU-42LS", "MXU-648 Travel Pod" };
                 station5ComboBox.DataSource = station5Stores_A10C;
                 string[] station6Stores_A10C = new string[] { "Empty", "BDU-33 x3", "BDU-50HD", "BDU-50LD", "BDU-50LGB", "CBU-87",
                     "CBU-97", "GBU-10", "GBU-12", "Mk-82", "Mk-82AIR", "Mk-84", "BRU-42LS", "MXU-648 Travel Pod", "Fuel Tank FT600" };
                 station6ComboBox.DataSource = station6Stores_A10C;
                 string[] station7Stores_A10C = new string[] { "Empty", "BDU-33 x3", "BDU-50HD", "BDU-50LD", "BDU-50LGB", "CBU-87",
-                    "CBU-97", "CBU-103", "CBU-105", "GBU-10", "GBU-12", "GBU-31", "GBU-31(V)3/B", "GBU-38", "Mk-82 x3", "Mk-82",
+                    "CBU-97", "CBU-103", "CBU-105", "GBU-10", "GBU-12", "GBU-31", "GBU-31(V)3/B", "GBU-38","GBU-54(V)1/B", "Mk-82 x3", "Mk-82",
                     "Mk-82AIR x3", "Mk-82AIR", "Mk-84", "BRU-42LS", "MXU-648 Travel Pod" };
                 station7ComboBox.DataSource = station7Stores_A10C;
                 string[] station8Stores_A10C = new string[] { "Empty", "BDU-33 x3", "BDU-50HD", "BDU-50LD", "BDU-50LGB", "CBU-87",
-                    "CBU-97", "CBU-103", "CBU-105", "GBU-10", "GBU-12 x3", "GBU-12", "GBU-31", "GBU-31(V)3/B", "GBU-38", "Mk-82 x3",
-                    "Mk-82", "Mk-82AIR x3", "Mk-82AIR", "Mk-84", "BRU-42LS", "MXU-648 Travel Pod", "7 2.75' rockets M151 (HE) LAU-131",
+                    "CBU-97", "CBU-103", "CBU-105", "GBU-10", "GBU-12 x3", "GBU-12", "GBU-31", "GBU-31(V)3/B", "GBU-38","GBU-54(V)1/B", "Mk-82 x3",
+                    "Mk-82", "Mk-82AIR x3", "Mk-82AIR", "Mk-84", "BRU-42LS", "MXU-648 Travel Pod",
+                    "7 2.75' Hydra Laser Guided Rkts M151 HE APKWS","7 2.75' Hydra Laser Guided Rkts M282 MPP APKWS",
+                    "7 2.75' Hydra Laser Guided Rkts M151 HE APKWS x3","7 2.75' Hydra Laser Guided Rkts M282 MPP APKWS x3", "7 2.75' rockets M151 (HE) LAU-131",
                     "7 2.75' rockets M156 (WP) LAU-131", "7 2.75' rockets M257 (Parachute Illumination) LAU-131",
                     "7 2.75' rockets M274 (Practice smoke) LAU-131", "7 2.75' rockets MK5 (HE) LAU-131",
                     "7 2.75' rockets MK61 (Practice) LAU-131", "7 2.75' rockets Mk1 (Practice) LAU-131",
@@ -1792,10 +1818,13 @@ namespace DCS_Loadout_Calculator_Utility
                     "7 2.75' rockets WTU1B (Practice) LAU-68 x3", "Fuel Tank FT600" };
                 station8ComboBox.DataSource = station8Stores_A10C;
                 string[] station9Stores_A10C = new string[] { "Empty", "BDU-33 x3", "BDU-50HD", "BDU-50LD", "BDU-50LGB", "CBU-103",
-                    "CBU-105", "GBU-10", "GBU-12 x3", "GBU-12", "GBU-31", "GBU-31(V)3/B", "GBU-38", "Mk-82 x3", "Mk-82", "Mk-82AIR x3",
+                    "CBU-105", "GBU-10", "GBU-12 x3", "GBU-12", "GBU-31", "GBU-31(V)3/B", "GBU-38","GBU-54(V)1/B", "Mk-82 x3", "Mk-82", "Mk-82AIR x3",
                     "Mk-82AIR", "Mk-84", "SUU-25 * 8 LUU-2 x3", "SUU-25 * 8LUU-2", "AGM-65D", "AGM-65G", "AGM-65H", "AGM-65K",
                     "CATM-65K", "TGM-65D", "TGM-65G", "TGM-65H", "AGM-65D x1", "AGM-65D x2", "AGM-65D x3", "AGM-65H x1", "AGM-65H x2",
-                    "AGM-65H x3", "BRU-42LS", "MXU-648 Travel Pod", "7 2.75' rockets M151 (HE) LAU-131",
+                    "AGM-65H x3","AGM-65L", "BRU-42LS", "MXU-648 Travel Pod",
+                    "7 2.75' Hydra Laser Guided Rkts M151 HE APKWS","7 2.75' Hydra Laser Guided Rkts M282 MPP APKWS",
+                    "7 2.75' Hydra Laser Guided Rkts M151 HE APKWS x3","7 2.75' Hydra Laser Guided Rkts M282 MPP APKWS x3",
+                    "7 2.75' rockets M151 (HE) LAU-131",
                     "7 2.75' rockets M156 (WP) LAU-131", "7 2.75' rockets M257 (Parachute Illumination) LAU-131",
                     "7 2.75' rockets M274 (Practice smoke) LAU-131", "7 2.75' rockets MK5 (HE) LAU-131",
                     "7 2.75' rockets MK61 (Practice) LAU-131", "7 2.75' rockets Mk1 (Practice) LAU-131",
@@ -1815,6 +1844,7 @@ namespace DCS_Loadout_Calculator_Utility
                 station9ComboBox.DataSource = station9Stores_A10C;
                 string[] station10Stores_A10C = new string[] { "Empty", "BDU-50HD", "BDU-50LD", "BDU-50LGB", "CBU-87",
                     "CBU-97", "GBU-12", "Mk-82", "Mk-82AIR", "SUU-25 * 8LUU-2", "AN/AAQ-28 LITENING",
+                    "7 2.75' Hydra Laser Guided Rkts M151 HE APKWS","7 2.75' Hydra Laser Guided Rkts M282 MPP APKWS",
                     "7 2.75' rockets M151 (HE) LAU-131", "7 2.75' rockets M156 (WP) LAU-131",
                     "7 2.75' rockets M257 (Parachute Illumination) LAU-131", "7 2.75' rockets M274 (Practice smoke) LAU-131",
                     "7 2.75' rockets MK5 (HE) LAU-131", "7 2.75' rockets MK61 (Practice) LAU-131",
@@ -1826,7 +1856,7 @@ namespace DCS_Loadout_Calculator_Utility
                 station10ComboBox.DataSource = station10Stores_A10C;
                 string[] station11Stores_A10C = new string[] { "Empty", "AIM-9L x2", "AIM-9M x2", "CAP-9M x2",
                     "AIM-9L", "AIM-9M", "CAP-9M", "BDU-50HD", "BDU-50LD", "BDU-50LGB", "CBU-87", "CBU-97",
-                    "GBU-12", "Mk-82", "Mk-82AIR", "ALQ-131", "ALQ-184", "AN/ASQ-T50 TCTS Pod", "LAU-105" };
+                    "GBU-12", "Mk-82", "Mk-82AIR", "ALQ-131", "ALQ-184", "AN/ASQ-T50 TCTS Pod", "LAU-105","Smokewinder" };
                 station11ComboBox.DataSource = station11Stores_A10C;
             }
             if (selectedAircraft == "M2000-C Mirage")
@@ -2612,10 +2642,10 @@ namespace DCS_Loadout_Calculator_Utility
                 string[] station2Stores_F16C = new string[] { "Empty", "Pylon", "AIM-120B", "AIM-120C", "AIM-9L", "AIM-9M", "AIM-9X", "CAP-9M", "AN/ASQ-T50 Pod" };
                 station2ComboBox.DataSource = station2Stores_F16C;
 
-                string[] station3Stores_F16C = new string[] { "Empty", "Pylon", "AIM-120B", "AIM-120C", "AIM-9L", "AIM-9M", "AIM-9X", "CAP-9M", "AN/ASQ-T50 Pod", "CBU-87", "CBU-97", "GBU-10", "GBU-12", "Mk-82", "Mk-82 SnakeEye", "Mk-82 AIR", "Mk-84", "CBU-87 x2", "CBU-97 x2", "GBU-12 x2", "Mk-82 x2", "Mk-82 SnakeEye x2", "Mk-82 AIR x2", "BDU-33 x3", "Mk-82 x3", "Mk-82 SnakeEye x3", "Mk-82 AIR x3", "MK151 HE", "MK156 WP", "MK5 HEAT", "MK61 WP", "WTU-1/B WP", "AGM-88C", "AGM-65D", "AGM-65D x1", "AGM-65D x2", "AGM-65D x3", "AGM-65G", "AGM-65H", "AGM-65H x1", "AGM-65H x2", "AGM-65H x3", "AGM-65K", "MXU-648 Travel Pod" };
+                string[] station3Stores_F16C = new string[] { "Empty", "Pylon", "AIM-120B", "AIM-120C", "AIM-9L", "AIM-9M", "AIM-9X", "CAP-9M", "AN/ASQ-T50 Pod", "CBU-87", "CBU-97", "GBU-10", "GBU-12", "Mk-82", "Mk-82 SnakeEye", "Mk-82 AIR", "Mk-84", "CBU-87 x2", "CBU-97 x2", "GBU-12 x2", "Mk-82 x2", "Mk-82 SnakeEye x2", "Mk-82 AIR x2", "BDU-33 x3", "Mk-82 x3", "Mk-82 SnakeEye x3", "Mk-82 AIR x3", "AGM-88C", "AGM-65D", "AGM-65D x1", "AGM-65D x2", "AGM-65D x3", "AGM-65G", "AGM-65H", "AGM-65H x1", "AGM-65H x2", "AGM-65H x3", "AGM-65K", "MK151 HE", "MK156 WP", "MK5 HEAT", "MK61 WP", "WTU-1/B WP",  "MXU-648 Travel Pod" };
                 station3ComboBox.DataSource = station3Stores_F16C;
 
-                string[] station4Stores_F16C = new string[] { "Empty", "Pylon", "CBU-87", "CBU-97", "GBU-10", "GBU-12", "Mk-82", "Mk-82 SnakeEye", "Mk-82 AIR", "Mk-84", "CBU-87 x2", "CBU-97 x2", "Mk-82 x2", "Mk-82 SnakeEye x2", "Mk-82 AIR x2", "BDU-33 x3", "CBU-87 x3", "CBU-97 x3", "Mk-82 x3", "Mk-82 SnakeEye x3", "Mk-82 AIR x3", "MK151 HE", "MK156 WP", "MK5 HEAT", "MK61 WP", "WTU-1/B WP", "Fuel tank 370 gal", "AGM-88C", "MXU-648 Travel Pod" };
+                string[] station4Stores_F16C = new string[] { "Empty", "Pylon", "CBU-87", "CBU-97", "GBU-10", "GBU-12", "Mk-82", "Mk-82 SnakeEye", "Mk-82 AIR", "Mk-84", "CBU-87 x2", "CBU-97 x2", "Mk-82 x2", "Mk-82 SnakeEye x2", "Mk-82 AIR x2", "BDU-33 x3", "CBU-87 x3", "CBU-97 x3", "Mk-82 x3", "Mk-82 SnakeEye x3", "Mk-82 AIR x3", "AGM-88C", "MK151 HE", "MK156 WP", "MK5 HEAT", "MK61 WP", "WTU-1/B WP", "Fuel tank 370 gal",  "MXU-648 Travel Pod" };
                 station4ComboBox.DataSource = station4Stores_F16C;
 
                 string[] station5Stores_F16C = new string[] { "Empty" };
@@ -2627,10 +2657,10 @@ namespace DCS_Loadout_Calculator_Utility
                 string[] station7Stores_F16C = new string[] { "Empty", "AN/AAQ-28 LITENING" };
                 station7ComboBox.DataSource = station7Stores_F16C;
 
-                string[] station8Stores_F16C = new string[] { "Empty", "Pylon", "CBU-87", "CBU-97", "GBU-10", "GBU-12", "Mk-82", "Mk-82 SnakeEye", "Mk-82 AIR", "Mk-84", "CBU-87 x2", "CBU-97 x2", "Mk-82 x2", "Mk-82 SnakeEye x2", "Mk-82 AIR x2", "BDU-33 x3", "CBU-87 x3", "CBU-97 x3", "Mk-82 x3", "Mk-82 SnakeEye x3", "Mk-82 AIR x3", "MK151 HE", "MK156 WP", "MK5 HEAT", "MK61 WP", "WTU-1/B WP", "Fuel tank 370 gal", "AGM-88C", "MXU-648 Travel Pod"};
+                string[] station8Stores_F16C = new string[] { "Empty", "Pylon", "CBU-87", "CBU-97", "GBU-10", "GBU-12", "Mk-82", "Mk-82 SnakeEye", "Mk-82 AIR", "Mk-84", "CBU-87 x2", "CBU-97 x2", "Mk-82 x2", "Mk-82 SnakeEye x2", "Mk-82 AIR x2", "BDU-33 x3", "CBU-87 x3", "CBU-97 x3", "Mk-82 x3", "Mk-82 SnakeEye x3", "Mk-82 AIR x3", "AGM-88C", "MK151 HE", "MK156 WP", "MK5 HEAT", "MK61 WP", "WTU-1/B WP", "Fuel tank 370 gal","MXU-648 Travel Pod"};
                 station8ComboBox.DataSource = station8Stores_F16C;
 
-                string[] station9Stores_F16C = new string[] { "Empty", "Pylon", "AIM-120B", "AIM-120C", "AIM-9L", "AIM-9M", "AIM-9X", "CAP-9M", "AN/ASQ-T50 Pod", "CBU-87", "CBU-97", "GBU-10", "GBU-12", "Mk-82", "Mk-82 SnakeEye", "Mk-82 AIR", "Mk-84", "CBU-87 x2", "CBU-97 x2", "GBU-12 x2", "Mk-82 x2", "Mk-82 SnakeEye x2", "Mk-82 AIR x2", "BDU-33 x3", "Mk-82 x3", "Mk-82 SnakeEye x3", "Mk-82 AIR x3", "MK151 HE", "MK156 WP", "MK5 HEAT", "MK61 WP", "WTU-1/B WP", "AGM-88C", "AGM-65D", "AGM-65D x1", "AGM-65D x2", "AGM-65D x3", "AGM-65G", "AGM-65H", "AGM-65H x1", "AGM-65H x2", "AGM-65H x3", "AGM-65K", "MXU-648 Travel Pod" };
+                string[] station9Stores_F16C = new string[] { "Empty", "Pylon", "AIM-120B", "AIM-120C", "AIM-9L", "AIM-9M", "AIM-9X", "CAP-9M", "AN/ASQ-T50 Pod", "CBU-87", "CBU-97", "GBU-10", "GBU-12", "Mk-82", "Mk-82 SnakeEye", "Mk-82 AIR", "Mk-84", "CBU-87 x2", "CBU-97 x2", "GBU-12 x2", "Mk-82 x2", "Mk-82 SnakeEye x2", "Mk-82 AIR x2", "BDU-33 x3", "Mk-82 x3", "Mk-82 SnakeEye x3", "Mk-82 AIR x3", "AGM-88C", "AGM-65D", "AGM-65D x1", "AGM-65D x2", "AGM-65D x3", "AGM-65G", "AGM-65H", "AGM-65H x1", "AGM-65H x2", "AGM-65H x3", "AGM-65K", "MK151 HE", "MK156 WP", "MK5 HEAT", "MK61 WP", "WTU-1/B WP",  "MXU-648 Travel Pod" };
                 station9ComboBox.DataSource = station9Stores_F16C;
 
                 string[] station10Stores_F16C = new string[] { "Empty", "Pylon", "AIM-120B", "AIM-120C", "AIM-9L", "AIM-9M", "AIM-9X", "CAP-9M", "AN/ASQ-T50 Pod" };
@@ -2724,10 +2754,10 @@ namespace DCS_Loadout_Calculator_Utility
                 string[] station1Stores_F18C = new string[] { "Empty", "AIM-9L", "AIM-9M", "AIM-9X", "CAP-9M", "AN/ASQ-T50 TCTS Pod" };
                 station1ComboBox.DataSource = station1Stores_F18C;
 
-                string[] station2Stores_F18C = new string[] { "Empty", "Pylon", "AIM-120B x2", "AIM-120C x2", "AIM-9L x2", "AIM-9M x2", "AIM-9X x2", "CAP-9M x2", "AIM-120B", "AIM-120C", "AIM-7F", "AIM-7M", "AIM-7MH", "AIM-9L", "AIM-9M", "AIM-9X", "CAP-9M", "AGM-154A", "AGM-154C", "AGM-84D", "AGM-88C", "AGM-154A x2", "AGM-154C x2", "AGM-65E", "AGM-65F", "AGM-62", "CBU-99 x2", "GBU-12 x2", "Mk-20 Rockeye x2", "Mk-82 x2", "Mk-82 SnakeEye x2", "Mk-82Y x2", "Mk-83 x2", "BDU-33 x6", "GBU-38 x2", "CBU-99", "GBU-10", "GBU-12", "GBU-16", "GBU-31", "GBU-31(V)3/B", "GBU-38", "Mk-20", "Mk-82", "Mk-82 SnakeEye", "Mk-82Y", "Mk-83", "Mk-84", "4 ZUNI MK 71 x2", "19 Mk151 HE x2", "7 M151 HE x2", "7 MK5 HE x2", "4 ZUNI MK 71", "19 Mk151 HE", "7 M151 HE", "7 MK5 HE", "AN/ASQ-T50 Pod" };
+                string[] station2Stores_F18C = new string[] { "Empty", "Pylon", "AIM-120B x2", "AIM-120C x2", "AIM-9L x2", "AIM-9M x2", "AIM-9X x2", "CAP-9M x2", "AIM-120B", "AIM-120C", "AIM-7F", "AIM-7M", "AIM-7MH", "AIM-9L", "AIM-9M", "AIM-9X", "CAP-9M", "AGM-154A", "AGM-154C", "AGM-84D", "AGM-84E", "AGM-88C", "AGM-154A x2", "AGM-154C x2", "AGM-65E", "AGM-65F", "AGM-62", "CBU-99 x2", "GBU-12 x2", "Mk-20 Rockeye x2", "Mk-82 x2", "Mk-82 SnakeEye x2", "Mk-82Y x2", "Mk-83 x2", "BDU-33 x6", "GBU-38 x2", "CBU-99", "GBU-10", "GBU-12", "GBU-16", "GBU-31", "GBU-31(V)3/B", "GBU-38", "Mk-20", "Mk-82", "Mk-82 SnakeEye", "Mk-82Y", "Mk-83", "Mk-84", "4 ZUNI MK 71 x2", "19 Mk151 HE x2", "7 M151 HE x2", "7 MK5 HE x2", "4 ZUNI MK 71", "19 Mk151 HE", "7 M151 HE", "7 MK5 HE", "AAW-13 DATALINK POD", "AN/ASQ-T50 Pod" };
                 station2ComboBox.DataSource = station2Stores_F18C;
 
-                string[] station3Stores_F18C = new string[] { "Empty", "Pylon", "AIM-120B x2", "AIM-120C x2", "AIM-120B", "AIM-120C", "AIM-7F", "AIM-7M", "AIM-7MH", "AGM-154A", "AGM-154C", "AGM-84D", "AGM-88C", "AGM-154A x2", "AGM-154C x2", "AGM-65E", "AGM-65F", "CBU-99 x2", "GBU-12 x2", "Mk-20 Rockeye x2", "Mk-82 x2", "Mk-82 SnakeEye x2", "Mk-82Y x2", "Mk-83 x2", "BDU-33 x6", "GBU-38 x2", "CBU-99", "GBU-10", "GBU-12", "GBU-16", "GBU-31", "GBU-31(V)3/B", "GBU-38", "Mk-20", "Mk-82", "Mk-82 SnakeEye", "Mk-82Y", "Mk-83", "Mk-84", "4 ZUNI MK 71 x2", "19 Mk151 HE x2", "7 M151 HE x2", "7 MK5 HE x2", "4 ZUNI MK 71", "19 Mk151 HE", "7 M151 HE", "7 MK5 HE", "FPU-8A Fuel Tank 330 gallons" };
+                string[] station3Stores_F18C = new string[] { "Empty", "Pylon", "AIM-120B x2", "AIM-120C x2", "AIM-120B", "AIM-120C", "AIM-7F", "AIM-7M", "AIM-7MH", "AGM-154A", "AGM-154C", "AGM-84D", "AGM-84E", "AGM-88C", "AGM-154A x2", "AGM-154C x2", "AGM-65E", "AGM-65F", "CBU-99 x2", "GBU-12 x2", "Mk-20 Rockeye x2", "Mk-82 x2", "Mk-82 SnakeEye x2", "Mk-82Y x2", "Mk-83 x2", "BDU-33 x6", "GBU-38 x2", "CBU-99", "GBU-10", "GBU-12", "GBU-16", "GBU-31", "GBU-31(V)3/B", "GBU-38", "Mk-20", "Mk-82", "Mk-82 SnakeEye", "Mk-82Y", "Mk-83", "Mk-84", "4 ZUNI MK 71 x2", "19 Mk151 HE x2", "7 M151 HE x2", "7 MK5 HE x2", "4 ZUNI MK 71", "19 Mk151 HE", "7 M151 HE", "7 MK5 HE", "AAW-13 DATALINK POD", "FPU-8A Fuel Tank 330 gallons" };
                 station3ComboBox.DataSource = station3Stores_F18C;
 
                 string[] station4Stores_F18C = new string[] { "Empty", "AIM-120B", "AIM-120C", "AIM-7F", "AIM-7M", "AIM-7MH", "AN/AAQ-28 LITENING" };
@@ -2739,10 +2769,10 @@ namespace DCS_Loadout_Calculator_Utility
                 string[] station6Stores_F18C = new string[] { "Empty", "AIM-120B", "AIM-120C", "AIM-7F", "AIM-7M", "AIM-7MH" };
                 station6ComboBox.DataSource = station6Stores_F18C;
 
-                string[] station7Stores_F18C = new string[] { "Empty", "Pylon", "AIM-120B x2", "AIM-120C x2", "AIM-120B", "AIM-120C", "AIM-7F", "AIM-7M", "AIM-7MH", "AGM-154A", "AGM-154C", "AGM-84D", "AGM-88C", "AGM-154A x2", "AGM-154C x2", "AGM-65E", "AGM-65F", "CBU-99 x2", "GBU-12 x2", "Mk-20 Rockeye x2", "Mk-82 x2", "Mk-82 SnakeEye x2", "Mk-82Y x2", "Mk-83 x2", "BDU-33 x6", "GBU-38 x2", "CBU-99", "GBU-10", "GBU-12", "GBU-16", "GBU-31", "GBU-31(V)3/B", "GBU-38", "Mk-20", "Mk-82", "Mk-82 SnakeEye", "Mk-82Y", "Mk-83", "Mk-84", "4 ZUNI MK 71 x2", "19 Mk151 HE x2", "7 M151 HE x2", "7 MK5 HE x2", "4 ZUNI MK 71", "19 Mk151 HE", "7 M151 HE", "7 MK5 HE", "FPU-8A Fuel Tank 330 gallons" };
+                string[] station7Stores_F18C = new string[] { "Empty", "Pylon", "AIM-120B x2", "AIM-120C x2", "AIM-120B", "AIM-120C", "AIM-7F", "AIM-7M", "AIM-7MH", "AGM-154A", "AGM-154C", "AGM-84D", "AGM-84E", "AGM-88C", "AGM-154A x2", "AGM-154C x2", "AGM-65E", "AGM-65F", "AGM-84E", "CBU-99 x2", "GBU-12 x2", "Mk-20 Rockeye x2", "Mk-82 x2", "Mk-82 SnakeEye x2", "Mk-82Y x2", "Mk-83 x2", "BDU-33 x6", "GBU-38 x2", "CBU-99", "GBU-10", "GBU-12", "GBU-16", "GBU-31", "GBU-31(V)3/B", "GBU-38", "Mk-20", "Mk-82", "Mk-82 SnakeEye", "Mk-82Y", "Mk-83", "Mk-84", "4 ZUNI MK 71 x2", "19 Mk151 HE x2", "7 M151 HE x2", "7 MK5 HE x2", "4 ZUNI MK 71", "19 Mk151 HE", "7 M151 HE", "7 MK5 HE", "AAW-13 DATALINK POD", "FPU-8A Fuel Tank 330 gallons" };
                 station7ComboBox.DataSource = station7Stores_F18C;
 
-                string[] station8Stores_F18C = new string[] { "Empty", "Pylon", "AIM-120B x2", "AIM-120C x2", "AIM-9L x2", "AIM-9M x2", "AIM-9X x2", "CAP-9M x2", "AIM-120B", "AIM-120C", "AIM-7F", "AIM-7M", "AIM-7MH", "AIM-9L", "AIM-9M", "AIM-9X", "CAP-9M", "AGM-154A", "AGM-154C", "AGM-84D", "AGM-88C", "AGM-154A x2", "AGM-154C x2", "AGM-65E", "AGM-65F", "AGM-62", "CBU-99 x2", "GBU-12 x2", "Mk-20 Rockeye x2", "Mk-82 x2", "Mk-82 SnakeEye x2", "Mk-82Y x2", "Mk-83 x2", "BDU-33 x6", "GBU-38 x2", "CBU-99", "GBU-10", "GBU-12", "GBU-16", "GBU-31", "GBU-31(V)3/B", "GBU-38", "Mk-20", "Mk-82", "Mk-82 SnakeEye", "Mk-82Y", "Mk-83", "Mk-84", "4 ZUNI MK 71 x2", "19 Mk151 HE x2", "7 M151 HE x2", "7 MK5 HE x2", "4 ZUNI MK 71", "19 Mk151 HE", "7 M151 HE", "7 MK5 HE", "AN/ASQ-T50 Pod" };
+                string[] station8Stores_F18C = new string[] { "Empty", "Pylon", "AIM-120B x2", "AIM-120C x2", "AIM-9L x2", "AIM-9M x2", "AIM-9X x2", "CAP-9M x2", "AIM-120B", "AIM-120C", "AIM-7F", "AIM-7M", "AIM-7MH", "AIM-9L", "AIM-9M", "AIM-9X", "CAP-9M", "AGM-154A", "AGM-154C", "AGM-84D", "AGM-84E", "AGM-88C", "AGM-154A x2", "AGM-154C x2", "AGM-65E", "AGM-65F", "AGM-62", "CBU-99 x2", "GBU-12 x2", "Mk-20 Rockeye x2", "Mk-82 x2", "Mk-82 SnakeEye x2", "Mk-82Y x2", "Mk-83 x2", "BDU-33 x6", "GBU-38 x2", "CBU-99", "GBU-10", "GBU-12", "GBU-16", "GBU-31", "GBU-31(V)3/B", "GBU-38", "Mk-20", "Mk-82", "Mk-82 SnakeEye", "Mk-82Y", "Mk-83", "Mk-84", "4 ZUNI MK 71 x2", "19 Mk151 HE x2", "7 M151 HE x2", "7 MK5 HE x2", "4 ZUNI MK 71", "19 Mk151 HE", "7 M151 HE", "7 MK5 HE", "AAW-13 DATALINK POD", "AN/ASQ-T50 Pod" };
                 station8ComboBox.DataSource = station8Stores_F18C;
 
                 string[] station9Stores_F18C = new string[] { "Empty", "AIM-9L", "AIM-9M", "AIM-9X", "CAP-9M", "AN/ASQ-T50 TCTS Pod" };
