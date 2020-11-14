@@ -8,3 +8,13 @@ C:\Users\Bailey\source\repos\DCS_Loadout_Calculator_Utility\DCS Loadout Calculat
 C:\Users\Bailey\source\repos\DCS_Loadout_Calculator_Utility\DCS Loadout Calculator Utility\DCS Loadout Calculator Utility\obj\Debug\DCS Loadout Calculator Utility.csproj.CoreCompileInputs.cache
 C:\Users\Bailey\source\repos\DCS_Loadout_Calculator_Utility\DCS Loadout Calculator Utility\DCS Loadout Calculator Utility\obj\Debug\DCS Loadout Calculator Utility.exe
 C:\Users\Bailey\source\repos\DCS_Loadout_Calculator_Utility\DCS Loadout Calculator Utility\DCS Loadout Calculator Utility\obj\Debug\DCS Loadout Calculator Utility.pdb
+C:\Users\Bailey\Source\Repos\DCS-WABU\DCS Loadout Calculator Utility\bin\Debug\DCS Loadout Calculator Utility.exe.config
+C:\Users\Bailey\Source\Repos\DCS-WABU\DCS Loadout Calculator Utility\bin\Debug\DCS Loadout Calculator Utility.exe
+C:\Users\Bailey\Source\Repos\DCS-WABU\DCS Loadout Calculator Utility\bin\Debug\DCS Loadout Calculator Utility.pdb
+C:\Users\Bailey\Source\Repos\DCS-WABU\DCS Loadout Calculator Utility\obj\Debug\DCS Loadout Calculator Utility.csprojAssemblyReference.cache
+C:\Users\Bailey\Source\Repos\DCS-WABU\DCS Loadout Calculator Utility\obj\Debug\DCS_Loadout_Calculator_Utility.Form1.resources
+C:\Users\Bailey\Source\Repos\DCS-WABU\DCS Loadout Calculator Utility\obj\Debug\DCS_Loadout_Calculator_Utility.Properties.Resources.resources
+C:\Users\Bailey\Source\Repos\DCS-WABU\DCS Loadout Calculator Utility\obj\Debug\DCS Loadout Calculator Utility.csproj.GenerateResource.cache
+C:\Users\Bailey\Source\Repos\DCS-WABU\DCS Loadout Calculator Utility\obj\Debug\DCS Loadout Calculator Utility.csproj.CoreCompileInputs.cache
+C:\Users\Bailey\Source\Repos\DCS-WABU\DCS Loadout Calculator Utility\obj\Debug\DCS Loadout Calculator Utility.exe
+C:\Users\Bailey\Source\Repos\DCS-WABU\DCS Loadout Calculator Utility\obj\Debug\DCS Loadout Calculator Utility.pdb
